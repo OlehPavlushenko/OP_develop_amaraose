@@ -1,27 +1,29 @@
+{% comment %} Bundle Collection {% endcomment %}
+
 {% liquid
-    assign url = canonical_url | url_decode | split: '?'
-    assign url = url[1] | split: '='
+  assign url = canonical_url | url_decode | split: '?'
+  assign url = url[1] | split: '='
 %}
 
 {%- if url != blank -%}
-    <div class="js-section-block">
-        <ul class="bundle-products__grid">
-            {%- for item in url -%}
-                {% if item != 'handle' %}
-                    {%- assign product = all_products[item] -%}
-                    <li class="bundle-products__item js-card-item">
-                        {% render 'card-product-bundle',
-                            card_product: product,
-                            media_aspect_ratio: 'adapt',
-                            show_secondary_image: false,
-                            show_rating: true,
-                            show_quick_add: false,
-                            forloop: forloop.index,
-                            product_bundle: 'bundle-cart__style'
-                        %}
-                    </li>
-                {% endif %}
-            {%- endfor -%}
-        </ul>
-    </div>
+  <div class="js-section-block">
+    <ul class="bundle-products__grid">
+      {%- for item in url -%}
+        {% if item != 'handle' %}
+          {%- assign product = all_products[item] -%}
+          <li class="bundle-products__item js-card-item">
+            {% render 'card-product-bundle',
+              card_product: product,
+              media_aspect_ratio: 'adapt',
+              show_secondary_image: false,
+              show_rating: true,
+              show_quick_add: false,
+              forloop: forloop.index,
+              product_bundle: 'bundle-cart__style'
+            %}
+          </li>
+        {% endif %}
+      {%- endfor -%}
+    </ul>
+  </div>
 {%- endif -%}

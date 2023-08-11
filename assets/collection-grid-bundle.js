@@ -1,3 +1,5 @@
+// Bundle Collection 
+
 Shopify.formatMoney = function (cents, format) {
     if (typeof cents == "string") {
         cents = cents.replace(".", "")
