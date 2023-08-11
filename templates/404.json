@@ -1,0 +1,13 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-404",
+      "settings": {
+        "background_image": "shopify:\/\/shop_images\/405-min.webp"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

@@ -1,0 +1,70 @@
+{{ 'customer.css' | asset_url | stylesheet_tag }}
+
+<div class="customer-login">
+  <div class="customer-login__background">
+    {% if settings.background_image != blank %}
+      {{ settings.background_image | image_url: width: 1920 | image_tag:
+      loading: 'lazy',
+      width: settings.background_image.width,
+      height: settings.background_image.height,
+      class: 'hero-banner__image',
+      sizes: sizes,
+      widths: '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840',
+      alt: settings.background_image.alt | escape
+      }}
+    {% endif %}
+  </div>
+
+  <div class="page-width">
+    <div class="customer-login__heading">
+      <a href="{{ routes.root_url }}" class="customer-login__heading-link link link--text focus-inset">
+        {%- if settings.login_logo_svg != blank -%}
+          <span class="customer-login__heading-logo logo--svg">{{ settings.login_logo_svg }}</span>
+        {%- elsif settings.login_logo != blank -%}
+          {%- assign logo_alt = settings.login_logo.alt | default: shop.name | escape -%}
+          {{ settings.login_logo | image_url: width: section.settings.width | image_tag:
+          class: 'customer-login__heading-logo',
+          widths: '50, 100, 150, 200, 250, 300, 400, 500',
+          height: settings.login_logo.height,
+          width: settings.login_logo.width,
+          alt: logo_alt
+          }}
+        {%- else -%}
+          <span class="h2">{{ shop.name }}</span>
+        {%- endif -%}
+      </a>
+
+      {% if settings.return_text != blank %}
+        <div class="customer-login__return">
+          <a class="customer-login__return-link" href="{{ settings.return_link }}">
+            {{ settings.return_text }}
+            {% if settings.return_icon != blank %}
+              <i class="customer-login__return-icon">{{ settings.return_icon }}</i>
+            {% endif %}
+          </a>
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="customer-login__box register-complete--style">
+      <h1 class="visually-hidden">
+        {{ page.title }}
+      </h1>
+      {% if settings.register_complete_title != blank %}
+        <h2 class="h1 customer-login__title">
+          {{ settings.register_complete_title }}
+        </h2>
+      {% endif %}
+      {% if settings.register_complete_text != blank %}
+        <p class="customer-login__register-confirm-message">
+          {{ settings.register_complete_text }}
+        </p>
+      {% endif %}
+      {% if settings.register_complete_link_text != blank %}
+        <a class="customer-login__button button secondary-button" href="{{ settings.register_complete_link_url }}">
+          {{ settings.register_complete_link_text }}
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</div>

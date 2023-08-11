@@ -1,0 +1,128 @@
+.landing-main-banner {
+  padding-bottom: 64px;
+}
+
+.landing-main-banner__content-wrapper {
+  display: grid;
+  grid-template-columns: 450px 1fr;
+  gap: 40px 160px;
+  align-items: center;
+}
+@media screen and (max-width: 1300px) {
+  .landing-main-banner__content-wrapper {
+    gap: 40px;
+  }
+}
+@media screen and (max-width: 992px) {
+  .landing-main-banner__content-wrapper {
+    grid-template-columns: 1fr;
+    padding-top: 24px;
+  }
+}
+
+.landing-main-banner__content {
+  font-family: "Poppins", sans-serif;
+  color: #1A1818;
+}
+
+.landing-main-banner__title {
+  margin-bottom: 16px;
+  font-size: 48px;
+  line-height: 1;
+  line-height: 1.2;
+  font-weight: 500;
+}
+@media screen and (max-width: 768px) {
+  .landing-main-banner__title {
+    font-size: calc(40px + 13.6 * ((100vw - 375px) / 1920));
+  }
+}
+@media screen and (min-width: 769px) {
+  .landing-main-banner__title {
+    font-size: calc(40px + 8 * (100vw / 1920));
+  }
+}
+@media screen and (max-width: 767px) {
+  .landing-main-banner__title {
+    text-align: center;
+  }
+}
+
+.landing-main-banner__subtitle {
+  margin-bottom: 44px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  color: #1A1818;
+}
+@media screen and (max-width: 767px) {
+  .landing-main-banner__subtitle {
+    text-align: center;
+  }
+}
+
+.landing-main-banner__advantage_list {
+  margin-bottom: 44px;
+  font-size: 18px;
+}
+.landing-main-banner__advantage_list li:not(:last-of-type) {
+  margin-bottom: 22px;
+}
+.landing-main-banner__advantage_list li svg {
+  margin-right: 16px;
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
+}
+
+.landing-main-banner__btn-wrapper {
+  text-align: center;
+}
+.landing-main-banner__btn-wrapper .button {
+  margin: 0 auto 16px;
+}
+.landing-main-banner__btn-wrapper p {
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  color: #1A1818;
+}
+.landing-main-banner__btn-wrapper p:first-of-type {
+  margin-bottom: 12px;
+}
+
+.landing-main-banner__banner {
+  position: relative;
+  padding: 30px;
+  background-color: #CF4391;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 40px;
+  box-shadow: 0 72px 48px -62px rgba(207, 67, 145, 0.75);
+}
+.landing-main-banner__banner img {
+  max-width: 380px;
+  width: 100%;
+  object-fit: contain;
+  object-position: center;
+  margin: 0 auto;
+  display: block;
+}
+.landing-main-banner__banner .landing-main-banner__reviews-label {
+  position: absolute;
+  top: 22px;
+  left: 22px;
+  display: inline-flex;
+  gap: 12px;
+  min-height: 38px;
+  padding: 4px 12px;
+  align-items: center;
+  font-family: "Poppins", sans-serif;
+  line-height: 1;
+  background-color: #ffffff;
+  border-radius: 100px;
+}
+.landing-main-banner__banner .landing-main-banner__reviews-label .star-group {
+  flex-shrink: 0;
+}
+
+/*# sourceMappingURL=section-landing-main-banner.css.map */

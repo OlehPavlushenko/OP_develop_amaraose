@@ -1,0 +1,227 @@
+{
+  "sections": {
+    "zp-product-header-content": {
+      "type": "product-header-content-zipifypages",
+      "settings": {
+      }
+    },
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {
+          }
+        },
+        "1262beec-474b-434b-9761-994b21a45d40": {
+          "type": "shopify:\/\/apps\/judge-me-product-reviews\/blocks\/preview_badge\/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "disabled": true,
+          "settings": {
+            "picker_type": "button"
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {
+          }
+        }
+      },
+      "block_order": [
+        "title",
+        "1262beec-474b-434b-9761-994b21a45d40",
+        "price",
+        "variant_picker",
+        "buy_buttons",
+        "description"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "gallery_layout": "stacked",
+        "mobile_thumbnails": "show",
+        "hide_variants": true,
+        "enable_video_looping": false
+      }
+    },
+    "1676403052e6e1d746": {
+      "type": "apps",
+      "blocks": {
+        "e7b0d926-9c0e-431b-a00f-52654b0469f8": {
+          "type": "shopify:\/\/apps\/rebuy-personalization-engine\/blocks\/rebuy-widget\/a26ae9b9-933b-40bf-bbc6-bf1220bbc4dc",
+          "settings": {
+            "enabled": true,
+            "id": "74752",
+            "product_id_enabled": true,
+            "collection_id_enabled": false
+          }
+        }
+      },
+      "block_order": [
+        "e7b0d926-9c0e-431b-a00f-52654b0469f8"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "16589228130b221df1": {
+      "type": "running-line",
+      "blocks": {
+        "386c512f-aa3b-48c5-bf13-77cbfb37254b": {
+          "type": "featured_collection",
+          "settings": {
+            "running_line_item": "NO ARTIFICIAL COLORS"
+          }
+        },
+        "37a47093-de39-42af-96f0-711449d09a36": {
+          "type": "featured_collection",
+          "settings": {
+            "running_line_item": "NO ARTIFICIAL COLORS"
+          }
+        },
+        "285c19a1-16b1-4178-a741-a91618703f3d": {
+          "type": "featured_collection",
+          "settings": {
+            "running_line_item": "NO ARTIFICIAL COLORS"
+          }
+        }
+      },
+      "block_order": [
+        "386c512f-aa3b-48c5-bf13-77cbfb37254b",
+        "37a47093-de39-42af-96f0-711449d09a36",
+        "285c19a1-16b1-4178-a741-a91618703f3d"
+      ],
+      "settings": {
+        "title": "Running line"
+      }
+    },
+    "1660807363d42faf82": {
+      "type": "images-two-with-text",
+      "settings": {
+      }
+    },
+    "165979501095128c3c": {
+      "type": "video",
+      "disabled": true,
+      "settings": {
+        "heading": "Formulated to provide skin nutrition for optimal skin health.",
+        "text": "A clean beauty solution that delivers nutrients to preserve and enhance your best skin.",
+        "video_url": "https:\/\/www.youtube.com\/watch?v=_9VUPq3SxOc",
+        "description": "",
+        "is_product": true
+      }
+    },
+    "1659809705039b724e": {
+      "type": "pdp-benefits",
+      "settings": {
+      }
+    },
+    "165981051437af0bd0": {
+      "type": "how-it-works-pdp",
+      "blocks": {
+        "0691b14b-e606-4c99-b06e-1b4901b80619": {
+          "type": "ingredient",
+          "settings": {
+            "icon_works": "icon",
+            "text_works": "With 70% Glycolic Acid, the cleanser supports natural cell turnover. Fades sun damage, skin discolorations, and acne scarring while removing pollutants and dead skin."
+          }
+        },
+        "b70f3897-584b-48ab-baec-7d69bdf4dc4a": {
+          "type": "ingredient",
+          "settings": {
+            "icon_works": "icon",
+            "text_works": "Niacinamide (Vitamin B3) improves the elasticity of the skin. Rebalances uneven skin tone. Reduces discoloration."
+          }
+        },
+        "a3354c6a-1a41-4a28-8cca-22ba99fc6556": {
+          "type": "ingredient",
+          "settings": {
+            "icon_works": "icon",
+            "text_works": "Aloe Vera Gel, known for the ability to heal wounds, this ingredient absorbs quickly with no sticky residue, leaving skin silky and smooth."
+          }
+        }
+      },
+      "block_order": [
+        "0691b14b-e606-4c99-b06e-1b4901b80619",
+        "b70f3897-584b-48ab-baec-7d69bdf4dc4a",
+        "a3354c6a-1a41-4a28-8cca-22ba99fc6556"
+      ],
+      "settings": {
+        "is_product": true,
+        "title": "Stronger Together",
+        "text": "Developed to work better together, each product prepares your skin for every day protection."
+      }
+    },
+    "judgeme_section_review_widget_2133": {
+      "type": "apps",
+      "blocks": {
+        "0040a7f4-b1c8-4807-a68c-91759bf1962c": {
+          "type": "shopify:\/\/apps\/judge-me-product-reviews\/blocks\/review_widget\/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+          }
+        }
+      },
+      "block_order": [
+        "0040a7f4-b1c8-4807-a68c-91759bf1962c"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "16598113958f0d0b25": {
+      "type": "faq-product",
+      "settings": {
+      }
+    },
+    "product-recommendations": {
+      "type": "product-recommendations",
+      "settings": {
+        "heading": "You Might Also Like",
+        "heading_size": "h2",
+        "products_to_show": 5,
+        "columns_desktop": 4,
+        "color_scheme": "background-1",
+        "image_ratio": "square",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": true,
+        "columns_mobile": "2",
+        "padding_top": 36,
+        "padding_bottom": 28
+      }
+    },
+    "zp-product-footer-content": {
+      "type": "product-footer-content-zipifypages",
+      "settings": {
+      }
+    }
+  },
+  "order": [
+    "zp-product-header-content",
+    "main",
+    "1676403052e6e1d746",
+    "16589228130b221df1",
+    "1660807363d42faf82",
+    "165979501095128c3c",
+    "1659809705039b724e",
+    "165981051437af0bd0",
+    "judgeme_section_review_widget_2133",
+    "16598113958f0d0b25",
+    "product-recommendations",
+    "zp-product-footer-content"
+  ]
+}

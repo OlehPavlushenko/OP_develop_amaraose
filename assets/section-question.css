@@ -1,0 +1,134 @@
+.question-section {
+  background: linear-gradient(93.59deg, #850B65 0.17%, #BA3A7D 99.39%);
+}
+
+.question-section__content-wrapper {
+  min-height: 370px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+}
+@media screen and (max-width: 991px) {
+  .question-section__content-wrapper {
+    flex-direction: column;
+    align-items: center;
+    padding: 60px 0;
+  }
+}
+
+.question-section__content {
+  padding: 50px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: stretch;
+  max-width: 530px;
+  width: 100%;
+  border-radius: 0 200px 200px 0;
+  background: linear-gradient(90deg, rgba(133, 11, 101, 0) 0%, rgba(186, 58, 125, 0.4598214286) 40%, rgb(186, 58, 125) 80%);
+}
+@media screen and (max-width: 991px) {
+  .question-section__content {
+    max-width: 100%;
+    background: transparent;
+    padding: 0;
+    text-align: center;
+  }
+}
+.question-section__content .question-section__title {
+  font-family: "futura", suns-serif;
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 1.3;
+  color: #ffffff;
+  margin-bottom: 15px;
+}
+@media screen and (max-width: 991px) {
+  .question-section__content .question-section__title {
+    margin-bottom: 0;
+  }
+}
+.question-section__content p {
+  max-width: 400px;
+  width: max-content;
+  font-family: "futura", suns-serif;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1.5;
+  color: #ffffff;
+}
+@media screen and (max-width: 991px) {
+  .question-section__content p {
+    display: none;
+  }
+}
+
+.question-section__button-grout {
+  display: flex;
+  width: max-content;
+  align-items: center;
+  gap: 20px;
+}
+@media screen and (max-width: 1300px) {
+  .question-section__button-grout {
+    flex-direction: column;
+  }
+}
+@media screen and (max-width: 991px) {
+  .question-section__button-grout {
+    width: 100%;
+  }
+  .question-section__button-grout .contact-btn {
+    width: 100%;
+  }
+}
+
+.contact-btn {
+  position: relative;
+  padding: 28px 60px 28px 28px;
+  width: 280px;
+  height: 105px;
+  display: flex;
+  align-items: center;
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.2);
+  font-family: "futura", suns-serif;
+  font-size: 24px;
+  line-height: 1.25;
+  color: white;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  transition: 0.3s background-color;
+}
+.contact-btn:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+.contact-btn .icon-box {
+  position: relative;
+  min-width: 50px;
+  width: max-content;
+  height: 50px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  margin-right: 16px;
+}
+.contact-btn .icon-box svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.contact-btn .icon-box--arrow {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: 50%;
+  right: 40px;
+  transform: translateY(-50%);
+}
+.contact-btn .icon-box--arrow path {
+  stroke: #ffffff;
+}
+
+/*# sourceMappingURL=section-question.css.map */

@@ -1,0 +1,157 @@
+{{ 'customer.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+
+<svg style="display:none">
+  <symbol id="icon-discount" viewBox="0 0 12 12">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M7 0h3a2 2 0 012 2v3a1 1 0 01-.3.7l-6 6a1 1 0 01-1.4 0l-4-4a1 1 0 010-1.4l6-6A1 1 0 017 0zm2 2a1 1 0 102 0 1 1 0 00-2 0z" fill="currentColor"></path>
+  </symbol>
+</svg>
+
+<div class="order page-width account-template">
+  {% render 'account-menu' %}
+
+  <div class="account-template__content">
+    <div class="account-template__order">
+      {% if settings.order_prev_text != blank %}
+        <a class="account-template__prev-link"
+           href="{{ settings.order_prev_link }}">{{ settings.order_prev_text }}</a>
+      {% endif %}
+
+      <h1 class="account-template__title">{{ 'customer.order.title' | t: name: order.name }}</h1>
+
+      <div class="order-items">
+        <h2 class="order-items__title fw-500">{{ 'customer.order.items_title' | t }}</h2>
+        {%- if order.cancelled -%}
+          {%- assign cancelled_at = order.cancelled_at | time_tag: format: "date_at_time" -%}
+          <p>{{ 'customer.order.cancelled_html' | t: date: cancelled_at }}</p>
+          <p>{{ 'customer.order.cancelled_reason' | t: reason: order.cancel_reason_label }}</p>
+        {%- endif -%}
+
+        <ul class="order__items-list">
+          {%- for line_item in order.line_items -%}
+            <li class="order-item">
+              <div class="order-item__image-container">
+                {% if line_item.image != blank %}
+                  <img src="{{ line_item.image | image_url: width: 198 }}"
+                       class="order-item__image"
+                       alt="{{ line_item.image.alt | escape }}"
+                       loading="lazy"
+                       width="99"
+                       height="{{ 99 | divided_by: item.image.aspect_ratio | ceil }}"
+                  >
+                {% else %}
+                  {{ 'product-1' | placeholder_svg_tag: "line_item__svg-image" }}
+                {% endif %}
+              </div>
+
+              <div class="order-item__content-container">
+                <h3 class="order-item__title fw-500">{{ line_item.title | escape }}</h3>
+                <div class="order-item__price">
+                  {% render 'price-order', item: line_item %}
+                </div>
+                <p class="order-item__quantity">
+                  <span class="order-item__quantity-text">
+                    {{ 'customer.order.quantity' | t }}:
+                  </span>
+                  {{ line_item.quantity }}
+                </p>
+              </div>
+            </li>
+          {%- endfor -%}
+        </ul>
+      </div>
+
+      <div class="order-item__summary">
+        <h2 class="order-items__title fw-500">{{ 'customer.order.order_summary_title' | t }}</h2>
+
+        <table role="table" class="order-details fw-500">
+          <caption class="visually-hidden">{{ 'customer.order.title' | t: name: order.name }}</caption>
+          <tr role="row">
+            <td id="RowSubtotal" role="rowheader" scope="row">
+              {{ 'customer.order.subtotal' | t }}
+            </td>
+            <td headers="RowSubtotal" role="cell" data-label="{{ 'customer.order.subtotal' | t }}">{{ order.line_items_subtotal_price | money }}</td>
+          </tr>
+          {%- if order.cart_level_discount_applications != blank -%}
+            <tr role="row">
+              {%- for discount_application in order.cart_level_discount_applications -%}
+                <td id="RowDiscount" role="rowheader" scope="row">
+                  {{ 'customer.order.discount' | t }}
+                  <span class="cart-discount">
+                    <svg aria-hidden="true" focusable="false" viewBox="0 0 12 12">
+                      <use href="#icon-discount" />
+                    </svg>
+                    {{- discount_application.title -}}
+                  </span>
+                </td>
+                <td headers="RowDiscount" role="cell" data-label="{{ 'customer.order.discount' | t }}">
+                  <div>
+                    <span>-{{ discount_application.total_allocated_amount | money }}</span>
+                    <span class="cart-discount">
+                      <svg aria-hidden="true" focusable="false" viewBox="0 0 12 12">
+                        <use href="#icon-discount" />
+                      </svg>
+                      {{- discount_application.title -}}
+                    </span>
+                  </div>
+                </td>
+              {%- endfor -%}
+            </tr>
+          {%- endif -%}
+          {%- for shipping_method in order.shipping_methods -%}
+            <tr role="row">
+              <td id="RowShipping" role="rowheader" scope="row">{{ 'customer.order.shipping' | t }} ({{ shipping_method.title }})</td>
+              <td headers="RowShipping" role="cell" data-label="{{ 'customer.order.shipping' | t }} ({{ shipping_method.title }})">{{ shipping_method.price | money }}</td>
+            </tr>
+          {%- endfor -%}
+          {%- for tax_line in order.tax_lines -%}
+            <tr role="row">
+              <td id="RowTax" role="rowheader" scope="row">{{ 'customer.order.tax' | t }} ({{ tax_line.title }} {{ tax_line.rate | times: 100 }}%)</td>
+              <td headers="RowTax" role="cell" data-label="{{ 'customer.order.tax' | t }} ({{ tax_line.title }} {{ tax_line.rate | times: 100 }}%)">{{ tax_line.price | money }}</td>
+            </tr>
+          {%- endfor -%}
+          {%- if order.total_duties -%}
+            <tr role="row">
+              <td id="RowDuties" role="rowheader" scope="row">{{ 'customer.order.total_duties' | t }}</td>
+              <td headers="RowDuties" role="cell" data-label="{{ 'customer.order.total_duties' | t }}">{{ order.total_duties | money }}</td>
+            </tr>
+          {%- endif -%}
+          {% if order.total_discounts > 0 %}
+            <tr role="row">
+              <td class="mark--style" role="rowheader" scope="row">{{ 'customer.order.total_discount' | t }}</td>
+              <td class="mark--style" role="cell" data-label="{{ 'customer.order.total_discount' | t }}">{{ order.total_discounts | money_with_currency }}</td>
+            </tr>
+          {% endif %}
+          <tr role="row">
+            <td id="RowTotal" role="rowheader" scope="row">{{ 'customer.order.total' | t }}</td>
+            <td headers="RowTotal" role="cell" data-label="{{ 'customer.order.total' | t }}">{{ order.total_price | money_with_currency }}</td>
+          </tr>
+        </table>
+      </div>
+
+      <h2 class="order-items__title fw-500">{{ 'customer.order.order_information_title' | t }}</h2>
+
+      <div class="order-items__info">
+        <div class="order-items__info-item">
+          <h3 class="order-items__info-title">{{ 'customer.order.shipping_address' | t }}</h3>
+          {{ order.shipping_address | format_address }}
+          {% if order.phone != blank %}
+            <p>{{ order.phone }}</p>
+          {% endif %}
+        </div>
+
+        <div class="order-items__info-item">
+          <h3 class="order-items__info-title">{{ 'customer.order.shipping_method' | t }}</h3>
+          {%- for shipping_method in order.shipping_methods -%}
+            <p>{{ 'customer.order.shipping' | t }} {{ shipping_method.title }}</p>
+          {%- endfor -%}
+        </div>
+
+        <div class="order-items__info-item">
+          <h3 class="order-items__info-title">{{ 'customer.order.billing_address' | t }}</h3>
+          {{ order.billing_address | format_address }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

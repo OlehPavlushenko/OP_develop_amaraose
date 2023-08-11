@@ -1,0 +1,117 @@
+{% if product.metafields.faq.question.size > 1  %}
+
+{{ 'section-faq-product.css' | asset_url | stylesheet_tag }}
+
+<div class="section-faq-product">
+  <div class="container">
+    <div class="faq-product__content tabs--section">
+      {% if product.metafields.faq_title.faq_title != blank %}
+        <div class="faq-product__header">
+          <h2 class="faq-product__title">{{ product.metafields.faq_title.faq_title }}</h2>
+        </div>
+      {% endif %}
+
+      <accordion-component class="faq-product__questions-accordion">
+        {% assign q_size = product.metafields.faq.question.size | minus: 1 %}
+        {%- for i in (0..q_size) -%}
+          <div class="faq-product__list-item accordion__slide">
+            <div class="faq-product__list-item-header accordion__btn-opener">
+              <button class="faq-product__list-item-button">
+                <div class="link-icon">
+                  {% render 'icon-arrow-r' %}
+                </div>
+                {{ product.metafields.faq.question[i] }}
+              </button>
+            </div>
+
+            <div class="faq-product__list-item-content accordion__text">
+              <div class="accordion-content-wrapper">
+                {{ product.metafields.faq_answer.faq_answer[i] }}
+              </div>
+            </div>
+          </div>
+        {%- endfor -%}
+      </accordion-component>
+
+
+      <tabs-component class="faq-product__questions-tabs">
+        <div class="faq-product__list-questions tabs-list">
+          {% assign q_size = product.metafields.faq.question.size | minus: 1 %}
+          {%- for i in (0..q_size) -%}
+            <div class="faq-product__list-questions-item tabs-list__item {% if forloop.first %} active{% endif %}"
+                 data-question-{{ block.id }}>
+              <a href="#{{ product.metafields.faq.question[i] | handleize }}" class="tabs-list__link">
+                <div class="link-icon">
+                  {% render 'icon-arrow-r' %}
+                </div>
+                {{ product.metafields.faq.question[i] }}
+              </a>
+            </div>
+          {%- endfor -%}
+        </div>
+
+        <div class="faq-product__list-answers">
+          {% assign q_size = product.metafields.faq_answer.faq_answer.size | minus: 1 %}
+          {%- for i in (0..q_size) -%}
+            <div class="faq-product__list-answers-item" data-answer-{{ block.id }}>
+              <div id="{{ product.metafields.faq.question[i] | handleize }}"
+                   class="faq-product__list-item-content tab-panel  {% if forloop.first %} active{% endif %}">
+                {{ product.metafields.faq_answer.faq_answer[i] }}
+              </div>
+            </div>
+          {%- endfor -%}
+        </div>
+      </tabs-component>
+    </div>
+  </div>
+</div>
+
+
+<style>
+  .tabs--section .tab-panel {
+    display: none;
+  }
+
+  .tabs--section .tab-panel.active {
+    display: block;
+  }
+
+</style>
+
+<style>
+  .accordion__slide.active .accordion__btn-opener:before {
+    display: none;
+  }
+
+  .accordion__text {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.5s cubic-bezier(0, 1, 0, 1);
+  }
+
+  .accordion__slide.active .accordion__text {
+    max-height: 1000px;
+    transition: max-height 1s ease-in-out;
+  }
+
+</style>
+{% endif %}
+
+{% schema %}
+{
+  "name": "t:sections.faq_product.name",
+  "tag": "section",
+  "class": "faq-product",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.faq_product.settings.header.content"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.faq_product.presets.name"
+    }
+  ]
+}
+{% endschema %}

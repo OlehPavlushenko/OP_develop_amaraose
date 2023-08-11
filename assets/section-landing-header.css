@@ -1,0 +1,35 @@
+.landing-header__announcement-bar {
+  padding: 4px 0;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1;
+  color: #ffffff;
+  background-color: #CF4391;
+  cursor: default;
+  pointer-events: none;
+}
+
+.landing-header__content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  padding: 10px 0;
+  min-height: 92px;
+}
+
+.landing-header_logo {
+  line-height: 0;
+}
+.landing-header_logo img {
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+}
+
+.landing-header__button {
+  flex-shrink: 0;
+}
+
+/*# sourceMappingURL=section-landing-header.css.map */

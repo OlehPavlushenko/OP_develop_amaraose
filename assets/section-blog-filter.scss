@@ -1,0 +1,53 @@
+@import "variables";
+
+.blog-filter {
+  background-color: $lightGrey;
+}
+
+.blog-filter__link-list-wrapper {
+  @include style-scrollbar();
+}
+
+.blog-filter__link-list {
+  padding: 16px 0;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  max-width: 100%;
+  width: max-content;
+  margin: 0 auto;
+  overflow-x: auto;
+
+  @include max-screen(767) {
+    gap: 15px;
+  }
+
+  .blog-filter__link {
+    font-family: $futura;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.5;
+    color: $black;
+    padding: 0 12px;
+    border-radius: 20px;
+    display: inline-flex;
+    align-items: center;
+    height: 37px;
+    transition: all 0.3s;
+    white-space: nowrap;
+
+    @include max-screen(767) {
+      font-size: 16px;
+    }
+
+    &.link-active {
+      background-color: $midGrey;
+      color: $white;
+    }
+
+    &:not(.link-active):hover {
+      background-color: rgba(94, 105, 126, 0.2);;
+      //color: $white;
+    }
+  }
+}

@@ -1,0 +1,52 @@
+{{ 'component-image-with-text.css' | asset_url | stylesheet_tag }}
+
+{% if product.metafields.beforeafter.title != blank and product.metafields.beforeafter.image_before != blank and product.metafields.beforeafter.image_after != blank %}
+<div class="image-with-text">
+  <div class="container">
+    <div class="image-with-text__content">
+      <div class="image-with-text__media">
+        <div class="image-with-text__media-item global-media-settings media">
+          {% if product.metafields.beforeafter.show_labels %}
+            <span class="badge badge--gray zoom">BEFORE</span>
+          {% endif %}
+          {%- if product.metafields.beforeafter.image_before != blank -%}
+            <img src="{{ product.metafields.beforeafter.image_before }}" alt="{{ product.metafields.beforeafter.title }}">
+          {%- endif -%}
+        </div>
+        <div class="image-with-text__media-item global-media-settings media">
+          {% if product.metafields.beforeafter.show_labels %}
+            <span class="badge badge--gray zoom">AFTER</span>
+          {% endif %}
+          {%- if product.metafields.beforeafter.image_after != blank -%}
+            <img src="{{ product.metafields.beforeafter.image_after }}" alt="{{ product.metafields.beforeafter.title }}">
+          {%- endif -%}
+        </div>
+      </div>
+      <div id="ImageWithText--{{ section.id }}"
+           class="image-with-text__text-content image-with-text__text-content--top image-with-text__text-content--desktop-left image-with-text__text-content--mobile-left gradient content-container">
+        <h2 class="image-with-text-content__heading">{{ product.metafields.beforeafter.title }}</h2>
+        {{ product.metafields.beforeafter.text }}
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Images with text",
+  "class": "section",
+  "settings": [
+  {
+    "type": "header",
+    "content": "t:sections.pdp-benefits.settings.header.content"
+  }
+],
+  "presets": [
+    {
+      "name": "Images with text"
+    }
+  ]
+}
+{% endschema %}
+

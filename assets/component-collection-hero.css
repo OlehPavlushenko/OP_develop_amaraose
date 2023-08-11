@@ -1,0 +1,46 @@
+.collection-hero {
+  min-height: 447px;
+  display: flex;
+  align-items: center;
+  padding: 50px 0;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+@media screen and (max-width: 767px) {
+  .collection-hero {
+    padding: 60px 0;
+  }
+}
+
+.collection-hero__title {
+  font-family: "futura", suns-serif;
+  font-weight: 400;
+  font-size: 3.5rem;
+  line-height: 1.25;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+@media screen and (max-width: 767px) {
+  .collection-hero__title {
+    font-size: 32px;
+  }
+}
+
+.collection-hero__description {
+  font-family: "futura", suns-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #5E697E;
+}
+
+.collection-hero__image-container {
+  max-width: 100%;
+}
+.collection-hero__image-container img {
+  width: 100%;
+  object-fit: cover;
+}
+
+/*# sourceMappingURL=component-collection-hero.css.map */

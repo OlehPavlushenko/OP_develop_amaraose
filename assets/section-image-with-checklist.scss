@@ -1,0 +1,86 @@
+@import "variables";
+
+.image-with-checklist {
+  padding: 64px 0;
+  background-color: #FFEEEA;
+}
+
+.image-with-checklist__image {
+  @media screen and (max-width: $ui-breakpoints-md) {
+    display: none;
+  }
+
+  img {
+    width: 100%;
+    max-width: 100%;
+    object-fit: cover;
+    object-position: center;
+
+    @media screen and (max-width: $ui-breakpoints-lg) {
+      display: block;
+      margin: 0 auto;
+
+      max-width: 500px;
+    }
+  }
+}
+
+.image-with-checklist__content-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 32px;
+
+  @media screen and (max-width: $ui-breakpoints-lg) {
+    grid-template-columns: 1fr;
+  }
+
+  .image-with-checklist__button {
+    @media screen and (max-width: $ui-breakpoints-md) {
+      max-width: 100%;
+    }
+  }
+}
+
+
+
+
+
+.image-with-checklist__title {
+  margin-bottom: 44px;
+}
+
+.image-with-checklist__list {
+  margin-bottom: 44px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.image-with-checklist__item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  svg {
+    width: 69px;
+    height: 69px;
+  }
+
+  h3 {
+    margin-bottom: 8px;
+
+    font-family: $poppins;
+    font-size: 18px;
+    font-weight: 500;
+    color: $blackDark;
+  }
+
+  p {
+    font-family: $poppins;
+    font-size: 16px;
+    line-height: 1.5;
+    color: $blackDark;
+  }
+}

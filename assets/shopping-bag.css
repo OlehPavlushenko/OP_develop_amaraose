@@ -1,0 +1,30 @@
+.shopping-bag__wrapper {
+  padding: 42px 0;
+  background-color: #F1F3F6;
+}
+@media screen and (max-width: 767px) {
+  .shopping-bag__wrapper {
+    padding: 30px 0;
+  }
+}
+
+.shopping-bag__content {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px 120px;
+}
+@media screen and (max-width: 1300px) {
+  .shopping-bag__content {
+    gap: 30px 20px;
+  }
+}
+@media screen and (max-width: 991px) {
+  .shopping-bag__content {
+    flex-direction: column;
+  }
+}
+.shopping-bag__content .cart__items-wrapper {
+  width: 100%;
+}
+
+/*# sourceMappingURL=shopping-bag.css.map */

@@ -1,0 +1,48 @@
+{{ 'section-blog-filter.css' | asset_url | stylesheet_tag }}
+
+<div class="container-fluid">
+  {% if section.settings.filter_heading != blank %}
+    <h2 class="blog-filter__title visually-hidden">{{ section.settings.filter_heading }}</h2>
+  {% endif %}
+
+  {% if blog.tags.size > 0 %}
+    <div class="blog-filter__link-list-wrapper">
+      <div class="blog-filter__link-list">
+        <a class="blog-filter__link {% if current_tags == blank %} link-active{% endif %}"
+           href="{{ blog.url }}">{{ section.settings.link_all }}</a>
+        {% for tag in blog.all_tags %}
+          <a class="blog-filter__link{% if current_tags.first == tag %} link-active{% endif %}"
+             href="{{ blog.url }}/tagged/{{ tag | handleize }}">{{ tag }}</a>
+        {%- endfor -%}
+      </div>
+    </div>
+
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.blog-filter.name",
+  "tag": "section",
+  "class": "blog-filter",
+  "settings": [
+    {
+      "type": "text",
+      "id": "filter_heading",
+      "default": "Blog filters",
+      "label": "t:sections.blog-filter.settings.filter_heading.label"
+    },
+    {
+      "type": "text",
+      "id": "link_all",
+      "default": "ALL",
+      "label": "t:sections.blog-filter.settings.filter_all.label"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.blog-filter.presets.name"
+    }
+  ]
+}
+{% endschema %}

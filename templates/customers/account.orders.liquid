@@ -1,0 +1,76 @@
+{{ 'customer.css' | asset_url | stylesheet_tag }}
+
+<div class="orders container account-template">
+  {% render 'account-menu' %}
+
+  <div class="account-template__content">
+    <h1 class="account-template__title">{{ 'customer.orders.title' | t }}</h1>
+
+    {% paginate customer.orders by 10 %}
+      {%- if customer.orders.size > 0 -%}
+        <div class="table__wrap">
+          <table role="table" class="order-history">
+          <caption class="visually-hidden">{{ 'customer.orders.title' | t }}</caption>
+          <thead role="rowgroup">
+          <tr role="row">
+            <th id="ColumnDate" scope="col" role="columnheader">{{ 'customer.orders.date' | t }}</th>
+            <th id="ColumnOrder" scope="col" role="columnheader">{{ 'customer.orders.order_number' | t }}</th>
+            <th id="ColumnFulfillment" scope="col" role="columnheader">{{ 'customer.orders.fulfillment_status' | t }}</th>
+            <th id="ColumnTotal" scope="col" role="columnheader">{{ 'customer.orders.total' | t }}</th>
+            <th id="ColumnLink" scope="col" role="columnheader"> </th>
+          </tr>
+          </thead>
+          <tbody role="rowgroup">
+          {%- for order in customer.orders -%}
+            <tr role="row">
+              <td headers="RowOrder ColumnDate" role="cell" data-label="{{ 'customer.orders.date' | t }}">
+                {{ order.created_at | time_tag: '%b %d, %Y' }}
+              </td>
+              <td
+                id="RowOrder"
+                role="cell"
+                headers="ColumnOrder"
+                data-label="{{ 'customer.orders.order_number' | t }}"
+              >
+                <a href="{{ order.customer_url }}" aria-label="{{ 'customer.orders.order_number_link' | t: number: order.name }}">
+                  {{ order.name | replace: "#", "" }}
+                </a>
+              </td>
+              <td headers="RowOrder ColumnFulfillment" role="cell" data-label="{{ 'customer.orders.fulfillment_status' | t }}">
+                {% if order.fulfillment_status_label == 'Fulfilled' %}
+                  {% assign add_class = 'completed' %}
+                {% elsif order.fulfillment_status_label == 'Unfulfilled' %}
+                  {% assign add_class = 'in-progress' %}
+                {% elsif order.fulfillment_status_label == 'On hold'  %}
+                  {% assign add_class = 'cancelled' %}
+                {% endif %}
+                <span class="status-tag {{ add_class }}">{{ order.fulfillment_status_label }}</span>
+              </td>
+              <td headers="RowOrder ColumnTotal" role="cell" data-label="{{ 'customer.orders.total' | t }}">
+                {{ order.total_price | money }}
+              </td>
+              <td headers="RowOrder ColumnLink" role="cell" data-label="{{ 'customer.orders.total' | t }}">
+                <a class="table-link" href="{{ order.customer_url }}">{{ 'customer.orders.link_text' | t }}</a>
+              </td>
+            </tr>
+          {%- endfor -%}
+          </tbody>
+        </table>
+        </div>
+      {%- else -%}
+        <div class="orders__none">
+          <svg width="41" height="39" viewBox="0 0 41 39" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16.4432 27.2403L16.4432 27.2402L16.4407 27.2423C16.2926 27.3626 16.1213 27.4535 15.9366 27.5095C15.7519 27.5655 15.5576 27.5854 15.3648 27.5681C15.172 27.5507 14.9848 27.4965 14.8139 27.4086C14.6432 27.3209 14.4923 27.2013 14.3696 27.0571C14.1257 26.7671 14.0096 26.396 14.045 26.0243C14.0803 25.6531 14.2642 25.3091 14.5586 25.0673C16.2425 23.7482 18.3386 23.0287 20.5002 23.0287C22.6614 23.0287 24.7572 23.748 26.441 25.0668C26.6666 25.2556 26.8272 25.5062 26.9024 25.7849C26.9779 26.0645 26.9641 26.3599 26.8627 26.6318C26.7612 26.9037 26.5768 27.1399 26.333 27.3081C26.0894 27.4762 25.7984 27.5683 25.4989 27.5713C25.1551 27.5717 24.8227 27.4549 24.5592 27.2419L24.5571 27.2403C23.4073 26.3364 21.9757 25.8441 20.5002 25.8441C19.0247 25.8441 17.593 26.3364 16.4432 27.2403ZM15.9898 16.9843C15.8162 16.8138 15.6099 16.6787 15.3831 16.5865C15.156 16.4943 14.9126 16.4468 14.6668 16.4468C14.4211 16.4468 14.1777 16.4943 13.9506 16.5865C13.7235 16.6788 13.5171 16.8141 13.3433 16.9849L13.3381 16.99L13.3332 16.9955C13.2021 17.1448 13.0404 17.2664 12.8581 17.3524C12.6759 17.4384 12.4771 17.4868 12.2744 17.4944C12.0717 17.5021 11.8696 17.4688 11.681 17.3967C11.4924 17.3247 11.3214 17.2155 11.1787 17.0764C11.036 16.9372 10.9247 16.7712 10.8514 16.5887C10.778 16.4063 10.7443 16.2112 10.752 16.0157C10.7598 15.8202 10.8089 15.6282 10.8964 15.4517C10.984 15.2752 11.1083 15.1179 11.2617 14.9898L11.2619 14.99L11.2693 14.9831C12.1857 14.1353 13.4017 13.662 14.6668 13.662C15.931 13.662 17.1461 14.1346 18.0622 14.981C18.3335 15.2482 18.4848 15.608 18.4848 15.9819C18.4848 16.3566 18.3329 16.7171 18.0604 16.9844C17.786 17.2501 17.414 17.4 17.0252 17.4C16.6363 17.4 16.2642 17.25 15.9898 16.9843ZM26.3335 13.662C27.5976 13.662 28.8127 14.1346 29.7288 14.981C30.0002 15.2482 30.1515 15.608 30.1515 15.9819C30.1515 16.3565 29.9996 16.7169 29.7272 16.9843C29.4528 17.25 29.0807 17.4 28.6918 17.4C28.303 17.4 27.9309 17.2501 27.6565 16.9844C27.4829 16.8138 27.2766 16.6787 27.0497 16.5865C26.8226 16.4943 26.5792 16.4468 26.3335 16.4468C26.0878 16.4468 25.8444 16.4943 25.6173 16.5865C25.3929 16.6777 25.1886 16.8109 25.0161 16.9788C24.7365 17.2098 24.3773 17.331 24.0093 17.3172C23.6387 17.3032 23.288 17.1534 23.0272 16.8991C22.7665 16.6449 22.6146 16.3052 22.6005 15.948C22.5865 15.5943 22.7085 15.2475 22.9438 14.9759C23.8592 14.1326 25.0719 13.662 26.3335 13.662ZM11.3498 6.15619C14.0579 4.39195 17.2423 3.45 20.5002 3.45C22.6633 3.45 24.8051 3.86541 26.8033 4.67241C28.8015 5.47939 30.6168 6.66209 32.1457 8.15272C33.6745 9.64333 34.887 11.4127 35.7141 13.3596C36.5412 15.3065 36.9668 17.393 36.9668 19.5C36.9668 22.6732 36.0018 25.7757 34.193 28.415C32.3842 31.0543 29.8128 33.1122 26.8033 34.3276C23.7938 35.543 20.4819 35.8611 17.2867 35.2414C14.0916 34.6217 11.1573 33.0923 8.85468 30.8473C6.55214 28.6023 4.98469 25.7427 4.34971 22.6302C3.71475 19.5179 4.04059 16.2917 5.28626 13.3596C6.53195 10.4274 8.64182 7.9204 11.3498 6.15619ZM12.9834 30.4767C15.2088 31.9265 17.8246 32.7 20.5002 32.7C24.0878 32.7 27.5295 31.3105 30.0679 28.8356C32.6064 26.3605 34.0335 23.0025 34.0335 19.5C34.0335 16.8881 33.2391 14.3354 31.7514 12.1645C30.2637 9.99375 28.1498 8.30258 25.6775 7.30412C23.2052 6.30567 20.4851 6.04451 17.8609 6.55345C15.2366 7.0624 12.8254 8.31875 10.9325 10.1644C9.03942 12.0101 7.74965 14.3623 7.22707 16.9238C6.70448 19.4854 6.97274 22.1405 7.9977 24.5531C9.02263 26.9656 10.7579 29.0269 12.9834 30.4767Z" fill="#5E697E" stroke="white" stroke-width="0.4"/>
+          </svg>
+          <p>{{ 'customer.orders.none' | t }}</p>
+        </div>
+      {%- endif -%}
+
+      {%- if paginate.pages > 1 -%}
+        {%- if paginate.parts.size > 0 -%}
+          {%- render 'pagination', paginate: paginate -%}
+        {%- endif -%}
+      {%- endif -%}
+    {% endpaginate %}
+  </div>
+</div>

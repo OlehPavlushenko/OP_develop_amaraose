@@ -1,0 +1,231 @@
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'collection-grid.css' | asset_url | stylesheet_tag }}
+{{ 'collection-grid-bundle.css' | asset_url | stylesheet_tag }}
+
+<link rel="stylesheet" href="{{ 'template-collection.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>{{ 'template-collection.css' | asset_url | stylesheet_tag }}</noscript>
+
+<div class="collection-grid container section-{{ section.id }}-padding">
+    <div class="collection-grid__header title-wrapper title-wrapper--no-top-margin">
+        <h2 class="collection-grid__title">
+            {% if section.settings.title != blank %}
+                {{ section.settings.title | escape }}
+            {% else %}
+                {{ section.settings.collection.title | escape }}
+            {% endif %}
+        </h2>
+        {%- if section.settings.description != blank -%}
+            {%- assign discount_list = section.settings.description | split: ';' -%}
+            {%- assign count = 2 -%}
+            {%- assign count_bot = 2 -%}
+
+            <div class="collection-grid__info">
+                <ul class="discount__info--list">
+                    {%- for item in discount_list -%}
+                        <li class="discount__info--item">
+                            {{ count }} Products - <span>{{ item }} off</span>
+                        </li>
+                        {%- assign count = count | plus: 1 -%}
+                    {%- endfor -%}
+                </ul>
+            </div>
+        {%- endif -%}
+    </div>
+
+    <bundle-section class="collection-grid__list collection-grid__list--bundle">
+        <ul
+            class="grid product-grid product-grid--bundle contains-card{% if settings.card_style == 'standard' %} contains-card--standard{% endif %}{% if section.settings.collection == blank %} grid--2-col-tablet-down{% endif %}"
+            role="list"
+            aria-label="{{ 'sections.featured_collection.slider' | t }}"
+        >
+            {%- for product in section.settings.collection.products limit: 6 -%}
+                <li class="grid__item">
+                    {% render 'card-product-bundle',
+                        card_product: product,
+                        media_aspect_ratio: section.settings.image_ratio,
+                        show_secondary_image: false,
+                        show_rating: section.settings.show_rating,
+                        show_quick_add: false,
+                        product_bundle: 'bundle__style',
+                        section_id: section.id
+                    %}
+                </li>
+            {%- endfor -%}
+        </ul>
+        <div class="bundle-cart js-bundle-cart">
+            <div class="bundle-cart__header--selected">
+                <button class="bundle-cart__header--close js-accordion-toggle">
+                    <span class="bundle-cart__btn--open button primary-button">Open</span>
+                    <span class="bundle-cart__btn--close">{% render 'icon-close' %}</span>
+                </button>
+                <ul class="bundle-cart__header--list">
+                    <li class="bundle-cart__header--item">
+                        <span class="bundle-cart__header--toggle">
+                            {% render 'icon-caret' -%}
+                            <span class="js-count-selected ">0</span> Products Selected
+                        </span>
+                        <span class="js-count-discount bundle-cart__discount hidden"></span>
+                        <div class="bundle-cart__price">
+                            <div class="bundle-cart__price--container">
+                                <div class="bundle-cart__price--sale">
+                                    <span class="visually-hidden visually-hidden--inline">Sale price</span>
+                                    <span class="bundle-cart__price--item js-cart-price-sale"></span>
+                                </div>
+                                <div class="bundle-cart__price--regular">
+                                    <span class="visually-hidden visually-hidden--inline">Regular price</span>
+                                    <span class="bundle-cart__price--item js-cart-price-regular"></span>
+                                </div>
+                            </div>
+                            <span class="js-count-discount bundle-cart__discount"></span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="bundle-cart__wrap in-progress js-bundle-cart-wrap js-accordion-content">
+                <div class="bundle-cart__empty js-bundle-cart-empty hidden">
+                    {% render 'icon-shopping-cart' %}
+                    <span class="bundle-cart__empty--title">0 Products Selected</span>
+                    <span class="bundle-cart__empty--text">Add at least 2 to build your bundle</span>
+                </div>
+                <form
+                    action="/cart/add"
+                    method="post"
+                    class="bundle-cart__form js-bundle-cart-form hidden"
+                >
+                    <div class="bundle-cart__products bundle-products js-list-container"></div>
+                    <div class="bundle-cart__footer">
+                        <div class="bundle-cart__selected">
+                            <ul class="bundle-cart__list">
+                                <li class="bundle-cart__list--first js-bundle-cart-selected">
+                                    <span class="bundle-cart__list--text"
+                                        ><span class="js-count-selected">0</span> Products Selected</span
+                                    >
+                                    <div class="bundle-cart__price">
+                                        <div class="bundle-cart__price--container">
+                                            <div class="bundle-cart__price--sale">
+                                                <span class="visually-hidden visually-hidden--inline">Sale price</span>
+                                                <span class="bundle-cart__price--item js-cart-price-sale"></span>
+                                            </div>
+                                            <div class="bundle-cart__price--regular">
+                                                <span class="visually-hidden visually-hidden--inline"
+                                                    >Regular price</span
+                                                >
+                                                <span class="bundle-cart__price--item js-cart-price-regular"></span>
+                                            </div>
+                                        </div>
+                                        <span class="js-count-discount bundle-cart__discount"></span>
+                                    </div>
+                                </li>
+                                {%- for item in discount_list -%}
+                                    <li
+                                        data-discounted="{{ item }}"
+                                        class="bundle-cart__list--item js-bundle-cart-selected"
+                                    >
+                                        <span class="js-count-discount-text">{{ item }} off</span>
+                                    </li>
+                                    {%- assign count_bot = count_bot | plus: 1 -%}
+                                {%- endfor -%}
+                            </ul>
+                        </div>
+                        <div class="bundle-cart__next">
+                            <button
+                                type="submit"
+                                class="button primary-button bundle-cart__button js-bundle-cart-next"
+                            >
+                                <span class="bundle-cart__button--text">NEXT {% render 'icon-arrow' -%}</span>
+                                <div class="bundle-cart__price">
+                                    <div class="bundle-cart__price--container">
+                                        <div class="bundle-cart__price--sale">
+                                            <span class="visually-hidden visually-hidden--inline">Sale price</span>
+                                            <span class="bundle-cart__price--item js-cart-price-sale"></span>
+                                        </div>
+                                        <div class="bundle-cart__price--regular">
+                                            <span class="visually-hidden visually-hidden--inline">Regular price</span>
+                                            <span class="bundle-cart__price--item js-cart-price-regular"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </button>
+                            <span class="bundle-cart__shipping">FREE Shipping On US Orders of $70+</span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </bundle-section>
+</div>
+
+{% if settings.currency_code_enabled %}
+    {% assign amount_format = shop.money_with_currency_format %}
+{% else %}
+    {% assign amount_format = shop.money_format %}
+{% endif %}
+
+<script type="text/javascript">
+    Shopify.money_format = '{{ amount_format }}'
+</script>
+<script src="{{ 'collection-grid-bundle.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+    "name": "Bundle Collection",
+    "tag": "section",
+    "class": "section section-bundle js-section-bundle",
+    "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "default": "B.Y.O.B.",
+            "label": "t:sections.grid-collection.settings.title.label"
+        },
+        {
+            "type": "textarea",
+            "id": "description",
+            "default": "15%;20%;25%",
+            "label": "Information about discount"
+        },
+        {
+            "type": "collection",
+            "id": "collection",
+            "label": "t:sections.grid-collection.settings.collection.label"
+        },
+        {
+            "type": "header",
+            "content": "t:sections.grid-collection.settings.header.content"
+        },
+        {
+            "type": "select",
+            "id": "image_ratio",
+            "options": [
+                {
+                    "value": "adapt",
+                    "label": "t:sections.grid-collection.settings.image_ratio.options__1.label"
+                },
+                {
+                    "value": "portrait",
+                    "label": "t:sections.grid-collection.settings.image_ratio.options__2.label"
+                },
+                {
+                    "value": "square",
+                    "label": "t:sections.grid-collection.settings.image_ratio.options__3.label"
+                }
+            ],
+            "default": "adapt",
+            "label": "t:sections.grid-collection.settings.image_ratio.label"
+        },
+        {
+            "type": "checkbox",
+            "id": "show_rating",
+            "default": false,
+            "label": "t:sections.grid-collection.settings.show_rating.label",
+            "info": "t:sections.grid-collection.settings.show_rating.info"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Bundle Collection"
+        }
+    ]
+}
+{% endschema %}

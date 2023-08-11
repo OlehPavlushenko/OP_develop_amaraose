@@ -1,0 +1,11 @@
+<div class="ingredient-card">
+  {% if icon != blank %}
+    <div class="ingredient__icon">{{ icon }}</div>
+  {% endif %}
+
+  <h3 class="ingredient__title">{{ title }}</h3>
+
+  {% if description != blank %}
+    <p class="ingredient__text">{{ description }}</p>
+  {% endif %}
+</div>

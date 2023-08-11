@@ -1,0 +1,39 @@
+{{ 'component-image-with-text.css' | asset_url | stylesheet_tag }}
+
+{% if product.metafields.img_text.image != blank and product.metafields.img_text.title != blank %}
+<div class="image-with-text image-with-text--additional">
+  <div class="container">
+    <div class="image-with-text__content">
+      <div class="image-with-text__media">
+        {%- if product.metafields.img_text.image != blank -%}
+          <img src="{{ product.metafields.img_text.image }}" alt="{{ product.metafields.beforeafter.title }}">
+        {%- endif -%}
+      </div>
+      <div id="ImageWithText--{{ section.id }}"
+           class="image-with-text__text-content image-with-text__text-content--top image-with-text__text-content--desktop-left image-with-text__text-content--mobile-left gradient content-container">
+        <h2 class="image-with-text-content__heading">{{ product.metafields.img_text.title }}</h2>
+        {{ product.metafields.img_text.content }}
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Image with text(PDP)",
+  "class": "section",
+  "settings": [
+  {
+    "type": "header",
+    "content": "t:sections.pdp-benefits.settings.header.content"
+  }
+],
+  "presets": [
+    {
+      "name": "Image with text(PDP)"
+    }
+  ]
+}
+{% endschema %}
+

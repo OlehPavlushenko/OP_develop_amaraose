@@ -1,0 +1,178 @@
+{{ 'customer.css' | asset_url | stylesheet_tag }}
+
+<div class="customer-login">
+  <div class="customer-login__background">
+    {% if settings.background_image != blank %}
+      {{ settings.background_image | image_url: width: 1920 | image_tag:
+      loading: 'lazy',
+      width: settings.background_image.width,
+      height: settings.background_image.height,
+      class: 'customer-login__background-image',
+      sizes: sizes,
+      widths: '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840',
+      alt: settings.background_image.alt | escape
+      }}
+    {% endif %}
+  </div>
+
+  <div class="page-width">
+    <div class="customer-login__heading">
+      <a href="{{ routes.root_url }}" class="customer-login__heading-link link link--text focus-inset">
+        {%- if settings.login_logo_svg != blank -%}
+          <span class="customer-login__heading-logo logo--svg">{{ settings.login_logo_svg }}</span>
+        {%- elsif settings.login_logo != blank -%}
+          {%- assign logo_alt = settings.login_logo.alt | default: shop.name | escape -%}
+          {{ settings.login_logo | image_url: width: section.settings.width | image_tag:
+          class: 'customer-login__heading-logo',
+          widths: '50, 100, 150, 200, 250, 300, 400, 500',
+          height: settings.login_logo.height,
+          width: settings.login_logo.width,
+          alt: logo_alt
+          }}
+        {%- else -%}
+          <span class="h2">{{ shop.name }}</span>
+        {%- endif -%}
+      </a>
+
+      {% if settings.return_text != blank %}
+        <div class="customer-login__return">
+          <a class="customer-login__return-link" href="{{ settings.return_link }}">
+            {{ settings.return_text }}
+            {% if settings.return_icon != blank %}
+              <i class="customer-login__return-icon">{{ settings.return_icon }}</i>
+            {% endif %}
+          </a>
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="customer-login__box">
+      <h1 class="customer-login__title">
+        {{ 'customer.register.title' | t }}
+      </h1>
+      {%- form 'create_customer', novalidate: 'novalidate' -%}
+        <input type="hidden" name="return_to" value="{{ settings.register_redirect_link }}" />
+
+        {% if form.errors != blank %}
+          <p class="form__error">{{ 'customer.register.form_error' | t }}</p>
+        {% endif %}
+
+        <div class="field__container">
+          <div class="field {% if form.errors != blank %} field--error{% endif %}">
+            <input
+              type="text"
+              name="customer[first_name]"
+              id="RegisterForm-FirstName"
+              {% if form.first_name %}value="{{ form.first_name }}"{% endif %}
+              autocomplete="given-name"
+              placeholder="{{ 'customer.register.first_name' | t }}"
+              class="field__input {% if form.errors != blank %} validate-error{% endif %}"
+            >
+            <label for="RegisterForm-FirstName" class="field__label">
+              {{ 'customer.register.first_name' | t }}
+            </label>
+
+            <span class="field__error" {% if form.errors == blank %} hidden{% endif %}>
+              {{ 'customer.login_page.error' | t }}
+            </span>
+          </div>
+          <div class="field {% if form.errors != blank %} field--error{% endif %}">
+            <input
+              type="text"
+              name="customer[last_name]"
+              id="RegisterForm-LastName"
+              {% if form.last_name %}value="{{ form.last_name }}"{% endif %}
+              autocomplete="family-name"
+              placeholder="{{ 'customer.register.last_name' | t }}"
+              class="field__input {% if form.errors != blank %} validate-error{% endif %}"
+            >
+            <label for="RegisterForm-LastName" class="field__label">
+              {{ 'customer.register.last_name' | t }}
+            </label>
+
+            <span class="field__error" {% if form.errors == blank %} hidden{% endif %}>
+              {{ 'customer.login_page.error' | t }}
+            </span>
+          </div>
+        </div>
+
+        <h3 class="customer-login__title-secondary">{{ 'customer.register.info_title' | t }}</h3>
+
+        <div class="field {% if form.errors contains 'email' %} field--error{% endif %}">
+          <input
+            type="email"
+            name="customer[email]"
+            id="RegisterForm-email"
+            {% if form.email %} value="{{ form.email }}"{% endif %}
+            spellcheck="false"
+            autocapitalize="off"
+            autocomplete="email"
+            aria-required="true"
+            data-verification
+            placeholder="{{ 'customer.register.email' | t }}"
+            class="field__input {% if form.errors contains 'email' %} validate-error{% endif %}"
+            {% if form.errors contains 'email' %}
+              aria-invalid="true"
+              aria-describedby="RegisterForm-email-error"
+            {% endif %}
+          >
+          <label for="RegisterForm-email" class="field__label">
+            {{ 'customer.register.email' | t }}
+          </label>
+          <span class="field__error" {% unless form.errors contains 'email' %} hidden{% endunless %}>
+            {{ 'customer.login_page.error' | t }}
+          </span>
+        </div>
+        <div class="field {% if form.errors contains 'password' %} field--error{% endif %}">
+          <input
+            type="password"
+            name="customer[password]"
+            id="RegisterForm-password"
+            aria-required="true"
+            placeholder="{{ 'customer.register.password' | t }}"
+            class="field__input {% if form.errors contains 'password' %} validate-error{% endif %}"
+            {% if form.errors contains 'password' %}
+              aria-invalid="true"
+              aria-describedby="RegisterForm-password-error"
+            {% endif %}
+          >
+          <label for="RegisterForm-password" class="field__label">
+            {{ 'customer.register.password' | t }}
+          </label>
+
+          <span class="field__error" {% unless form.errors contains 'password' %} hidden{% endunless %}>
+            {{ 'customer.login_page.error' | t }}
+          </span>
+        </div>
+        <div class="field {% if form.errors contains 'password' %} field--error{% endif %}">
+          <input
+            type="password"
+            name="customer[confirm_password]"
+            id="RegisterForm-confirm_password"
+            aria-required="true"
+            {% if form.errors contains 'password' %}
+              aria-invalid="true"
+              aria-describedby="RegisterForm-password-error"
+            {% endif %}
+            placeholder="{{ 'customer.register.confirm_password' | t }}"
+            class="field__input {% if form.errors contains 'password' %} validate-error{% endif %}"
+          >
+          <label for="RegisterForm-confirm_password" class="field__label">
+            {{ 'customer.register.confirm_password' | t }}
+          </label>
+
+          <span class="field__error" {% unless form.errors contains 'password' %} hidden{% endunless %}>
+            {{ 'customer.login_page.error' | t }}
+          </span>
+        </div>
+        <span id="wrong_pass_alert"></span>
+        <button type="submit" class="customer-login__button button primary-button button--sm" id="customer-register__button">
+          {{ 'customer.register.submit' | t }}
+        </button>
+        <a href="{{ routes.account_url }}" class="customer-login__button button secondary-button button--sm">
+          {{ 'customer.register.login_link_text' | t }}
+        </a>
+      {%- endform -%}
+    </div>
+  </div>
+</div>

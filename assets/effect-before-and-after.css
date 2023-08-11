@@ -1,0 +1,112 @@
+.effect-before-and-after {
+  padding: 64px 0;
+}
+@media screen and (max-width: 767px) {
+  .effect-before-and-after {
+    padding: 44px 0;
+  }
+}
+
+.effect-before-and-after__title {
+  margin-bottom: 32px;
+  text-align: center;
+}
+@media screen and (max-width: 767px) {
+  .effect-before-and-after__title {
+    margin-bottom: 16px;
+  }
+}
+
+.effect-before-and-after__card-wrapper .swiper-pagination {
+  position: static;
+  margin-bottom: 16px;
+}
+.effect-before-and-after__card-wrapper .swiper-pagination .swiper-pagination-bullet-active {
+  background-color: #CF4391;
+}
+
+.effect-before-and-after__card-list {
+  margin-bottom: 32px;
+}
+@media screen and (max-width: 767px) {
+  .effect-before-and-after__card-list {
+    margin-bottom: 16px;
+  }
+}
+
+.effect-before-and-after__button {
+  margin: 0 auto;
+}
+
+.card-before-and-after .card-before-and-after__photo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  margin-bottom: 32px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+@media screen and (max-width: 767px) {
+  .card-before-and-after .card-before-and-after__photo {
+    margin-bottom: 16px;
+  }
+}
+.card-before-and-after .card-before-and-after__photo-item {
+  position: relative;
+}
+.card-before-and-after .card-before-and-after__photo-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.card-before-and-after .card-before-and-after__label-photo {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 10px;
+  font-family: "Poppins", sans-serif;
+  font-size: 18px;
+  line-height: 1;
+  color: #ffffff;
+  border-radius: 100px;
+  background-color: #CF4391;
+}
+.card-before-and-after .star-group {
+  display: block;
+  width: max-content;
+  max-width: 100%;
+  margin: 0 auto 16px;
+  line-height: 0;
+}
+.card-before-and-after .card-before-and-after__title {
+  margin-bottom: 16px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1.3;
+  color: #1A1818;
+  text-align: center;
+}
+.card-before-and-after .card-before-and-after__text {
+  margin-bottom: 16px;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #1A1818;
+}
+.card-before-and-after .card-before-and-after__author {
+  display: block;
+  max-width: 100%;
+  width: max-content;
+  margin: 0 auto;
+  font-family: "Poppins", sans-serif;
+  font-size: 18px;
+  line-height: 1.4;
+  color: #CF4391;
+}
+
+/*# sourceMappingURL=effect-before-and-after.css.map */

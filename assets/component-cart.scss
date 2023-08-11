@@ -1,0 +1,54 @@
+@import "variables";
+
+.main-cart-footer {
+  padding-top: 82px;
+
+  @include max-screen(991) {
+    padding-top: 0;
+  }
+}
+
+.cart__warnings {
+  display: none;
+}
+
+.cart__footer {
+  width: 380px;
+
+  @include max-screen(991) {
+    width: 100%;
+  }
+}
+
+.cart__blocks {
+  .tax-note {
+    display: block;
+    max-width: 100%;
+    width: max-content;
+    margin-left: auto;
+    font-family: $futura;
+    font-weight: 500;
+    font-size: 12px;
+    color: $black;
+    padding: 5px 0;
+  }
+}
+
+.main-card-footer__totals-wrapper {
+  background-color: $white;
+  padding: 15px;
+  box-shadow: 0 4px 80px 0 rgba(227, 229, 233, 0.5);
+  border-radius: 20px;
+  margin-bottom: 18px;
+
+  .main-card-footer__btn-wrapper {
+    padding: 15px 0;
+  }
+}
+
+.main-card-footer__totals-wrapper + .field--no-fly svg {
+    position: absolute;
+    top: 13px;
+    right: 16px;
+    pointer-events: none;
+}

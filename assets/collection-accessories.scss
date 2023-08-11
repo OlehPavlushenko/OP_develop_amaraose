@@ -1,0 +1,75 @@
+@import "variables";
+
+.collection-accessories {
+  padding: 80px 0;
+
+  @include max-screen(767) {
+    padding: 32px 0;
+  }
+}
+
+.collection-accessories__content {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  @include max-screen(1300) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+  }
+}
+
+.collection-accessories__header-wrapper {
+  width: 380px;
+
+  @include max-screen(1300) {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+
+  .collection-accessories__title {
+    font-family: $futura;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 1.25;
+    margin-bottom: 15px;
+    color: $black;
+
+    @include max-screen(767) {
+      font-size: 30px;
+      margin-bottom: 10px;
+    }
+  }
+
+  .collection-accessories__text {
+    font-family: $futura;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 1.5;
+    color: $black;
+
+
+    @include max-screen(767) {
+      font-size: 18px;
+    }
+  }
+}
+
+.collection-accessories__product-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+
+  .card-product__wrapper {
+    @include max-screen(991) {
+      width: calc(50% - 10px);
+    }
+  }
+
+  @include max-screen(1300) {
+    width: 100%;
+    justify-content: center;
+  }
+}
+

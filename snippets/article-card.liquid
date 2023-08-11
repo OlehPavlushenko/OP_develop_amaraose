@@ -1,0 +1,75 @@
+{% comment %}
+    Renders an article card for a given blog with settings to either show the image or not.
+
+    Accepts:
+    - blog: {Object} Blog object
+    - article: {Object} Article object
+    - media_aspect_ratio: {String} The setting changes the aspect ratio of the article image, if shown
+    - media_height: {String} The setting changes the height of the article image. Overrides media_aspect_ratio.
+    - show_image: {String} The setting either show the article image or not. If it's not included it will show the image by default
+    - show_date: {String} The setting either show the article date or not. If it's not included it will not show the image by default
+    - show_author: {String} The setting either show the article author or not. If it's not included it will not show the author by default
+    - show_badge: {String} The setting either show the blog badge or not.
+    - lazy_load: {Boolean} Image should be lazy loaded. Default: true (optional)
+
+    Usage:
+    {% render 'article-card' blog: blog, article: article, show_image: section.settings.show_image %}
+{% endcomment %}
+
+<style>
+  .article-card__image {
+    height: 100px;
+    background-size: cover;
+    display: block !important;
+  }
+</style>
+
+{%- if article and article != empty -%}
+  <div class="article-card">
+
+    {%- if article.metafields.custom.image_for_blog_page != blank -%}
+      <div class="article-card__image 1"
+           style="background-image: url({{ article.metafields.custom.image_for_blog_page | img_url: "master" }})"></div>
+    {% elsif article.image %}
+      <div class="article-card__image 2"
+           style="background-image: url({{ article.image.src | img_url: "master" }})"></div>
+    {%- endif -%}
+
+    <div class="article-card__information">
+      <div class="article-car__top-wrapper">
+        {% if article.tags[0] != blank %}
+          <p class="circle-divider badge badge--gray article-card__tag">{{ article.tags[0] }}</p>
+        {% endif %}
+        <div class="article-card__info caption-with-letter-spacing h5">
+          {%- if show_date -%}
+            <span>{{ article.published_at | time_tag: format: 'date' }}</span>
+          {%- endif -%}
+          {%- if show_author -%}
+            <span>{{ article.author }}</span>
+          {%- endif -%}
+        </div>
+      </div>
+
+      <h3 class="article-card__title-wrapper">
+        <a class="title" href="{{ article.url }}">{{ article.title | truncate: 50 | escape }}</a>
+      </h3>
+
+      {%- if show_excerpt -%}
+        {%- if article.excerpt.size > 0 or article.content.size > 0 -%}
+          <p class="article-card__excerpt rte-width">
+            {%- if article.excerpt.size > 0 -%}
+              {{ article.excerpt | strip_html | truncatewords: 30 }}
+            {%- else -%}
+              {{ article.content | strip_html | truncatewords: 30 }}
+            {%- endif -%}
+          </p>
+        {%- endif -%}
+      {%- endif -%}
+
+      <a class="link-arrow" href="{{ article.url }}">
+        {{ 'blogs.article.card_text_link' | t }}
+        {% render 'icon-arrow-r' %}
+      </a>
+    </div>
+  </div>
+{%- endif -%}

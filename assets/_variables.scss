@@ -1,0 +1,200 @@
+@use "sass:math";
+
+// Color
+$black: #2A3241;
+$blackDark: #1A1818;
+$midGrey: #5E697E;
+$lightGrey: #F1F3F6;
+$white: #ffffff;
+$errorState: #DE3D64;
+$purple: #850B65;
+$purple-light: #CF4391;
+$rose: #BA3A7D;
+$blush-25: #FFEEEA;
+$roseMid: #F08B84;
+$blush: #FFBBAB;
+$green: #30CD9C;
+$goldGradient: linear-gradient(180deg, #A35B40 0%, #C88264 48.44%, #F3B393 70.31%, #89493B 100%);
+
+// Fonts
+$futura: "futura", suns-serif;
+$poppins: "Poppins", sans-serif;
+$gtWalsheimPro: "GT Walsheim Pro", suns-serif;
+
+// ------------------------------------------------
+// ------------ Breakpoints ------------
+$ui-breakpoints-xl: "1300px";
+$ui-breakpoints-xl--min: "1301px";
+
+$ui-breakpoints-lg: "992px";
+$ui-breakpoints-lg--min: "993px";
+
+$ui-breakpoints-md: "767px";
+$ui-breakpoints-md--min: "769px";
+
+$ui-breakpoints-sm: "576px";
+$ui-breakpoints-sm--min: "577px";
+
+
+// Mixin
+@mixin max-screen($res) {
+  @media screen and (max-width: $res + px) {
+    @content;
+  }
+}
+
+@mixin min-screen($res) {
+  @media screen and (min-width: $res + px) {
+    @content;
+  }
+}
+
+@mixin line-text-hidden($col: 2) {
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $col; /* количество строк */
+}
+
+@mixin style-scrollbar($width: 10, $height: 6) {
+  scrollbar-color: $rose transparent;
+  scrollbar-width: thin;
+
+  // style for scrollbar
+  ::-webkit-scrollbar {
+    width: $width + px; /* ширина для вертикального скролла */
+    height: $height + px; /* высота для горизонтального скролла */
+    background-color: transparent;
+  }
+
+  /* ползунок скроллбара */
+  ::-webkit-scrollbar-thumb {
+    background-color: $rose;
+    border-radius: 20px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: $purple;
+  }
+
+  /* Стрелки */
+
+  ::-webkit-scrollbar-button:vertical:start:decrement,
+  ::-webkit-scrollbar-button:vertical:end:increment,
+  ::-webkit-scrollbar-button:vertical:end:increment,
+  ::-webkit-scrollbar-button:horizontal:start:decrement,
+  ::-webkit-scrollbar-button:horizontal:end:increment {
+    display: none;
+  }
+}
+
+@mixin style-ol {
+  counter-reset: ol-numbers;
+
+  li {
+    position: relative;
+    padding-left: 36px;
+    font-family: $futura;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.25;
+    color: $black;
+
+    @include max-screen(767) {
+      font-size: 16px;
+      margin-bottom: 5px;
+    }
+
+    &:not(:last-of-type) {
+      margin-bottom: 10px;
+    }
+
+    &:before {
+      counter-increment: ol-numbers;
+      content: counter(ol-numbers);
+      position: absolute;
+      display: block;
+      left: 12px;
+      top: 0;
+      font-family: $futura;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 1.25;
+      color: $blush;
+
+      @include max-screen(767) {
+        font-size: 16px;
+      }
+    }
+  }
+}
+
+@mixin style-ul {
+  li {
+    font-family: $futura;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.5;
+    color: $black;
+    margin-bottom: 10px;
+    padding-left: 30px;
+    position: relative;
+
+    @include max-screen(767) {
+      font-size: 16px;
+      margin-bottom: 5px;
+    }
+
+    &:before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      display: inline-block;
+      background-color: $blush;
+      position: absolute;
+      top: 14px;
+      left: 15px;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+    }
+  }
+}
+
+@mixin underline-text {
+  text-decoration-line: underline;
+  text-underline-offset: 4px;
+}
+
+@mixin hidden-elem {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  margin: -1px;
+  padding: 0;
+  border: 0;
+}
+
+// Адаптивный шрифт
+@mixin font-adaptiv($desk-size, $mod-size, $line-height: $desk-size) {
+  $addSize: $desk-size - $mod-size;
+  $addMobSize: $addSize + $addSize * 0.7;
+
+  @media screen and (max-width: 768px) {
+    font-size: calc(#{$mod-size + px} + #{$addMobSize} * ((100vw - 375px) / 1920));
+  }
+  @media screen and (min-width: 769px) {
+    font-size: calc(#{$mod-size + px} + #{$addSize} * (100vw / 1920));
+  }
+
+  line-height: calc($line-height / $desk-size);
+}
+
+// вычисление lh и задавание fz
+@mixin font($font-size, $line-height) {
+  font-size: $font-size;
+  line-height: math.div($line-height, $font-size);
+}

@@ -1,0 +1,56 @@
+.pagination {
+  padding: 30px 0 100px;
+}
+@media screen and (max-width: 767px) {
+  .pagination {
+    padding: 16px 0 38px;
+  }
+}
+
+.pagination-list {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 5px;
+}
+.pagination-list .pagination-button {
+  display: block;
+  width: 35px;
+  height: 35px;
+  position: relative;
+  border-radius: 50%;
+  background-color: #FFEEEA;
+  cursor: pointer;
+}
+.pagination-list .pagination-button.pagination-button__previous svg {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+.pagination-list .pagination-button.pagination-button__next svg {
+  transform: translate(-50%, -50%) rotate(-90deg);
+}
+.pagination-list .pagination-button svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.pagination-list .pagination-button svg path {
+  fill: #2A3241;
+}
+.pagination-list span.pagination-button {
+  display: none;
+}
+.pagination-list .pagination-pages {
+  display: inline-block;
+  min-height: 35px;
+  padding: 6px 12px;
+  font-family: "futura", suns-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.25;
+  color: #2A3241;
+  background-color: #FFEEEA;
+  border-radius: 20px;
+}
+
+/*# sourceMappingURL=component-pagination.css.map */

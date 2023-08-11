@@ -1,0 +1,67 @@
+<link rel="stylesheet" href="{{ 'ingredients.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>{{ 'ingredients.css' | asset_url | stylesheet_tag }}</noscript>
+
+<div class="ingredients">
+  <div class="container">
+    <div class="ingredients-wrapper">
+      <div class="ingredients__header">
+        {% if section.settings.title != blank %}
+          <h2 class="ingredients__title">
+            {{ section.settings.title | escape }}
+          </h2>
+        {% endif %}
+        {% if section.settings.description != blank %}
+          <p class="ingredients__text">
+            {{ section.settings.description | escape }}
+          </p>
+        {% endif %}
+        {% if section.settings.button_text != blank %}
+          <a href="{{ section.settings.button_url | escape }}" class="button primary-button button--lg">
+            {{ section.settings.button_text | escape }}
+          </a>
+        {% endif %}
+      </div>
+
+      {% render 'ingredients-list' %}
+    </div>
+  </div>
+</div>
+
+
+{% schema %}
+{
+  "name": "t:sections.ingredients.name",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "default": "Vitamin and Nutrient Infused Clean Beauty",
+      "label": "t:sections.ingredients.settings.title.label"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "default": "All our products are formulated with high-quality ingredients, combined to bring maximum nourishment.",
+      "label": "t:sections.ingredients.settings.description.label"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "default": "Shop Now",
+      "label": "t:sections.ingredients.settings.button.label"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "t:sections.ingredients.settings.button.url"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.ingredients.presets.name"
+    }
+  ]
+}
+{% endschema %}

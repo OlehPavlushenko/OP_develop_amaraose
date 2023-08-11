@@ -1,0 +1,146 @@
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'collection-grid.css' | asset_url | stylesheet_tag }}
+
+<link rel="stylesheet" href="{{ 'template-collection.css' | asset_url }}" media="print" onload="this.media='all'">
+{%- if section.settings.enable_quick_add -%}
+  <link rel="stylesheet" href="{{ 'quick-add.css' | asset_url }}" media="print" onload="this.media='all'">
+  <script src="{{ 'quick-add.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+<noscript>{{ 'template-collection.css' | asset_url | stylesheet_tag }}</noscript>
+
+<div class="collection-grid container container--xl section-{{ section.id }}-padding">
+
+  {% if section.settings.image != blank %}
+    {% assign collection_image = section.settings.image %}
+  {% elsif section.settings.collection.image != blank %}
+    {% assign collection_image = section.settings.collection.image %}
+  {% endif %}
+
+
+  <div class="collection-grid__header title-wrapper title-wrapper--no-top-margin">
+    <h2 class="collection-grid__title">
+      {% if section.settings.title != blank %}
+        {{ section.settings.title | escape }}
+      {% else %}
+        {{ section.settings.collection.title | escape }}
+      {% endif %}
+    </h2>
+    {%- if section.settings.description != blank or section.settings.collection.description != blank -%}
+      <div class="collection-grid__description">
+        {% if section.settings.description != blank %}
+          {{ section.settings.description | escape }}
+        {% else %}
+          {{ section.settings.collection.description | escape }}
+        {% endif %}
+      </div>
+    {%- endif -%}
+  </div>
+
+
+  <div class="collection-grid__list">
+    <ul
+      class="grid product-grid contains-card{% if settings.card_style == 'standard' %} contains-card--standard{% endif %}{% if section.settings.collection == blank %} grid--2-col-tablet-down{% endif %}"
+      role="list" aria-label="{{ 'sections.featured_collection.slider' | t }}">
+      {%- for product in section.settings.collection.products limit: 4 -%}
+        <li class="grid__item">
+          {% render 'card-product',
+            card_product: product,
+            media_aspect_ratio: section.settings.image_ratio,
+            show_secondary_image: section.settings.show_secondary_image,
+            show_rating: section.settings.show_rating,
+            show_quick_add: section.settings.enable_quick_add,
+            section_id: section.id
+          %}
+        </li>
+      {%- endfor -%}
+    </ul>
+
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.grid-collection.name",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "default": "Featured collection",
+      "label": "t:sections.grid-collection.settings.title.label"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "t:sections.grid-collection.settings.description.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:sections.grid-collection.settings.image.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "t:sections.grid-collection.settings.mobile_image.label"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "t:sections.grid-collection.settings.collection.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.grid-collection.settings.header.content"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "options": [
+        {
+          "value": "adapt",
+          "label": "t:sections.grid-collection.settings.image_ratio.options__1.label"
+        },
+        {
+          "value": "portrait",
+          "label": "t:sections.grid-collection.settings.image_ratio.options__2.label"
+        },
+        {
+          "value": "square",
+          "label": "t:sections.grid-collection.settings.image_ratio.options__3.label"
+        }
+      ],
+      "default": "adapt",
+      "label": "t:sections.grid-collection.settings.image_ratio.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_secondary_image",
+      "default": false,
+      "label": "t:sections.grid-collection.settings.show_secondary_image.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rating",
+      "default": false,
+      "label": "t:sections.grid-collection.settings.show_rating.label",
+      "info": "t:sections.grid-collection.settings.show_rating.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_quick_add",
+      "default": false,
+      "label": "t:sections.grid-collection.settings.enable_quick_buy.label"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.grid-collection.presets.name"
+    }
+  ]
+}
+{% endschema %}

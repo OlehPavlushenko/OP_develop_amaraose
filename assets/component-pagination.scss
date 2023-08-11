@@ -1,0 +1,65 @@
+@import "variables";
+.pagination {
+  padding: 30px 0 100px;
+
+  @include max-screen(767) {
+    padding: 16px 0 38px;
+  }
+}
+
+.pagination-list {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 5px;
+
+  .pagination-button {
+    display: block;
+    width: 35px;
+    height: 35px;
+    position: relative;
+    border-radius: 50%;
+    background-color: $blush-25;
+    cursor: pointer;
+
+    &.pagination-button__previous {
+      svg {
+        transform:translate(-50%, -50%) rotate(90deg);
+      }
+    }
+
+    &.pagination-button__next {
+      svg {
+        transform:translate(-50%, -50%) rotate(-90deg);
+      }
+    }
+
+    svg {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      path {
+        fill: $black;
+      }
+    }
+  }
+
+  span.pagination-button {
+    display: none;
+  }
+
+  .pagination-pages {
+    display: inline-block;
+    min-height: 35px;
+    padding: 6px 12px;
+    font-family: $futura;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.25;
+    color: $black;
+    background-color: $blush-25;
+    border-radius: 20px;
+  }
+}

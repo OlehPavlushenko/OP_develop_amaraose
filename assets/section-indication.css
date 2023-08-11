@@ -1,0 +1,46 @@
+.indication {
+  padding: 50px 0;
+}
+.indication__title {
+  margin-bottom: 50px;
+  font-family: "futura", suns-serif;
+  font-weight: 500;
+  font-size: 42px;
+  line-height: 1.25;
+  text-align: center;
+  color: #2A3241;
+}
+@media screen and (max-width: 767px) {
+  .indication__title {
+    font-size: 30px;
+  }
+}
+.indication__content-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 50px;
+}
+.indication__content img {
+  margin-bottom: 20px;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+@media screen and (max-width: 767px) {
+  .indication__content img {
+    width: 100px;
+    height: 100px;
+  }
+}
+.indication__content .indication__img-title {
+  font-family: "futura", suns-serif;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 1.25;
+  text-align: center;
+  color: #2A3241;
+}
+
+/*# sourceMappingURL=section-indication.css.map */

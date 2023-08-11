@@ -1,0 +1,73 @@
+{{ 'section-benefits.css' | asset_url | stylesheet_tag }}
+
+{% if section.settings.bg_image %}
+  {%- assign hasBg = true -%}
+  {%- assign bg_image = section.settings.bg_image | img_url: 'master' -%}
+{% endif %}
+
+<section class="benefit-section" {%  if hasBg %}style="background-image: url({{ bg_image }});"{% endif %}>
+  <div class="container">
+    <div class="benefit-section--holder">
+      {{ section.settings.content }}
+      {{ section.settings.content_html }}
+
+      <div class="benefit-blocks">
+        {%- for block in section.blocks -%}
+          <div class="benefit-block">
+            {{ block.settings.svg_code }}
+            {{ block.settings.text }}
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+
+{% schema %}
+{
+  "name": "Benefits",
+  "max_blocks": 4,
+  "settings": [
+  {
+    "type": "image_picker",
+    "id": "bg_image",
+    "label": "Background Image"
+  },
+  {
+    "type": "richtext",
+    "id": "content",
+    "default": "<p></p>",
+    "label": "Top content"
+  },
+  {
+    "type": "html",
+    "id": "content_html",
+    "label": "Top content HTML"
+  }
+],
+  "blocks": [
+  {
+    "type": "box",
+    "name": "Box",
+    "settings": [
+      {
+        "type": "textarea",
+        "id": "svg_code",
+        "label": "SVG code"
+      },
+      {
+        "type": "text",
+        "id": "text",
+        "label": "Text"
+      }
+    ]
+  }
+],
+  "presets": [
+  {
+    "name": "Benefits"
+  }
+]
+}
+{% endschema %}

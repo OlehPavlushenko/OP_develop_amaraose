@@ -1,0 +1,158 @@
+@import "variables";
+
+.ingredients {
+  background-color: $lightGrey;
+  padding: 80px 0;
+
+  @include max-screen(767) {
+    padding: 32px 0;
+  }
+}
+
+.ingredients-wrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+
+  @include max-screen(991) {
+    flex-direction: column;
+  }
+}
+
+.ingredients__header {
+  max-width: 380px;
+  width: 100%;
+
+  @include max-screen(991) {
+    max-width: 100%;
+    padding: 16px;
+  }
+
+  .ingredients__title {
+    font-family: $futura;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 1.25;
+    color: $black;
+    margin-bottom: 10px;
+
+    @include max-screen(991) {
+      margin-bottom: 16px;
+    }
+
+    @include max-screen(767) {
+      font-size: 30px;
+    }
+  }
+
+  .ingredients__text {
+    font-family: $futura;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 1.5;
+    color: $midGrey;
+
+    @include max-screen(767) {
+      font-size: 18px;
+    }
+  }
+
+  .button {
+    margin-top: 15px;
+  }
+}
+
+.ingredients-list {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+
+  .ingredient-btn-next {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translate(50%, -50%);
+
+    @include max-screen(767) {
+      display: none;
+    }
+  }
+}
+
+.ingredients-list__content {
+  width: 100%;
+}
+
+.ingredient-card {
+  min-height: 330px;
+  background-color: $white;
+  padding: 20px;
+  border-radius: 20px;
+
+  @include max-screen(767) {
+    padding: 15px;
+  }
+
+  .ingredient__icon {
+    width: 90px;
+    height: 90px;
+    margin-bottom: 10px;
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    @include max-screen(767) {
+      width: 70px;
+      height: 70px;
+    }
+  }
+
+  .ingredient__title {
+    font-family: $futura;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 1.25;
+    margin-bottom: 10px;
+
+    @include max-screen(767) {
+      font-size: 18px;
+    }
+  }
+
+  .ingredient__text {
+    font-family: $futura;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.5;
+    color: $midGrey;
+
+    @include max-screen(767) {
+      font-size: 16px;
+    }
+  }
+
+}
+
+.ingredient-btn-next {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background-color: $white;
+  box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.05);
+  border: 0.5px solid #EAEAEA;
+  z-index: 1;
+  cursor: pointer;
+
+  svg {
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    transform: translate(50%, -50%);
+
+    path {
+      stroke: $black;
+    }
+  }
+}

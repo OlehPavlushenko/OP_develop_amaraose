@@ -1,0 +1,29 @@
+.template-search .facets {
+  padding-top: 20px;
+}
+
+.product-grid-container .template-search__results {
+  padding: 50px 0;
+}
+@media screen and (max-width: 767px) {
+  .product-grid-container .template-search__results {
+    padding: 32px 0;
+  }
+}
+.product-grid-container .product-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+@media screen and (max-width: 1300px) {
+  .product-grid-container .product-grid {
+    justify-content: center;
+  }
+}
+@media screen and (max-width: 991px) {
+  .product-grid-container .product-grid .grid__item {
+    width: calc(50% - 10px);
+  }
+}
+
+/*# sourceMappingURL=main-search.css.map */

@@ -1,0 +1,219 @@
+{
+  "sections": {
+    "hero-banner": {
+      "type": "hero-banner",
+      "settings": {
+        "bg_image": "shopify:\/\/shop_images\/8739.jpg",
+        "bg_color": "#ebc2c0",
+        "text_alignment": "left",
+        "show_bg": true,
+        "sub_heading": "OUR STORY",
+        "sub_heading_color": "pink",
+        "heading": "Inspiring Strength and Beauty",
+        "description": "<p>Wrestler Mandy Rose found a solution to keeping her skin clean and healthy while traveling the world.<\/p>",
+        "button_text": "",
+        "button_url": ""
+      }
+    },
+    "1658680767c6abc35b": {
+      "type": "video",
+      "disabled": true,
+      "settings": {
+        "heading": "Powerful Nutrition For Stronger, Healthier Skin",
+        "text": "A clean beauty solution that delivers nutrients to preserve and enhance your best skin.",
+        "cover_image": "shopify:\/\/shop_images\/14.webp",
+        "video_url": "https:\/\/www.youtube.com\/watch?v=_9VUPq3SxOc",
+        "description": "",
+        "is_product": false
+      }
+    },
+    "165868083633467195": {
+      "type": "ingredients",
+      "disabled": true,
+      "settings": {
+        "title": "Vitamin and Nutrient Infused Clean Beauty",
+        "description": "All our products are formulated with high-quality ingredients, combined to bring maximum nourishment.",
+        "button_text": "Shop Now",
+        "button_url": "#"
+      }
+    },
+    "e1efc1c2-c4e6-4fe4-8548-b9dd4de7f2a6": {
+      "type": "rich-text",
+      "blocks": {
+        "template--16459152654594__e1efc1c2-c4e6-4fe4-8548-b9dd4de7f2a6-166620091114056626-0": {
+          "type": "heading",
+          "settings": {
+            "heading": "",
+            "heading_size": "h1"
+          }
+        },
+        "template--16459152654594__e1efc1c2-c4e6-4fe4-8548-b9dd4de7f2a6-166620091114056626-1": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>Welcome to Amarose. <\/strong>We love skincare, but we also know that it can be a little scary. We've been there—we know what it feels like to want to take care of your skin, but not know where to start. That's why we created Amarose, a line of skincare products for women by women.<br\/><br\/>We're here to help you get the most out of your skincare routine so you can feel confident in every step of your day, from waking up to getting ready for bed.<br\/><br\/>Our team is passionate about making sure that our products are as effective as possible without adding any harsh chemicals or unnecessary ingredients that could cause irritation or discomfort. <\/p><p><\/p>"
+          }
+        },
+        "template--16459152654594__e1efc1c2-c4e6-4fe4-8548-b9dd4de7f2a6-166620091114056626-2": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "button_label": "Button label",
+            "button_link": "",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        },
+        "b5107241-dff3-4c49-aa05-761b9575075e": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Our products are made with all-natural ingredients like essential oils and plant extracts to help keep your skin healthy while improving its texture and elasticity over time.<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "template--16459152654594__e1efc1c2-c4e6-4fe4-8548-b9dd4de7f2a6-166620091114056626-0",
+        "template--16459152654594__e1efc1c2-c4e6-4fe4-8548-b9dd4de7f2a6-166620091114056626-1",
+        "template--16459152654594__e1efc1c2-c4e6-4fe4-8548-b9dd4de7f2a6-166620091114056626-2",
+        "b5107241-dff3-4c49-aa05-761b9575075e"
+      ],
+      "settings": {
+        "desktop_content_position": "left",
+        "content_alignment": "left",
+        "color_scheme": "background-1",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 0
+      }
+    },
+    "303b25e3-24dd-4ec2-b880-ad3f93e92528": {
+      "type": "images-two-with-text",
+      "settings": {
+      }
+    },
+    "74dd029a-3a85-4abe-b91d-08ac603a5ad3": {
+      "type": "benefits",
+      "blocks": {
+        "48b8b3ce-2a9c-49eb-b08d-090c567da3dc": {
+          "type": "box",
+          "settings": {
+            "svg_code": "",
+            "text": ""
+          }
+        }
+      },
+      "block_order": [
+        "48b8b3ce-2a9c-49eb-b08d-090c567da3dc"
+      ],
+      "settings": {
+        "content": "",
+        "content_html": ""
+      }
+    },
+    "58e6154e-03cf-4058-aaeb-02173bc29043": {
+      "type": "rich-text",
+      "blocks": {
+        "template--16459152654594__58e6154e-03cf-4058-aaeb-02173bc29043-1666220183332d54fd-0": {
+          "type": "heading",
+          "settings": {
+            "heading": "",
+            "heading_size": "h1"
+          }
+        },
+        "template--16459152654594__58e6154e-03cf-4058-aaeb-02173bc29043-1666220183332d54fd-1": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>Our promise.<br\/><\/strong><br\/>Naturally uncompromising. Consistently effective. This is our promise and our commitment, not only to your skin but also to all ingredients we use. providing you with the highest levels of quality, expertise and a user experience that leaves you smiling.<\/p><p><\/p><p><\/p>"
+          }
+        },
+        "template--16459152654594__58e6154e-03cf-4058-aaeb-02173bc29043-1666220183332d54fd-2": {
+          "type": "button",
+          "settings": {
+            "button_label": "",
+            "button_link": "",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "template--16459152654594__58e6154e-03cf-4058-aaeb-02173bc29043-1666220183332d54fd-0",
+        "template--16459152654594__58e6154e-03cf-4058-aaeb-02173bc29043-1666220183332d54fd-1",
+        "template--16459152654594__58e6154e-03cf-4058-aaeb-02173bc29043-1666220183332d54fd-2"
+      ],
+      "settings": {
+        "desktop_content_position": "left",
+        "content_alignment": "left",
+        "color_scheme": "background-1",
+        "full_width": true,
+        "padding_top": 0,
+        "padding_bottom": 32
+      }
+    },
+    "689f2142-6eb8-4c47-b752-b249242161c3": {
+      "type": "multicolumn",
+      "blocks": {
+        "template--16459152654594__689f2142-6eb8-4c47-b752-b249242161c3-1666219705e08cc11a-0": {
+          "type": "column",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Screen_Shot_2022-10-19_at_6.52.23_PM.png",
+            "title": "",
+            "text": "<p>We're proud of our product line and excited to share it with other women who are looking for a high-quality skincare solution they can trust!<\/p>",
+            "link_label": "",
+            "link": "shopify:\/\/collections\/shop-all"
+          }
+        },
+        "template--16459152654594__689f2142-6eb8-4c47-b752-b249242161c3-1666219705e08cc11a-2": {
+          "type": "column",
+          "settings": {
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--16459152654594__689f2142-6eb8-4c47-b752-b249242161c3-1666219705e08cc11a-0",
+        "template--16459152654594__689f2142-6eb8-4c47-b752-b249242161c3-1666219705e08cc11a-2"
+      ],
+      "settings": {
+        "title": "",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "columns_desktop": 1,
+        "column_alignment": "center",
+        "background_style": "primary",
+        "button_label": "",
+        "button_link": "",
+        "color_scheme": "background-1",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "ab04e3bf-6349-49e7-8fb7-a90645479e37": {
+      "type": "benefits",
+      "settings": {
+        "content": "",
+        "content_html": ""
+      }
+    }
+  },
+  "order": [
+    "hero-banner",
+    "1658680767c6abc35b",
+    "165868083633467195",
+    "e1efc1c2-c4e6-4fe4-8548-b9dd4de7f2a6",
+    "303b25e3-24dd-4ec2-b880-ad3f93e92528",
+    "74dd029a-3a85-4abe-b91d-08ac603a5ad3",
+    "58e6154e-03cf-4058-aaeb-02173bc29043",
+    "689f2142-6eb8-4c47-b752-b249242161c3",
+    "ab04e3bf-6349-49e7-8fb7-a90645479e37"
+  ]
+}

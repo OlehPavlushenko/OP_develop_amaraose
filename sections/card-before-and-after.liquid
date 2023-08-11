@@ -1,0 +1,145 @@
+{{ "effect-before-and-after.css" | asset_url | stylesheet_tag }}
+
+<div class="effect-before-and-after">
+  <div class="container">
+    <div class="effect-before-and-after__content-wrapper">
+
+      {% if section.settings.title != blank %}
+        <h2 class="effect-before-and-after__title">{{ section.settings.title }}</h2>
+      {% endif %}
+
+      {% if section.blocks.size > 0 %}
+        <div class="effect-before-and-after__card-wrapper swiper">
+          <div class="effect-before-and-after__card-list swiper-wrapper">
+            {%- for block in section.blocks -%}
+              <div class="card-before-and-after swiper-slide">
+                <div class="card-before-and-after__photo">
+                  <div class="card-before-and-after__photo-item">
+                    <img src="{{ block.settings.image_before | img_url: 'master' }}"
+                         alt="{{ block.settings.image_before.alt | default: 'before' }}"
+                         loading="lazy">
+                    <span class="card-before-and-after__label-photo">DAY {{ block.settings.count_day_before }}</span>
+                  </div>
+
+                  <div class="card-before-and-after__photo-item">
+                    <img src="{{ block.settings.image_after | img_url: 'master' }}"
+                         alt="{{ block.settings.image_after.alt | default: 'before' }}"
+                         loading="lazy">
+
+                    <span class="card-before-and-after__label-photo">DAY {{ block.settings.count_day_after }}</span>
+                  </div>
+                </div>
+
+                <span class="star-group">
+                  {%- render "icon-star-group-5" -%}
+               </span>
+
+                {% if block.settings.title != blank %}
+                  <h3 class="card-before-and-after__title">{{ block.settings.title }}</h3>
+                {% endif %}
+
+                {% if block.settings.text != blank %}
+                  <p class="card-before-and-after__text">{{ block.settings.text }}</p>
+                {% endif %}
+
+                {% if block.settings.author != blank %}
+                  <span class="card-before-and-after__author"> — {{ block.settings.author }}</span>
+                {% endif %}
+
+              </div>
+            {%- endfor -%}
+          </div>
+
+          <div class="swiper-pagination"></div>
+
+          {% if section.settings.button_link != blank or section.settings.button_text != blank %}
+            <a class="effect-before-and-after__button button landing-button landing-button--w-xl"
+               href="{{ section.settings.button_link }}">{{ section.settings.button_text }}</a>
+          {% endif %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Effect before and after",
+  "tag": "section",
+  "class": "section",
+  "max_blocks": 3,
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "Title",
+      "default": "Hear It From Them"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link",
+      "default": "/"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "BUILD MY BUNDLE AND SAVE 30%"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Card",
+      "type": "card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image_before",
+          "label": "Image before"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "count_day_before",
+          "default": "1",
+          "label": "Count day before"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_after",
+          "label": "Image after"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "count_day_after",
+          "default": "30",
+          "label": "Count day after"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "title",
+          "label": "Title",
+          "default": "Title"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "some text ..."
+        },
+        {
+          "type": "inline_richtext",
+          "id": "author",
+          "label": "Author name",
+          "default": "author name"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "effect-before-and-after"
+    }
+  ]
+}
+{% endschema %}

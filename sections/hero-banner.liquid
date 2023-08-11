@@ -1,0 +1,168 @@
+{{ 'hero-banner.css' | asset_url | stylesheet_tag }}
+
+{%- assign hasBg = false -%}
+
+{% if section.settings.bg_image %}
+  {%- assign hasBg = true -%}
+  {%- assign bg_image = section.settings.bg_image | img_url: 'master' -%}
+{% endif %}
+
+<div class="hero-banner {% if section.settings.image == blank %}hero-banner__no-image{% endif %}"
+     style="background-color: {{ section.settings.bg_color }}; {%  if hasBg %}background-image: url({{ bg_image }});{% endif %}">
+  <div class="container">
+    <div class="hero-banner__content-wrapper page-width-position-{{ section.settings.text_alignment }}">
+      <div class="hero-banner__img-wrapper">
+        {% if section.settings.image != blank %}
+          {{ section.settings.image | image_url: width: 1920 | image_tag:
+          loading: 'lazy',
+          width: section.settings.image.width,
+          height: section.settings.image.height,
+          class: 'hero-banner__image',
+          sizes: sizes,
+          widths: '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840',
+          alt: section.settings.image.alt | escape
+          }}
+        {% endif %}
+      </div>
+      <div class="hero-banner__content {% if section.settings.show_bg %}hero-banner__content--has-bg{% endif %}">
+        {% if section.settings.sub_heading != blank %}
+          <span
+            class="badge badge--{{ section.settings.sub_heading_color }}">{{ section.settings.sub_heading }}</span>
+        {% endif %}
+        {% if section.settings.heading != blank %}
+          <h2 class="hero-banner__title">{{ section.settings.heading }}</h2>
+        {% endif %}
+        {% if section.settings.description != blank %}
+          <div class="hero-banner__description">
+            {{ section.settings.description }}
+          </div>
+        {% endif %}
+        {% if section.settings.button_url != blank and section.settings.button_text != blank %}
+          <a href="{{ section.settings.button_url }}" class="button primary-button">
+            {{ section.settings.button_text }}
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% if section.settings.bg_image_mobile != blank %}
+  <style>
+    @media only screen and (max-width: 767px) {
+      .hero-banner {
+        background-image: url({{ section.settings.bg_image_mobile | img_url: 'master' }}) !important;
+      }
+    }
+  </style>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Hero Banner",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image_mobile",
+      "label": "Background Mobile Image"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "default": "#fff",
+      "label": "Background color"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "left"
+        },
+        {
+          "value": "center",
+          "label": "center"
+        },
+        {
+          "value": "right",
+          "label": "right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "Content Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_bg",
+      "default": false,
+      "label": "Show Bg"
+    },
+    {
+      "type": "text",
+      "id": "sub_heading",
+      "label": "Top Subheading"
+    },
+    {
+      "type": "radio",
+      "id": "sub_heading_color",
+      "label": "Top Subheading bg color",
+      "options": [
+        {
+          "value": "pink",
+          "label": "Pink"
+        },
+        {
+          "value": "white",
+          "label": "White"
+        },
+        {
+          "value": "gray",
+          "label": "Gray"
+        }
+      ],
+      "default": "pink"
+    },
+    {
+      "type": "html",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Body text"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Label"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero",
+      "category": "Home Page"
+    }
+  ]
+}
+{% endschema %}

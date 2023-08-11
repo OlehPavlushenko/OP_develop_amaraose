@@ -1,0 +1,135 @@
+@import "variables";
+
+.product-how-it-works {
+  background-color: $lightGrey;
+  padding: 80px 0;
+
+  @include max-screen(767) {
+    padding: 60px 0;
+  }
+
+  .product-how-it-works__content {
+    display: flex;
+    gap: 20px;
+
+    @include max-screen(991) {
+      flex-direction: column;
+      gap: 30px;
+    }
+  }
+
+  .product-how-it-works__header {
+    max-width: 280px;
+
+    @include max-screen(991) {
+      max-width: 100%;
+    }
+
+    .how-it-works-pdp__title {
+      font-family: $futura;
+      font-weight: 400;
+      font-size: 40px;
+      line-height: 1.25;
+      margin-bottom: 10px;
+      color: $black;
+
+      @include max-screen(767) {
+        font-size: 30px;
+      }
+    }
+
+    .how-it-works-pdp__text {
+      font-family: $futura;
+      font-weight: 400;
+      font-size: 22px;
+      line-height: 1.5;
+      color: $midGrey;
+
+      @include max-screen(767) {
+        font-size: 18px;
+      }
+    }
+  }
+}
+
+.how-it-works-pdp__list-wrapper {
+  min-width: 0;
+  position: relative;
+
+  .ingredient-btn-next {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background-color: $white;
+    box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.05);
+    border: 0.5px solid #EAEAEA;
+    z-index: 1;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translate(50%, -50%);
+
+    @include max-screen(767) {
+      display: none;
+    }
+
+    svg {
+      position: absolute;
+      top: 50%;
+      right: 50%;
+      transform: translate(50%, -50%);
+
+      path {
+        stroke: $black;
+      }
+    }
+
+  }
+}
+
+.how-it-works-item-pdp {
+  background-color: $white;
+  padding: 32px;
+  border-radius: 20px;
+  min-height: 296px;
+  cursor: pointer;
+  transition: 0.3s;
+
+  &:hover {
+    box-shadow: 0px 4px 80px 0px rgba(255, 202, 219, 0.4);
+  }
+
+  @include max-screen(767) {
+    padding: 16px;
+    min-height: 246px;
+  }
+
+  .how-it-works-item-pdp__icon {
+    width: 90px;
+    height: 90px;
+    margin-bottom: 20px;
+
+    @include max-screen(767) {
+      width: 70px;
+      height: 70px;
+    }
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .how-it-works-item-pdp__text {
+    font-family: $futura;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.25;
+    color: $black;
+
+    @include max-screen(767) {
+      font-size: 16px;
+    }
+  }
+}

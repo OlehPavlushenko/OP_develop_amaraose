@@ -1,0 +1,33 @@
+@import "variables";
+
+.main-blog__title {
+  font-family: $futura;
+  font-weight: 400;
+  font-size: 48px;
+  line-height: 1.3;
+  color: $midGrey;
+  text-align: center;
+}
+
+.blog-articles {
+  padding: 40px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 110px 20px;
+
+  @include max-screen(1300) {
+    max-width: 780px;
+    margin: 0 auto;
+  }
+
+  @include max-screen(767) {
+    gap: 40px 20px;
+    padding: 20px 0;
+  }
+
+  .blog-articles__article {
+    @include max-screen(991) {
+      width: calc(50% - 10px);
+    }
+  }
+}

@@ -1,0 +1,80 @@
+{% if section.settings.is_product == false %}
+  {% render 'video-image_block',
+    id: section.id,
+    cover_image: section.settings.cover_image,
+    heading: section.settings.heading,
+    text: section.settings.text,
+    video_url: section.settings.video_url,
+    description: section.settings.description
+  %}
+{% else %}
+  {% render 'video-image_block',
+    id: section.id,
+    heading: product.metafields.heading_image_block.heading,
+    text: product.metafields.text_image_block.video_image_block_text,
+    video_url: product.metafields.video_block.video,
+    description: product.metafields.accentuate.video_image_description,
+    cover_image: product.metafields.image_block.image
+  %}
+{% endif %}
+
+<style>
+  .deferred-media {
+    display: block;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "t:sections.video.name",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "Formulated to provide skin nutrition for optimal skin health.",
+      "label": "t:sections.video.settings.heading.label"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "default": "A clean beauty solution that delivers nutrients to preserve and enhance your best skin.",
+      "label": "t:sections.video.settings.text.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "cover_image",
+      "label": "t:sections.video.settings.cover_image.label"
+    },
+    {
+      "type": "video_url",
+      "id": "video_url",
+      "accept": [
+        "youtube",
+        "vimeo"
+      ],
+      "default": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+      "label": "t:sections.video.settings.video_url.label",
+      "info": "t:sections.video.settings.video_url.info"
+    },
+    {
+      "type": "text",
+      "id": "description",
+      "label": "t:sections.video.settings.description.label",
+      "info": "t:sections.video.settings.description.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "is_product",
+      "default": false,
+      "label": "t:sections.video.settings.enable_metafields.label"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.video.presets.name"
+    }
+  ]
+}
+{% endschema %}

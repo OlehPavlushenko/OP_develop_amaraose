@@ -1,0 +1,99 @@
+{{ 'section-header.css' | asset_url | stylesheet_tag }}
+
+{% if section.settings.timer != blank %}
+  <script src="{{ 'timer.js' | asset_url }}" defer="defer"></script>
+{% endif %}
+
+<div class="announcement-bar" role="region" aria-label="{{ 'sections.header.announcement' | t }}">
+  <div class="container container__announcement-bar">
+    {% if section.settings.timer != blank %}
+      <div class="announcement-timer" data-timer="{{ section.settings.timer }}">
+        <div class="timer__items">
+          <div class="timer__item">
+            <span class="timer__elem timer__days">0</span>
+            Days
+          </div>
+          <div class="timer__item">
+            <span class="timer__elem timer__hours">0</span>
+            Hrs
+          </div>
+          <div class="timer__item">
+            <span class="timer__elem timer__minutes">0</span>
+            Min
+          </div>
+        </div>
+      </div>
+    {% endif %}
+
+
+
+    {% if section.settings.content != blank %}
+      <div class="announcement-message">
+        <div class="swiper-wrapper">
+
+          {% for block in section.blocks %}
+            <div class="swiper-slide">
+              {{ block.settings.text }}
+            </div>
+          {% endfor %}
+
+        </div>
+      </div>
+    {% endif %}
+
+
+    <div class="announcement-btn ">
+      {% if section.settings.button_url != blank %}
+        <a href="{{ section.settings.button_url }}" class="button primary-button">{{ section.settings.button_text }}</a>
+      {% endif %}
+      <button type="button" class="close-button" aria-label="{{ 'accessibility.close' | t }}">
+        {% render 'icon-close' %}
+      </button>
+    </div>
+  </div>
+</div>
+
+
+{% schema %}
+{
+  "name": "t:sections.announcement-bar.name",
+  "settings": [
+    {
+      "type": "text",
+      "id": "timer",
+      "label": "Timer",
+      "info": "2023, 08, 01"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "default": "<p>Welcome to our store</p>",
+      "label": "t:sections.announcement-bar.blocks.announcement.settings.text.label"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "default": "Shop Now",
+      "label": "Button Label"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button Link"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "announcement-message",
+      "type": "message",
+      "settings": [
+        {
+          "id": "text",
+          "type": "richtext",
+          "label": "Message"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

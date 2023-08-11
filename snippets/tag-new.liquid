@@ -1,0 +1,6 @@
+{% assign now_date = "now" | date %}
+{% assign publish_date = card_product.published_at %}
+{% assign different_date = now_date | minus: publish_date %}
+{% if different_date < settings.days_new %}
+  <span class="badge badge--new {{ tag_class }}">{{ 'products.product.new_tag' | t }}</span>
+{% endif %}

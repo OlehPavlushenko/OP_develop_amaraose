@@ -1,0 +1,140 @@
+@import "variables";
+
+.landing-main-banner {
+  padding-bottom: 64px;
+}
+
+.landing-main-banner__content-wrapper {
+  display: grid;
+  grid-template-columns: 450px 1fr;
+  gap: 40px 160px;
+  align-items: center;
+
+  @media screen and (max-width: $ui-breakpoints-xl) {
+    gap: 40px;
+  }
+
+  @media screen and (max-width: $ui-breakpoints-lg) {
+    grid-template-columns:1fr;
+    padding-top: 24px;
+  }
+}
+
+.landing-main-banner__content {
+  font-family: $poppins;
+  color: $blackDark;
+}
+
+.landing-main-banner__title {
+  margin-bottom: 16px;
+
+  font-size: 48px;
+  @include font-adaptiv(48, 40);
+  line-height: 1.2;
+  font-weight: 500;
+
+  @media screen and (max-width: $ui-breakpoints-md) {
+    text-align: center;
+  }
+}
+
+.landing-main-banner__subtitle {
+  margin-bottom: 44px;
+
+  font-family: $poppins;
+  font-weight: 300;
+  color: $blackDark;
+
+
+  @media screen and (max-width: $ui-breakpoints-md) {
+    text-align: center;
+  }
+}
+
+.landing-main-banner__advantage_list {
+  margin-bottom: 44px;
+
+  font-size: 18px;
+
+  li {
+    &:not(:last-of-type) {
+      margin-bottom: 22px;
+    }
+
+    svg {
+      margin-right: 16px;
+
+      width: 24px;
+      height: 24px;
+
+      vertical-align: middle;
+    }
+  }
+}
+
+.landing-main-banner__btn-wrapper {
+  text-align: center;
+
+  .button {
+    margin: 0 auto 16px;
+  }
+
+  p {
+    font-family: $poppins;
+    font-size: 14px;
+    color: #1A1818;
+
+    &:first-of-type {
+      margin-bottom: 12px;
+    }
+  }
+}
+
+.landing-main-banner__banner {
+  position: relative;
+
+  padding: 30px;
+
+  background-color: #CF4391;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+
+  border-radius: 40px;
+  box-shadow: 0 72px 48px -62px rgba(207, 67, 145, 0.75);
+
+
+  img {
+    max-width: 380px;
+    width: 100%;
+    object-fit: contain;
+    object-position: center;
+    margin: 0 auto;
+    display: block;
+  }
+
+  .landing-main-banner__reviews-label {
+    position: absolute;
+    top: 22px;
+    left: 22px;
+
+    display: inline-flex;
+    gap: 12px;
+
+    min-height: 38px;
+    padding: 4px 12px;
+    align-items: center;
+
+    font-family: $poppins;
+    line-height: 1;
+
+
+    background-color: $white;
+    border-radius: 100px;
+
+    .star-group {
+      flex-shrink: 0;
+    }
+  }
+}

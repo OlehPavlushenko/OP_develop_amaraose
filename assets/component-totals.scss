@@ -1,0 +1,40 @@
+@import "variables";
+
+.totals {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 30px;
+
+  &.total-price {
+    background-color: $blush-25;
+
+    .totals__subtotal {
+      color: $black;
+    }
+  }
+}
+
+.totals__subtotal {
+  font-family: $futura;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.3;
+  color: $midGrey;
+
+  @include max-screen(767) {
+    font-size: 16px;
+  }
+}
+
+.totals__subtotal-value {
+  font-family: $futura;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.3;
+  color: $black;
+
+  @include max-screen(767) {
+    font-size: 16px;
+  }
+}

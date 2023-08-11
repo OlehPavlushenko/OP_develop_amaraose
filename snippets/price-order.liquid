@@ -1,0 +1,35 @@
+{%- if item.original_price != item.final_price -%}
+  <div class="order-price__discounted-prices">
+    <span class="visually-hidden">
+      {{ 'products.product.price.sale_price' | t }}
+    </span>
+    <strong class="sm fw-500 order-price__final-price product-option">
+      {{ item.final_price | money }}
+    </strong>
+
+    <span class="visually-hidden">
+      {{ 'products.product.price.regular_price' | t }}
+    </span>
+
+    <s class="sm strikethrough order-price__old-price product-option">
+      {{- item.original_price | money -}}
+    </s>
+
+    <span class="order-price__discount sm fw-500">
+      {% for discount_allocation in item.discount_allocations %}
+
+        {{ 'sections.cart.save' | t }}
+        {%- if discount_allocation.discount_application.value_type == 'percentage' -%}
+          {{- discount_allocation.discount_application.value | remove: ".0" -}}%
+        {%- else -%}
+          {{- discount_allocation.discount_application.value | money -}}
+        {%- endif -%}
+      {% endfor %}
+    </span>
+
+  </div>
+{%- else -%}
+  <div class="order-price__final-price product-option sm fw-500">
+    {{ item.original_price | money }}
+  </div>
+{%- endif -%}

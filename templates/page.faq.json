@@ -1,0 +1,488 @@
+{
+  "sections": {
+    "ac53c266-77ad-4860-aea6-e25350c8164a": {
+      "type": "rich-text",
+      "blocks": {
+        "template--16459152392450__ac53c266-77ad-4860-aea6-e25350c8164a-1666113819e1d8523b-0": {
+          "type": "heading",
+          "settings": {
+            "heading": "<p>Have Questions?<\/p>",
+            "heading_size": "h1"
+          }
+        },
+        "template--16459152392450__ac53c266-77ad-4860-aea6-e25350c8164a-1666113819e1d8523b-1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Click on some of the most frequently asked questions below to see if we have your answer.<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "template--16459152392450__ac53c266-77ad-4860-aea6-e25350c8164a-1666113819e1d8523b-0",
+        "template--16459152392450__ac53c266-77ad-4860-aea6-e25350c8164a-1666113819e1d8523b-1"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "background-1",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "a9e14616-0152-41fb-817c-148b1946c065": {
+      "type": "faq-list",
+      "blocks": {
+        "aa367d37-138e-49aa-8555-389919e8fcff": {
+          "type": "block_link",
+          "settings": {
+            "question": "How much is shipping?",
+            "answer": "<p>Currently, the only country we ship to outside of the United States of America is Canada. We will be shipping into other countries effective September 1st, 2019.<\/p>"
+          }
+        },
+        "d7d83e99-8459-41de-8336-247ebe146800": {
+          "type": "block_link",
+          "settings": {
+            "question": "How long before I can receive my order?",
+            "answer": "<p>All orders are normally processed 48-72 hours after being placed. Shipping may take 3-5 business days for domestic orders and 7-12 business day for international orders. Currently, the only country we ship to outside of the United States of America is Canada. We will be shipping into other countries effective September 1st, 2019.<\/p>"
+          }
+        },
+        "2a4215de-1387-498b-acd5-bd4f00adf0f7": {
+          "type": "block_link",
+          "settings": {
+            "question": "What carrier do you use?",
+            "answer": "<p>Currently, the only country we ship to outside of the United States of America is Canada. We will be shipping into other countries effective September 1st, 2019.<\/p>"
+          }
+        },
+        "0c443c1d-aa0c-4602-b5b2-6b7e4e7f8670": {
+          "type": "block_link",
+          "settings": {
+            "question": "Do you ship to P.O.\/APO\/FPO?",
+            "answer": "<p>Currently, the only country we ship to outside of the United States of America is Canada. We will be shipping into other countries effective September 1st, 2019.<\/p>"
+          }
+        },
+        "6d93261b-6029-42ce-a923-c8436e6c9b38": {
+          "type": "block_link",
+          "settings": {
+            "question": "﻿Countries we ship to",
+            "answer": "USA, Canada"
+          }
+        },
+        "fc9961a3-d394-4b34-97ad-2ef6cdb9e654": {
+          "type": "block_link",
+          "settings": {
+            "question": "Do you ship internationally?",
+            "answer": ""
+          }
+        }
+      },
+      "block_order": [
+        "aa367d37-138e-49aa-8555-389919e8fcff",
+        "d7d83e99-8459-41de-8336-247ebe146800",
+        "2a4215de-1387-498b-acd5-bd4f00adf0f7",
+        "0c443c1d-aa0c-4602-b5b2-6b7e4e7f8670",
+        "6d93261b-6029-42ce-a923-c8436e6c9b38",
+        "fc9961a3-d394-4b34-97ad-2ef6cdb9e654"
+      ],
+      "settings": {
+        "title": "Questions about shipping"
+      }
+    },
+    "16582372027824d037": {
+      "type": "faq-list",
+      "blocks": {
+        "3ddccc28-89e0-4a59-a4f1-9c57414e85a6": {
+          "type": "block_link",
+          "settings": {
+            "question": "﻿Can I only purchase products through the website?",
+            "answer": "Yes, our products can only be obtained via our Official Online Store https:\/\/amarose.com\/"
+          }
+        },
+        "f9cfef6e-f273-490b-be13-bd2eb12b63be": {
+          "type": "block_link",
+          "settings": {
+            "question": "﻿Can I change my order?",
+            "answer": "Please contact support@amarose.com as soon as possible. We will do our best to accommodate your request however there is no guarantee that any changes can be made once an order is placed."
+          }
+        },
+        "78c435cc-14f2-47d5-92b6-e64c1c99de89": {
+          "type": "block_link",
+          "settings": {
+            "question": "﻿Can I cancel my order?",
+            "answer": "Yes, you may, as long as the order has not been shipped."
+          }
+        },
+        "c1eb2d38-da67-465b-9e99-2f5445ced142": {
+          "type": "block_link",
+          "settings": {
+            "question": "C﻿an I return my order?",
+            "answer": "Yes, should you not be 100% satisfied, we will gladly exchange or refund your purchase within 30-days.\nIn the unlikely event that a product arrived damage, the customer must contact customer service within 48 hours of receipt. Customer must include photos of the issue and a screenshot of your order confirmation email."
+          }
+        },
+        "bf7124dc-da4b-4147-a1e6-3de1569c4334": {
+          "type": "block_link",
+          "settings": {
+            "question": "﻿Can I exchange my product?",
+            "answer": "Yes, within 30-days of receipt as long as the product has not been consumed (for consumables)."
+          }
+        },
+        "5ec8b67a-ae6c-4d92-ba63-506aba201d82": {
+          "type": "block_link",
+          "settings": {
+            "question": "﻿How can I check the status of my order?",
+            "answer": "Please log in to your account to check the status of your order. If you do not have an account, please refer to your shipping confirmation email to track your order. Or you can check your order status at: https:\/\/amarose.com\/pages\/order-lookup"
+          }
+        },
+        "309f2e32-270e-48c3-a1ea-05c575e42e45": {
+          "type": "block_link",
+          "settings": {
+            "question": "﻿Why was I charged twice?",
+            "answer": "You will only be charged for what you purchased, if you see duplicate charges, please give it a few days and it should fall off and the issue should be rectified automatically. However if it still remains and you are positive you only placed one order, please send us an email to support@amarose.com with a screenshot of the duplicate charge for further assistance."
+          }
+        },
+        "0b4920e3-b054-4e76-9c4d-0cfc6b2b784d": {
+          "type": "block_link",
+          "settings": {
+            "question": "﻿What forms of payment do you accept?",
+            "answer": "We accept online payments through Visa, Mastercard and American Express"
+          }
+        },
+        "95cec638-45c3-4f03-b54b-f3538ee3b0d9": {
+          "type": "block_link",
+          "settings": {
+            "question": "﻿My items arrived damaged, what should I do?",
+            "answer": "Please contact us immediately at support@amarose.com. Please provide us with your order number and some photos of the damage product\/s."
+          }
+        },
+        "19fb75e7-d7f5-4ba4-86ac-e656d37a28fb": {
+          "type": "block_link",
+          "settings": {
+            "question": "﻿I recieved incorrect item\/s, what should I do?",
+            "answer": "Please contact support@amarose.com as soon as possible so that we can take care of this for you. Please provide us with your order number along with a photo of the incorrect item you received."
+          }
+        },
+        "68f5e3b4-b577-4b38-b04e-9c5717768ba7": {
+          "type": "block_link",
+          "settings": {
+            "question": "﻿My package is stuck and trucking shows no movement, what do I do?",
+            "answer": "For domestic orders, package can only be considered lost if there has been no movement for 10 business days from the day it was shipped. Please send an email to support@amarose.com if your shipment shows no movement from the carrier's tracking information."
+          }
+        },
+        "9d4886e9-3a68-4887-b81a-0842bba6a9ed": {
+          "type": "block_link",
+          "settings": {
+            "question": "﻿I put the wrong address on my order, please help!",
+            "answer": "Please be careful when entering your shipping address, Limitless will not be responsible for orders sent to the incorrect delivery address provided by the customer."
+          }
+        },
+        "277d2012-a4fa-4a47-886c-7e9b72f2b214": {
+          "type": "block_link",
+          "settings": {
+            "question": "﻿How can I find out more information about a product?",
+            "answer": "Product details can be found on the product page but if you have more questions, please free to email us at support@amarose.com"
+          }
+        },
+        "9e0b8db9-5228-447b-9606-25d088e2646c": {
+          "type": "block_link",
+          "settings": {
+            "question": "﻿Do I have to set up an account to place an order?",
+            "answer": "No. You do not have to have an account to place an order."
+          }
+        },
+        "e874bf91-2e56-4276-9e67-c2c997a73261": {
+          "type": "block_link",
+          "settings": {
+            "question": "﻿How do I create an account?",
+            "answer": "You can create an account by visiting https:\/\/amarose.com\/pages\/create-account"
+          }
+        },
+        "620091bb-b97a-43bc-87f0-f9293fb96e6c": {
+          "type": "block_link",
+          "settings": {
+            "question": "﻿How do I subscribe or cancel my email subscription?",
+            "answer": "You can easily subscribe to emails by visiting https:\/\/amarose.com\/ located at the footer. If you want to cancel\/unsubscribe, you can click unsubscribe by locating the \"Unsubscribe\" link within the email subscription."
+          }
+        },
+        "2a9bbd83-7eec-4b3f-a724-4236b68dc633": {
+          "type": "block_link",
+          "settings": {
+            "question": "﻿I forgot my password, what do I do?",
+            "answer": "To reset your password, go to https:\/\/amarose.com\/account\/login and click on “Forgot your password?” above the sign-in button. You will then be prompted to enter your E-mail address you used to create your account. Once you submit, you will receive an E-mail notification with a link to reset your password. Once you’ve done this, you can log in with your new password as normal on this page: https:\/\/amarose.com\/account\/login"
+          }
+        },
+        "f3f34aa0-5f0a-40ad-b2e8-1d699fa88d4a": {
+          "type": "block_link",
+          "settings": {
+            "question": "﻿Where are your products manufactured?",
+            "answer": "Our formulas are made in the USA, with globally sourced ingredients."
+          }
+        },
+        "92522a48-4b46-419e-8c66-c2da46a26a74": {
+          "type": "block_link",
+          "settings": {
+            "question": "﻿Are your products natural?",
+            "answer": "When possible, we choose naturally derived ingredients over synthetics in all formulations."
+          }
+        },
+        "75b23ba7-873c-4fbd-943d-9efcb691d072": {
+          "type": "block_link",
+          "settings": {
+            "question": "﻿Do your products contain soy?",
+            "answer": "No."
+          }
+        },
+        "2c19cfe7-3f6c-4ed7-a8e8-4e058da0b83d": {
+          "type": "block_link",
+          "settings": {
+            "question": "﻿Do you test products on animals?",
+            "answer": "We do not test products on animals. All of our products are cruelty free."
+          }
+        },
+        "cbaf3b14-f8ee-4d6d-b50b-593a1912db63": {
+          "type": "block_link",
+          "settings": {
+            "question": "﻿Are your products safe?",
+            "answer": "Yes, all products are manufactured in a GMP facility and ingredients are FDA Approved."
+          }
+        },
+        "043c1a16-5f87-493e-9c42-73d706259520": {
+          "type": "block_link",
+          "settings": {
+            "question": "How long does it take for the refund to process?",
+            "answer": "After Contacting support refunds may take anywhere between 7-12 business days to process."
+          }
+        },
+        "0cb1e6ee-5041-43d2-9f56-599e530c383f": {
+          "type": "block_link",
+          "settings": {
+            "question": "How to become an Amarose affiliate?",
+            "answer": "Signup to become an affiliate on ambassador Page available in the footer menu."
+          }
+        }
+      },
+      "block_order": [
+        "3ddccc28-89e0-4a59-a4f1-9c57414e85a6",
+        "f9cfef6e-f273-490b-be13-bd2eb12b63be",
+        "78c435cc-14f2-47d5-92b6-e64c1c99de89",
+        "c1eb2d38-da67-465b-9e99-2f5445ced142",
+        "bf7124dc-da4b-4147-a1e6-3de1569c4334",
+        "5ec8b67a-ae6c-4d92-ba63-506aba201d82",
+        "309f2e32-270e-48c3-a1ea-05c575e42e45",
+        "0b4920e3-b054-4e76-9c4d-0cfc6b2b784d",
+        "95cec638-45c3-4f03-b54b-f3538ee3b0d9",
+        "19fb75e7-d7f5-4ba4-86ac-e656d37a28fb",
+        "68f5e3b4-b577-4b38-b04e-9c5717768ba7",
+        "9d4886e9-3a68-4887-b81a-0842bba6a9ed",
+        "277d2012-a4fa-4a47-886c-7e9b72f2b214",
+        "9e0b8db9-5228-447b-9606-25d088e2646c",
+        "e874bf91-2e56-4276-9e67-c2c997a73261",
+        "620091bb-b97a-43bc-87f0-f9293fb96e6c",
+        "2a9bbd83-7eec-4b3f-a724-4236b68dc633",
+        "f3f34aa0-5f0a-40ad-b2e8-1d699fa88d4a",
+        "92522a48-4b46-419e-8c66-c2da46a26a74",
+        "75b23ba7-873c-4fbd-943d-9efcb691d072",
+        "2c19cfe7-3f6c-4ed7-a8e8-4e058da0b83d",
+        "cbaf3b14-f8ee-4d6d-b50b-593a1912db63",
+        "043c1a16-5f87-493e-9c42-73d706259520",
+        "0cb1e6ee-5041-43d2-9f56-599e530c383f"
+      ],
+      "settings": {
+        "title": "Questions about  Amarose products"
+      }
+    },
+    "main": {
+      "type": "page",
+      "disabled": true,
+      "settings": {
+        "page": "",
+        "heading_size": "h1",
+        "color_scheme": "background-1",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "85c9a1fd-250c-40db-b91c-abaadf2e8df5": {
+      "type": "faq-list",
+      "blocks": {
+        "d6ae7796-abe4-494c-8721-3bd87c5ebea8": {
+          "type": "block_link",
+          "settings": {
+            "question": "I have oily skin, will Amarose Skin Tag Remover serum cause any irritationon my skin?",
+            "answer": "Amarose Skin Tag Remover is suitable for all skin types and will not cause any irritations or itching."
+          }
+        },
+        "f3c8920c-6039-49ea-874f-d10cd2a97e5b": {
+          "type": "block_link",
+          "settings": {
+            "question": "What are the Amarose Skin Tag Remover ingredients?",
+            "answer": "Amarose Skin Tag Remover is a powerful natural blend of sanguinaria Canadensis\nand zincum muriaticum."
+          }
+        },
+        "c4a35789-4775-4a53-bc85-a2f9f6efb53c": {
+          "type": "block_link",
+          "settings": {
+            "question": "Can I use Amarose Skin Tag Remover for eliminating big warts?",
+            "answer": "Yes, Amarose Skin Tag Remover drops can remove big skin warts anywhere on\nyour body without any pain."
+          }
+        },
+        "5f79e8e0-8349-414b-891d-066ef09529a1": {
+          "type": "block_link",
+          "settings": {
+            "question": "Is Amarose Skin Tag Remover skincare oil entirely natural?",
+            "answer": "Amarose Skin Tag Remover skincare serum is an entirely natural serum that does\nnot have any harmful substance in it."
+          }
+        },
+        "a089eb19-7f70-41e4-9aaf-7253d07e41ec": {
+          "type": "block_link",
+          "settings": {
+            "question": "Can I buy Amarose Skin Tag Remover skincare drops from any retailstores?",
+            "answer": "Amarose Skin Tag Remove oil is only available on its official website and isn't sold\nin any retail stores."
+          }
+        },
+        "044061e0-d4a7-4ee7-89b8-69893fbbcf2f": {
+          "type": "block_link",
+          "settings": {
+            "question": "Can the Skin Tag Remover be used while breastfeeding?",
+            "answer": "Most skincare products are safe as they are not readily absorbed into the bloodstream, making them safe for breastfeeding, Amarose products are all safe and tested. Please consult with your care provider for a definite answer."
+          }
+        },
+        "5cf3f258-e716-4471-915f-6b8104c6dcc3": {
+          "type": "block_link",
+          "settings": {
+            "question": "Will skin tags and moles reappear if I stop using the Skin Tag Remover?",
+            "answer": "Once your skin tags and moles are removed the chances of them coming back become very unlikely."
+          }
+        },
+        "076b0de0-87bf-4945-bae3-9bced17fa551": {
+          "type": "block_link",
+          "settings": {
+            "question": "Is there a chance of an allergic reactions to the serum?",
+            "answer": "Check our ingredients list and consult with your care provider on any ingredients that may cause reactions with your skin and body."
+          }
+        },
+        "6f157284-2e37-4e6a-8057-40753f028fc9": {
+          "type": "block_link",
+          "settings": {
+            "question": "How long will it take for the Serum to work?",
+            "answer": "Amarose skintag remover can work as quickly as 8 hours after applying, every skin tag is unique and different."
+          }
+        }
+      },
+      "block_order": [
+        "d6ae7796-abe4-494c-8721-3bd87c5ebea8",
+        "f3c8920c-6039-49ea-874f-d10cd2a97e5b",
+        "c4a35789-4775-4a53-bc85-a2f9f6efb53c",
+        "5f79e8e0-8349-414b-891d-066ef09529a1",
+        "a089eb19-7f70-41e4-9aaf-7253d07e41ec",
+        "044061e0-d4a7-4ee7-89b8-69893fbbcf2f",
+        "5cf3f258-e716-4471-915f-6b8104c6dcc3",
+        "076b0de0-87bf-4945-bae3-9bced17fa551",
+        "6f157284-2e37-4e6a-8057-40753f028fc9"
+      ],
+      "settings": {
+        "title": "Questions about Skin Tag Remover"
+      }
+    },
+    "9cbdaa2d-15c6-427d-9d03-4d143287348a": {
+      "type": "faq-list",
+      "blocks": {
+        "53798c26-1c71-4f4d-9db6-e18965167fb9": {
+          "type": "block_link",
+          "settings": {
+            "question": "How does your subscribe & save program work?",
+            "answer": "Our Subscribe &amp; Save program allows you to maintain your Amarose Beauty routine with automatic deliveries. You get your favorite items delivered every 6 weeks and cancel it at any time. By automating your payments, you can take the hassle out of making orders and know that your product will automatically arrive just when you need it. Please note: AfterPay is not available for subscription orders."
+          }
+        },
+        "b920300f-caa8-486c-a88e-990cbcd20231": {
+          "type": "block_link",
+          "settings": {
+            "question": "What are the benefits of subscribing?",
+            "answer": "1. Savings: As a subscriber, you'll receive a 15% discount on every order and gain access to exclusive offers.\n\n2. Convenience: You'll never run out of your favorite products and will always have them delivered right to your door on a consistent basis.\n\n3. Flexibility: You can easily adjust your subscription plan as your needs change, or pause or cancel your subscription at any time."
+          }
+        },
+        "29b96fd2-f09a-40e2-932d-7f617f1572bf": {
+          "type": "block_link",
+          "settings": {
+            "question": "Do I need an account to subscribe?",
+            "answer": "An account is auto created when you subscribe to any of our products. Check your email for login information."
+          }
+        },
+        "2ba88256-ef0c-4997-a404-d577384900bf": {
+          "type": "block_link",
+          "settings": {
+            "question": "Can I skip a future delivery?",
+            "answer": "You can skip any upcoming order via your account login portal or by contacting our Customer Support info@amarose.com who will gladly assist you."
+          }
+        },
+        "0f388a5d-488f-4592-8bca-7f26845f0d72": {
+          "type": "block_link",
+          "settings": {
+            "question": "How do I cancel my subscription?",
+            "answer": "To cancel your account, please log in to your account and click on \"SUBSCRIPTIONS\" in the profile table. Or, you can contact our Customer Support Team Info@amarose.com"
+          }
+        }
+      },
+      "block_order": [
+        "53798c26-1c71-4f4d-9db6-e18965167fb9",
+        "b920300f-caa8-486c-a88e-990cbcd20231",
+        "29b96fd2-f09a-40e2-932d-7f617f1572bf",
+        "2ba88256-ef0c-4997-a404-d577384900bf",
+        "0f388a5d-488f-4592-8bca-7f26845f0d72"
+      ],
+      "settings": {
+        "title": "Subscribe & Save"
+      }
+    },
+    "3f3230a9-efc7-4e06-9941-bbd0bddc37f1": {
+      "type": "rich-text",
+      "blocks": {
+        "template--16459152392450__3f3230a9-efc7-4e06-9941-bbd0bddc37f1-166611389932728330-1": {
+          "type": "text",
+          "settings": {
+            "text": ""
+          }
+        },
+        "template--16459152392450__3f3230a9-efc7-4e06-9941-bbd0bddc37f1-166611389932728330-0": {
+          "type": "heading",
+          "settings": {
+            "heading": "",
+            "heading_size": "h2"
+          }
+        },
+        "template--16459152392450__3f3230a9-efc7-4e06-9941-bbd0bddc37f1-166611389932728330-2": {
+          "type": "button",
+          "settings": {
+            "button_label": "VIEW OUR PRODUCTS",
+            "button_link": "shopify:\/\/collections\/shop-all",
+            "button_style_secondary": true,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "template--16459152392450__3f3230a9-efc7-4e06-9941-bbd0bddc37f1-166611389932728330-1",
+        "template--16459152392450__3f3230a9-efc7-4e06-9941-bbd0bddc37f1-166611389932728330-0",
+        "template--16459152392450__3f3230a9-efc7-4e06-9941-bbd0bddc37f1-166611389932728330-2"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "background-1",
+        "full_width": true,
+        "padding_top": 4,
+        "padding_bottom": 40
+      }
+    }
+  },
+  "order": [
+    "ac53c266-77ad-4860-aea6-e25350c8164a",
+    "a9e14616-0152-41fb-817c-148b1946c065",
+    "16582372027824d037",
+    "main",
+    "85c9a1fd-250c-40db-b91c-abaadf2e8df5",
+    "9cbdaa2d-15c6-427d-9d03-4d143287348a",
+    "3f3230a9-efc7-4e06-9941-bbd0bddc37f1"
+  ]
+}

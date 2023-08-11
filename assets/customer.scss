@@ -1,0 +1,1015 @@
+@import "_variables";
+
+.body-background {
+  position: relative;
+}
+
+.header-wrapper {
+  .header-shadow & {
+    box-shadow: 0 4px 80px rgba(227, 229, 233, 0.5);
+  }
+}
+
+.announcement-bar {
+  .header-shadow & {
+    position: relative;
+  }
+}
+
+.customer-login {
+  padding-top: 90px;
+  padding-bottom: 180px;
+
+  @include max-screen(767) {
+    padding-top: 32px;
+    padding-right: 5px;
+    padding-left: 5px;
+  }
+
+  &__background {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    background-color: $blush;
+  }
+
+  &__background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__heading {
+    position: relative;
+    margin-bottom: 22px;
+    text-align: center;
+
+    @include max-screen(767) {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  &__heading-link {
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  &__return {
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    @include max-screen(767) {
+      position: static;
+    }
+  }
+
+  &__return-link {
+    font-size: 16px;
+    line-height: 1.3;
+    display: flex;
+    align-items: center;
+    color: $white;
+  }
+
+  &__return-icon {
+    margin-left: 16px;
+
+    svg {
+      display: block;
+    }
+  }
+
+  &__box {
+    max-width: 380px;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 30px 40px;
+    border-radius: 20px;
+    background-color: $white;
+    box-shadow: 0px 4px 80px rgba(227, 229, 233, 0.5);
+
+    @include max-screen(767) {
+      padding-right: 30px;
+      padding-left: 30px;
+    }
+
+    &.register-complete--style {
+      @include min-screen(767) {
+        padding-right: 60px;
+        padding-left: 60px;
+      }
+    }
+  }
+
+  &__title {
+    margin-bottom: 30px;
+    text-align: center;
+  }
+
+  &__button {
+    width: 100%;
+
+    & + .button {
+      margin-top: 15px;
+    }
+  }
+
+  &__register-link {
+    font-family: $futura;
+    line-height: 1.28;
+    padding-top: 30px;
+    text-align: center;
+    letter-spacing: -0.5px;
+
+    a {
+      color: $rose;
+    }
+  }
+
+  &__confirm {
+    font-size: 14px;
+    line-height: 1.28;
+    margin-bottom: 30px;
+    padding: 20px;
+    border-radius: 20px;
+    background-color: rgba($blush, .25);
+  }
+
+  &__title-secondary {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.3;
+    padding-bottom: 16px;
+  }
+
+  &__register-confirm-message {
+    font-size: 18px;
+    line-height: 1.5;
+    margin-bottom: 30px;
+    text-align: center;
+    letter-spacing: -.5px;
+
+    @include max-screen(767) {
+      font-size: 16px;
+    }
+  }
+
+  .field {
+    margin-bottom: 15px;
+
+    &.field--error {
+      &:not(.last--field) {
+        margin-bottom: 42px;
+      }
+    }
+  }
+
+  #rc_login {
+    display: none;
+  }
+}
+
+.form__error {
+  font-size: 16px;
+  line-height: 1.4;
+  margin-bottom: 30px;
+  padding: 11px 10px 11px 39px;
+  border-radius: 20px;
+  background-color: rgba($blush, .25);
+  background-image: url("exit-rose.svg");
+  background-repeat: no-repeat;
+  background-position: 12px center;
+  background-size: 24px;
+}
+
+.recover {
+  margin-top: -7px;
+  margin-bottom: 30px;
+  text-align: right;
+
+  &__link {
+    display: inline-block;
+    vertical-align: top;
+  }
+}
+
+.extra-indent {
+  padding-bottom: 15px;
+}
+
+.account-template {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1080px;
+  padding-top: 90px;
+  padding-bottom: 90px;
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    width: calc(100% - 300px);
+  }
+
+  &__text {
+    font-family: $futura;
+    font-weight: 400;
+    color: $midGrey;
+    font-size: 18px;
+    margin-bottom: 30px;
+    padding-top: 12px;
+
+    @include max-screen(767) {
+      font-size: 16px;
+    }
+  }
+
+  &__details {
+    p {
+      font-family: $futura;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 1.5;
+      color: $midGrey;
+      margin-bottom: 5px;
+    }
+  }
+
+  &__details-title {
+    font-family: $futura;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 1.25;
+    color: $black;
+    margin-bottom: 20px;
+  }
+
+  @include max-screen(991) {
+    position: relative;
+    display: block;
+    padding: 0 0 50px;
+
+    &__content {
+      width: auto;
+      padding-right: 26px;
+      padding-left: 26px;
+    }
+
+  }
+}
+
+.addresses {
+  max-width: 1080px;
+
+  .select {
+    width: 100%;
+
+    select {
+      width: inherit;
+      max-width: none;
+    }
+  }
+
+  .field {
+    margin-bottom: 30px;
+  }
+
+  &__button {
+    text-align: right;
+
+    .button {
+      width: 100%;
+      max-width: 325px;
+    }
+  }
+}
+
+.address-title {
+  margin-bottom: 30px;
+}
+
+@include max-screen(991) {
+  .account-menu__container.account-menu-active {
+    overflow: visible;
+
+    .account-menu {
+      display: block;
+      pointer-events: auto;
+      z-index: 5;
+    }
+  }
+}
+
+.account-menu {
+  overflow: hidden;
+  width: 280px;
+  border-radius: 20px;
+  background-color: $white;
+  filter: drop-shadow(0px 4px 80px rgba(#e3e5e9, 0.5));
+
+  &__container {
+    @include max-screen(991) {
+      overflow: hidden;
+      margin-bottom: 40px;
+      position: relative;
+      z-index: 1;
+      filter: drop-shadow(0px 4px 80px rgba(#e3e5e9, 0.5));
+
+
+    }
+  }
+
+
+  &__list-link,
+  &__opener {
+    font-size: 18px;
+    line-height: 1.5;
+    display: flex;
+    align-items: center;
+    padding: 20px 30px;
+    color: $midGrey;
+    background-color: $white;
+
+    &:hover,
+    &:focus,
+    &.active {
+      color: $white;
+      background-color: $rose;
+      fill: $white;
+
+      .icon {
+        &.stroke--style {
+          stroke: $white;
+          fill: transparent;
+        }
+      }
+    }
+
+    @include max-screen(991) {
+      font-size: 16px;
+      line-height: 1.3;
+      padding: 12px 20px;
+    }
+  }
+
+  &__opener {
+    display: none;
+    padding-right: 40px;
+    background-image: url("arrow-select-rose.svg");
+    background-repeat: no-repeat;
+    background-position: right 18px center;
+    background-size: 12px;
+
+    &:hover,
+    &:focus {
+      background-image: url("arrow-select-white.svg");
+    }
+
+    @include max-screen(991) {
+      display: block;
+      width: 100%;
+      text-align: left;
+    }
+  }
+
+  &__icon {
+    display: inline-block;
+    width: 24px;
+    height: 25px;
+    margin-right: 15px;
+    vertical-align: top;
+    fill: #f08b84;
+
+    .icon {
+      &.stroke--style {
+        stroke: #f08b84;
+        fill: none;
+      }
+    }
+
+    @include max-screen(991) {
+      margin-right: 8px;
+    }
+  }
+
+  @include max-screen(991) {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    display: none;
+    width: 100%;
+    border-radius: 0;
+    filter: none;
+    pointer-events: none;
+  }
+}
+
+.main-address-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.title-indent {
+  margin-bottom: 30px;
+}
+
+.addresses-empty-text {
+  font-size: 22px;
+  line-height: 1.5;
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  justify-content: center;
+  padding: 20px 0;
+  color: $midGrey;
+}
+
+#recover,
+#recover + div {
+  display: none;
+}
+
+#recover:target {
+  display: block;
+}
+
+#recover:target + div {
+  display: block;
+}
+
+#recover:target ~ #login,
+#recover:target ~ #login + div {
+  display: none;
+}
+
+.addresses [aria-expanded='false'] ~ div[id] {
+  display: none;
+}
+
+.addresses [aria-expanded='true'] ~ div[id] {
+  display: block;
+}
+
+.edit-address-box,
+.add-address-box,
+.js-form-edit .address-box,
+.js-form-edit .main-address-header,
+.js-form-add .main-address-header,
+.js-form-add .addresses-empty-text,
+.js-form-add .addresses-list,
+.remove-address-popup {
+  display: none;
+}
+
+.js-form-edit .edit-address-box,
+.js-form-add .add-address-box,
+.address-popup-open .remove-address-popup {
+  display: block;
+}
+
+.addresses-icon {
+  width: 20px;
+  height: 21px;
+}
+
+.remove-address-popup {
+  position: fixed;
+  top: 100px;
+  left: 100px;
+  width: 500px;
+  height: 500px;
+  background-color: #fff;
+}
+
+.orders__none {
+  max-width: 400px;
+  margin: 85px auto;
+  padding: 0 70px 0 0;
+  text-align: center;
+
+  svg {
+    display: inline-block;
+    margin: 0 0 16px;
+    vertical-align: top;
+  }
+
+  p {
+    font-size: 22px;
+    line-height: 1.5;
+    margin: 0;
+    letter-spacing: 0;
+    color: $midGrey;
+  }
+
+  @include max-screen(991) {
+    max-width: none;
+    margin: 65px auto;
+    padding: 0;
+    text-align: center;
+
+    svg {
+      margin-bottom: 18px;
+    }
+
+    p {
+      font-size: 18px;
+    }
+  }
+}
+
+.table__wrap {
+  position: relative;
+  max-width: 680px;
+  margin: 27px 0;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 4px 80px rgba(227, 229, 233, 0.5);
+
+  @include max-screen(991) {
+    background: transparent;
+    box-shadow: none;
+  }
+
+  table {
+    font-size: 16px;
+    width: 100%;
+    border-collapse: collapse;
+    color: #2a3241;
+
+    @include max-screen(991) {
+      thead,
+      th {
+        display: none;
+      }
+
+      tbody,
+      tr,
+      td {
+        display: block;
+      }
+    }
+
+    tr {
+      @include max-screen(991) {
+        margin-bottom: 20px;
+        border-radius: 20px;
+        background-color: $white;
+        box-shadow: 0 4px 80px rgba(227, 229, 233, 0.5);
+      }
+    }
+
+    td {
+      padding: 11px 20px 10px;
+      border-top: 1px solid #f3f4f6;
+
+      @include max-screen(991) {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border: 0;
+
+        &:not(:last-child) {
+          &:before {
+            display: inline-block;
+            content: attr(data-label);
+            vertical-align: middle;
+            color: $midGrey;
+          }
+        }
+      }
+
+      &:last-child {
+        @include min-screen(992) {
+          padding-right: 5px;
+        }
+      }
+
+      a {
+        color: inherit;
+      }
+    }
+
+    th {
+      font-size: 16px;
+      font-weight: 400;
+      padding: 16px 19px 14px;
+      text-align: left;
+      letter-spacing: 0;
+      color: #5e697e;
+
+
+      &#ColumnLink {
+        width: 17.4%;
+      }
+
+      &#ColumnDate {
+        width: 24%;
+      }
+
+      &#ColumnOrder {
+        width: 17.5%;
+      }
+
+      &#ColumnTotal {
+        width: 17.3%;
+      }
+    }
+  }
+
+  .status-tag {
+    margin: 0;
+    padding: 5px 15px;
+    border-radius: 60px;
+  }
+
+  .table-link {
+    font-size: 16px;
+    display: inline-block;
+    vertical-align: top;
+    text-decoration: underline;
+    color: #ba3a7d;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+.status-tag {
+  display: inline-block;
+  vertical-align: top;
+  color: #30cd9c;
+  background: #eafaf5;
+
+  &.in-progress {
+    color: #ba3a7d;
+    background: rgba(186, 58, 125, 0.1);
+  }
+
+  &.cancelled {
+    color: #f08b84;
+    background: rgba(255, 187, 171, 0.25);
+  }
+}
+
+.account-template {
+  &__prev-link {
+    font-size: 16px;
+    line-height: 1.3;
+    position: relative;
+    display: inline-block;
+    margin-bottom: 11px;
+    padding-left: 14px;
+    vertical-align: top;
+    color: $midGrey;
+
+    &:before {
+      position: absolute;
+      top: 6px;
+      left: 0;
+      width: 8px;
+      height: 8px;
+      content: '';
+      transform: rotate(45deg);
+      border-width: 0 0 2px 2px;
+      border-style: solid;
+      border-color: $midGrey;
+    }
+
+    @include max-screen(767) {
+      font-size: 14px;
+      margin-bottom: 13px;
+    }
+  }
+}
+
+.order-items {
+  padding-top: 30px;
+
+  @include max-screen(767) {
+    padding-bottom: 20px;
+  }
+
+  &__title {
+    margin-bottom: 20px;
+
+    @include max-screen(767) {
+      font-size: 22px;
+      line-height: 1.3;
+    }
+  }
+
+  &__info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  &__info-item {
+    width: calc(50% - 10px);
+    min-height: 176px;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 80px rgba(227, 229, 233, 0.5);
+
+    p {
+      color: $midGrey;
+    }
+
+    @include max-screen(767) {
+      font-size: 14px;
+      line-height: 1.3;
+      width: 100%;
+      min-height: 104px;
+    }
+  }
+
+  &__info-title {
+    font-weight: 500;
+    margin-bottom: 15px;
+
+    @include max-screen(767) {
+      font-size: 16px;
+    }
+  }
+}
+
+.order-item {
+  display: flex;
+  margin-bottom: 20px;
+  padding: 20px;
+  border: 1px solid #f1f3f6;
+
+  @include max-screen(767) {
+    margin-bottom: 10px;
+    padding: 10px;
+  }
+
+  &__image-container {
+    width: 99px;
+    margin-right: 14px;
+  }
+
+  &__image {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  &__content-container {
+    flex-grow: 1;
+  }
+
+  &__title {
+    margin-bottom: 5px;
+
+    @include max-screen(767) {
+      font-size: 16px;
+    }
+  }
+
+  &__price {
+    margin-bottom: 5px;
+
+    @include max-screen(767) {
+      font-size: 14px;
+      line-height: 1.3;
+    }
+  }
+
+  &__quantity {
+    margin-bottom: 5px;
+
+    @include max-screen(767) {
+      font-size: 14px;
+      line-height: 1.3;
+    }
+  }
+
+  &__quantity-text {
+    font-size: 16px;
+    margin-right: 5px;
+    color: $midGrey;
+  }
+}
+
+.order-details {
+  font-size: 18px;
+  line-height: 1.28;
+  width: 100%;
+  margin-bottom: 10px;
+  border-collapse: collapse;
+
+  @include max-screen(767) {
+    font-size: 16px;
+  }
+
+  tr {
+    &:last-child {
+      td {
+        padding-top: 10px;
+        border-top: 1px solid $lightGrey;
+      }
+    }
+  }
+
+  td {
+    padding: 0 0 20px;
+
+    &:first-child {
+      color: $midGrey;
+    }
+
+    &:last-child {
+      text-align: right;
+    }
+
+    &.mark--style {
+      color: $roseMid;
+    }
+  }
+}
+
+.account-template__title {
+  font-family: $futura;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 1.25;
+
+  @include max-screen(767) {
+    font-size: 30px;
+  }
+}
+
+.account-cards-info-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+
+  @include max-screen(767) {
+    flex-direction: column;
+  }
+
+  .list-item {
+    width: calc(50% - 10px);
+
+    @include max-screen(767) {
+      width: 100%;
+    }
+  }
+}
+
+.account-card-info {
+  box-shadow: 0px 4px 80px 0px rgba(227, 229, 233, 0.5);
+  padding: 20px;
+  border-radius: 20px;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+  }
+
+  &__person-name {
+    font-family: $futura;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 1.25;
+    color: $black;
+  }
+
+  &__address-wrapper {
+    margin-bottom: 10px;
+  }
+
+  &__text {
+    font-family: $futura;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5;
+
+    &:not(:last-child) {
+      margin-bottom: 5px;
+    }
+  }
+
+  &__btn-wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  &__btn {
+    background-color: transparent;
+    cursor: pointer;
+    display: block;
+    line-height: 1;
+  }
+
+
+}
+
+.edit-address-box {
+  padding-top: 30px;
+
+  .back-button {
+    font-family: $futura;
+    font-weight: 500;
+    font-size: 16px;
+    color: $midGrey;
+    background-color: transparent;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+
+  .account-template__title {
+    margin-bottom: 30px;
+  }
+
+  &__checkbox-wrapper {
+    margin-bottom: 30px;
+  }
+
+  @include max-screen(991) {
+    .field-row {
+      flex-direction: column;
+
+      .row-50 {
+        width: 100%;
+      }
+    }
+  }
+
+  &__btn-group {
+    gap: 30px;
+  }
+}
+
+.remove-address-popup {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1;
+
+  .remove-popup__content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0px 4px 80px 0px rgba(227, 229, 233, 0.5);
+    padding: 30px;
+    max-width: 380px;
+    width: 100%;
+
+    .remove-popup__title {
+      font-family: $futura;
+      font-weight: 400;
+      font-size: 24px;
+      line-height: 1.25;
+      margin-bottom: 20px;
+      color: $black;
+      text-align: center;
+
+      @include max-screen(767) {
+        font-size: 22px;
+      }
+    }
+
+    .remove-popup__text {
+      font-family: $futura;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 1.25;
+      margin-bottom: 20px;
+      color: $midGrey;
+      text-align: center;
+
+      @include max-screen(767) {
+        font-size: 16px;
+      }
+    }
+
+    .field-row {
+      gap: 16px;
+    }
+  }
+}
+
+.add-address-box {
+  margin-bottom: 30px;
+}

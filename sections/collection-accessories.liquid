@@ -1,0 +1,126 @@
+<link rel="stylesheet" href="{{ 'collection-accessories.css' | asset_url }}" media="print" onload="this.media='all'">
+
+
+<div class="collection-accessories">
+  <div class="container">
+    <div class="collection-accessories__content">
+      <div class="collection-accessories__header-wrapper">
+        {% if section.settings.title != blank %}
+          <h2 class="collection-accessories__title">
+            {{ section.settings.title | escape }}
+          </h2>
+        {% endif %}
+        {% if section.settings.description != blank %}
+          <p class="collection-accessories__text">
+            {{ section.settings.description | escape }}
+          </p>
+        {% endif %}
+      </div>
+
+      <div class="collection-accessories__product-wrapper">
+        {% for block in section.blocks %}
+          <div class="card-product__wrapper">
+            {% render 'card-product',
+              card_product: block.settings.product,
+              media_aspect_ratio: section.settings.image_ratio,
+              show_secondary_image: section.settings.show_secondary_image,
+              show_vendor: section.settings.show_vendor,
+              show_rating: section.settings.show_rating,
+              show_quick_add: section.settings.enable_quick_add,
+              section_id: section.id
+            %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.accessories.name",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "default": "Amarose Accessories",
+      "label": "t:sections.accessories.settings.title.label"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "default": "Perfect for traveling, add the hand mirror and headband to make application and use easier.",
+      "label": "t:sections.accessories.settings.description.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.accessories.settings.header.content"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "options": [
+        {
+          "value": "adapt",
+          "label": "t:sections.accessories.settings.image_ratio.options__1.label"
+        },
+        {
+          "value": "portrait",
+          "label": "t:sections.accessories.settings.image_ratio.options__2.label"
+        },
+        {
+          "value": "square",
+          "label": "t:sections.accessories.settings.image_ratio.options__3.label"
+        }
+      ],
+      "default": "adapt",
+      "label": "t:sections.accessories.settings.image_ratio.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_secondary_image",
+      "default": false,
+      "label": "t:sections.accessories.settings.show_secondary_image.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "default": false,
+      "label": "t:sections.accessories.settings.show_vendor.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rating",
+      "default": false,
+      "label": "t:sections.accessories.settings.show_rating.label",
+      "info": "t:sections.accessories.settings.show_rating.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_quick_add",
+      "default": false,
+      "label": "t:sections.accessories.settings.enable_quick_buy.label"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "t:sections.accessories.settings.blocks.name",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "t:sections.accessories.settings.blocks.product"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.accessories.presets.name"
+    }
+  ]
+}
+{% endschema %}

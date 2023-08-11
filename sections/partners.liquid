@@ -1,0 +1,56 @@
+{{ 'section-partners.css' | asset_url | stylesheet_tag }}
+
+<section class="partners {% if section.settings.row_section %}partners--row{% endif %}">
+  <div class="container">
+    <div class="partners__content">
+      <h2 class="partners__title"> {{ section.settings.custom_text_title }} </h2>
+
+      <div class="partners__logo-wrapper">
+        {% for block in section.blocks %}
+          <img src="{{ block.settings.image | img_url: "master" }}" alt="{{ block.settings.image.alt | escape }}"/>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+
+{% schema %}
+{
+  "name": "Partners",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "row_section",
+      "label": "Row section",
+      "default": false
+    },
+    {
+      "id": "custom_text_title",
+      "type": "text",
+      "label": "Text box heading",
+      "default": "Featured in"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "partners image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "label": "partners",
+          "id": "image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Partners"
+    }
+  ]
+}
+{% endschema %}

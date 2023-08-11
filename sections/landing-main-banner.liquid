@@ -1,0 +1,126 @@
+{{ "section-landing-main-banner.css" | asset_url | stylesheet_tag }}
+
+<div class="landing-main-banner">
+  <div class="container">
+    <div class="landing-main-banner__content-wrapper">
+      <div class="landing-main-banner__content">
+        {% if section.settings.title != blank %}
+          <h1 class="landing-main-banner__title">{{ section.settings.title }}</h1>
+        {% endif %}
+
+        {% if section.settings.subtitle != blank %}
+          <p class="landing-main-banner__subtitle">{{ section.settings.subtitle }}</p>
+        {% endif %}
+
+        {% if section.blocks.size > 0 %}
+          <ul class="landing-main-banner__advantage_list">
+            {%- for block in section.blocks -%}
+              <li>
+                <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M13.8332 4.5L6.49984 11.8333L3.1665 8.5" stroke="#CF4391" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+
+                {{ block.settings.list_item }}
+              </li>
+            {%- endfor -%}
+          </ul>
+        {% endif %}
+
+        {% if section.settings.button_text != blank or section.settings.button_link != blank %}
+          <div class="landing-main-banner__btn-wrapper">
+            <a class="button landing-button landing-button--w-xl"
+              href="{{ section.settings.button_link }}">
+              {{ section.settings.button_text }}
+            </a>
+
+            <p>{{ "sections.landing_main_banner.delivery_rules_1" | t }}</p>
+            <p>{{ "sections.landing_main_banner.delivery_rules_2" | t }}</p>
+
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="landing-main-banner__banner"
+           style="{%- if section.settings.bg_banner != blank -%}
+             background-image: url('{{ section.settings.bg_banner | img_url: "master" }}');
+      {%- endif -%}">
+
+        <img src="{{ section.settings.img_banner | img_url: 'master' }}"
+             alt="{{ section.settings.img_banner.alt | default: 'amarose' }}"
+             loading="lazy">
+        <div class="landing-main-banner__reviews-label">
+          <span class="star-group">
+            {% render "icon-star" %}
+            {% render "icon-star" %}
+            {% render "icon-star" %}
+            {% render "icon-star" %}
+            {% render "icon-star" %}
+          </span>
+          <span><strong>48.000+</strong> Reviews</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Main banner",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "Title",
+      "default": "Skincare To Keep You Young"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "subtitle",
+      "label": "subtitle",
+      "default": "Your Ageless Beauty is waiting, Discover Amarose's Magic for Youthful, Glowing Skin!"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link",
+      "default": "/"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "BUILD MY BUNDLE AND SAVE 30%"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_banner",
+      "label": "background banner"
+    },
+    {
+      "type": "image_picker",
+      "id": "img_banner",
+      "label": "Image product"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "check list",
+      "type": "advantage_list",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "list_item",
+          "label": "List item"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "landing main banner"
+    }
+  ]
+}
+{% endschema %}

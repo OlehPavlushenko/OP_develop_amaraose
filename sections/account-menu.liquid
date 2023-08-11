@@ -1,0 +1,67 @@
+{% if section.settings.title != blank %}
+  <h2 class="visually-hidden">{{ section.settings.title }}</h2>
+{% endif %}
+
+<ul class="account-menu__list">
+  {%- for block in section.blocks -%}
+    {% assign page_handle = '/' | append: template.name %}
+
+    {% if template.suffix != blank %}
+      {% assign page_handle = page_handle | append: '?view=' | append: template.suffix %}
+    {% endif %}
+
+    {% if block.settings.link_text != blank %}
+      <li class="account-menu__list-item">
+        <a href="{{ block.settings.link_url }}" class="account-menu__list-link{% if page_handle == block.settings.link_url %} active{% endif %}">
+          <i class="account-menu__list-icon">{{ block.settings.link_icon }}</i>
+          {{ block.settings.link_text }}
+        </a>
+      </li>
+    {% endif %}
+
+  {%- endfor -%}
+</ul>
+
+{% schema %}
+{
+  "name": "t:sections.account_menu.name",
+  "class": "account-menu",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "default": "Account menu",
+      "label": "t:sections.account_menu.settings.title"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "account_menu",
+      "name": "t:sections.account_menu.settings.blocks.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "link_text",
+          "label": "t:sections.account_menu.settings.blocks.title"
+        },
+        {
+          "type": "url",
+          "id": "link_url",
+          "label": "t:sections.account_menu.settings.blocks.link",
+          "info": "t:sections.account_menu.settings.blocks.link_description"
+        },
+        {
+          "type": "textarea",
+          "id": "link_icon",
+          "label": "t:sections.account_menu.settings.blocks.icon"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.account_menu.presets.name"
+    }
+  ]
+}
+{% endschema %}

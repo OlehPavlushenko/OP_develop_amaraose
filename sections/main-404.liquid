@@ -1,0 +1,47 @@
+{{ 'component-404.css' | asset_url | stylesheet_tag }}
+
+<div class="customer-404">
+    <div class="customer-404__background">
+      {% if section.settings.background_image != blank %}
+        {{ section.settings.background_image | image_url: width: 1920 | image_tag:
+        loading: 'lazy',
+        width: section.settings.background_image.width,
+        height: section.settings.background_image.height,
+        class: 'customer-404__image',
+        sizes: sizes,
+        widths: '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840',
+        alt: section.settings.background_image.alt | escape
+        }}
+      {% endif %}
+    </div>
+
+    <div class="template-404__container">
+        <p class="template-404__tag">
+          {{ 'templates.404.page_404' | t }}
+        </p>
+        <h1 class="template-404__title">
+          {{ 'templates.404.title' | t }}
+        </h1>
+        <p class="template-404__text">
+          {{ 'templates.404.subtext' | t }}
+        </p>
+        <a class="button primary-button button--lg" href="{{ routes.all_products_collection_url }}">
+          {{ 'templates.404.button_text' | t }}
+        </a>
+    </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.main-404.name",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "t:sections.main-404.settings.background_image.label"
+    }
+  ]
+}
+{% endschema %}

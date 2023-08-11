@@ -1,0 +1,33 @@
+@import "variables";
+
+.template-search {
+  .facets {
+    padding-top: 20px;
+  }
+}
+
+.product-grid-container {
+  .template-search__results {
+    padding: 50px 0;
+
+    @include max-screen(767) {
+      padding: 32px 0;
+    }
+  }
+
+  .product-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+
+    @include max-screen(1300) {
+      justify-content: center;
+    }
+
+    .grid__item {
+      @include max-screen(991) {
+        width: calc(50% - 10px);
+      }
+    }
+  }
+}

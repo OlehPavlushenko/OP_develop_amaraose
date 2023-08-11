@@ -1,0 +1,61 @@
+{% if template == 'product' and product.metafields.accentuate.show_running_line == 'true' %}
+  {% assign show_on_product = true  %}
+{% endif %}
+
+{% if show_on_product %}
+  {{ 'section-running-line.css' | asset_url | stylesheet_tag }}
+  <section class="running-line">
+    <h2 class="visually-hidden">{{ section.settings.title }}</h2>
+
+    <div class="running-line__content">
+      <div class="running-line__items-wrapper">
+        {% for block in section.blocks %}
+          <p class="running-line__item">
+            {{ block.settings.running_line_item }}
+          </p>
+        {% endfor %}
+      </div>
+      <div class="running-line__items-wrapper">
+        {% for block in section.blocks %}
+          <p class="running-line__item">
+            {{ block.settings.running_line_item }}
+          </p>
+        {% endfor %}
+      </div>
+    </div>
+
+  </section>
+{% endif %}
+
+{% schema %}
+{
+  "name": "t:sections.running_line.name",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "default": "Running line",
+      "label": "t:sections.running_line.settings.title.label"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "featured_collection",
+      "name": "t:sections.running_line.settings.blocks.name",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "running_line_item",
+          "default": "NO ARTIFICIAL COLORS",
+          "label": "t:sections.running_line.settings.blocks.label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.running_line.presets.name"
+    }
+  ]
+}
+{% endschema %}

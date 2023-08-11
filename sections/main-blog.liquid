@@ -1,0 +1,77 @@
+{{ 'component-article-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'section-main-blog.css' | asset_url | stylesheet_tag }}
+
+{%- paginate blog.articles by section.settings.post_limit -%}
+  <div class="main-blog section-{{ section.id }}-padding">
+    <div class="container">
+      <div class="main-blog__content">
+        <h1 class="main-blog__title">{{ blog.title | escape }}</h1>
+
+        <div class="blog-articles {% if section.settings.layout == 'collage' %}blog-articles--collage{% endif %}">
+          {%- for article in blog.articles -%}
+            <div class="blog-articles__article article">
+              {%- render 'article-card',
+                article: article,
+                media_height: section.settings.image_height,
+                media_aspect_ratio: article.image.aspect_ratio,
+                show_image: true,
+                show_date: section.settings.show_date,
+                show_author: section.settings.show_author,
+                show_excerpt: true
+              -%}
+            </div>
+          {%- endfor -%}
+        </div>
+
+        {% for tag in article.tags %}
+          {{ forloop.index }} ++++{{ tag }}
+          {% if forloop.index == 1 %}
+            {{ tag }}
+          {% endif %}
+        {% endfor %}
+
+        {%- if paginate.pages > 1 -%}
+          {%- render 'pagination', paginate: paginate -%}
+        {%- endif -%}
+
+      </div>
+    </div>
+  </div>
+{%- endpaginate -%}
+
+
+{% schema %}
+{
+  "name": "t:sections.main-blog.name",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.main-blog.settings.header.content"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_date",
+      "default": true,
+      "label": "t:sections.main-blog.settings.show_date.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_author",
+      "default": false,
+      "label": "t:sections.main-blog.settings.show_author.label"
+    },
+    {
+      "type": "range",
+      "id": "post_limit",
+      "min": 3,
+      "max": 50,
+      "step": 1,
+      "default": 6,
+      "label": "t:sections.featured-blog.settings.post_limit.label"
+    }
+  ]
+}
+{% endschema %}

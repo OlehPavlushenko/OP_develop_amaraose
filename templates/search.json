@@ -1,0 +1,21 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-search",
+      "settings": {
+        "image_ratio": "adapt",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "enable_search": false,
+        "enable_filtering": false,
+        "enable_sorting": true,
+        "article_show_date": false,
+        "article_show_author": false
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

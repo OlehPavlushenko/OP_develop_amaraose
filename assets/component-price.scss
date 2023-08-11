@@ -1,0 +1,88 @@
+@import "variables";
+
+.price__container {
+  width: max-content;
+  text-align: end;
+  margin-top: auto;
+
+  @include max-screen(991) {
+    text-align: start;
+  }
+}
+
+.price__container span {
+  display: block;
+}
+
+.price__sale {
+  font-family: $futura;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 1.5;
+  color: $black;
+
+  @include max-screen(767) {
+    font-size: 16px;
+  }
+}
+
+.price__regular {
+  font-family: $futura;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 1.5;
+  color: $black;
+
+  @include max-screen(767) {
+    font-size: 16px;
+  }
+}
+
+.price__sale  + .price__regular {
+  font-family: $futura;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.3;
+  color: $midGrey;
+  text-decoration: line-through;
+
+  @include max-screen(991) {
+    color: $blush;
+  }
+
+  @include max-screen(767) {
+    font-size: 14px;
+  }
+}
+
+.order-price {
+  &__final-price {
+    margin-right: 10px;
+    color: #2A3241;
+
+    @include max-screen(767) {
+      font-size: 14px;
+      margin-right: 5px;
+    }
+  }
+
+  &__old-price {
+    margin-right: 10px;
+    color: $midGrey;
+
+    @include max-screen(767) {
+      font-size: 16px;
+      margin-right: 5px;
+    }
+  }
+
+  &__discount {
+    margin-right: 10px;
+    color: $rose;
+
+    @include max-screen(767) {
+      font-size: 16px;
+      margin-right: 5px;
+    }
+  }
+}

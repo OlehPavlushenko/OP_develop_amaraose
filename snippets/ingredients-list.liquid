@@ -1,0 +1,82 @@
+<div class="ingredients-list">
+  <div class="ingredients-list__content swiper">
+    <div class="swiper-wrapper">
+      {% if settings.ingredient_title_1 != blank %}
+        <div class="swiper-slide">
+          {% render 'ingredient', title: settings.ingredient_title_1, description: settings.ingredient_description_1, icon: settings.ingredient_icon_1 %}
+        </div>
+      {% endif %}
+
+      {% if settings.ingredient_title_2 != blank %}
+        <div class="swiper-slide">
+          {% render 'ingredient', title: settings.ingredient_title_2, description: settings.ingredient_description_2, icon: settings.ingredient_icon_2 %}
+        </div>
+      {% endif %}
+
+      {% if settings.ingredient_title_3 != blank %}
+        <div class="swiper-slide">
+          {% render 'ingredient', title: settings.ingredient_title_3, description: settings.ingredient_description_3, icon: settings.ingredient_icon_3 %}
+        </div>
+      {% endif %}
+
+      {% if settings.ingredient_title_4 != blank %}
+        <div class="swiper-slide">
+          {% render 'ingredient', title: settings.ingredient_title_4, description: settings.ingredient_description_4, icon: settings.ingredient_icon_4 %}
+        </div>
+      {% endif %}
+
+      {% if settings.ingredient_title_5 != blank %}
+        <div class="swiper-slide">
+          {% render 'ingredient', title: settings.ingredient_title_5, description: settings.ingredient_description_5, icon: settings.ingredient_icon_5 %}
+        </div>
+      {% endif %}
+
+      {% if settings.ingredient_title_6 != blank %}
+        <div class="swiper-slide">
+          {% render 'ingredient', title: settings.ingredient_title_6, description: settings.ingredient_description_6, icon: settings.ingredient_icon_6 %}
+        </div>
+      {% endif %}
+
+      {% if settings.ingredient_title_7 != blank %}
+        <div class="swiper-slide">
+          {% render 'ingredient', title: settings.ingredient_title7, description: settings.ingredient_description7, icon: settings.ingredient_icon7 %}
+        </div>
+      {% endif %}
+
+      {% if settings.ingredient_title_8 != blank %}
+        <div class="swiper-slide">
+          {% render 'ingredient', title: settings.ingredient_title_8, description: settings.ingredient_description_8, icon: settings.ingredient_icon_8 %}
+        </div>
+      {% endif %}
+
+      {% if settings.ingredient_title_9 != blank %}
+        <div class="swiper-slide">
+          {% render 'ingredient', title: settings.ingredient_title_9, description: settings.ingredient_description_9, icon: settings.ingredient_icon_9 %}
+        </div>
+      {% endif %}
+
+      {% if settings.ingredient_title_10 != blank %}
+        <div class="swiper-slide">
+          {% render 'ingredient', title: settings.ingredient_title_10, description: settings.ingredient_description_10, icon: settings.ingredient_icon_10 %}
+        </div>
+      {% endif %}
+
+      {% if settings.ingredient_title_11 != blank %}
+        <div class="swiper-slide">
+          {% render 'ingredient', title: settings.ingredient_title_11, description: settings.ingredient_description_11, icon: settings.ingredient_icon_11 %}
+        </div>
+      {% endif %}
+
+      {% if settings.ingredient_title_12 != blank %}
+        <div class="swiper-slide">
+          {% render 'ingredient', title: settings.ingredient_title_12, description: settings.ingredient_description_12, icon: settings.ingredient_icon_12 %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+  <div class="ingredient-btn-next">
+    {% render 'icon-arrow-r' %}
+  </div>
+</div>
+
+

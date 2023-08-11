@@ -1,0 +1,236 @@
+@import "variables";
+
+.section-faq-product {
+  padding: 40px 0;
+
+  @include max-screen(991) {
+    padding: 45px 0;
+  }
+}
+
+.faq-product__content {
+  padding-left: 68px;
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+  min-height: 572px;
+  position: relative;
+
+  @include max-screen(991) {
+    flex-direction: column;
+    min-height: auto;
+    padding-left: 0;
+  }
+
+  &:before {
+    content: "";
+    width: 572px;
+    height: 572px;
+    left: 0;
+    top: 0;
+    position: absolute;
+    border-radius: 50%;
+    z-index: -1;
+    background-color: $lightGrey;
+
+    @include max-screen(991) {
+      width: 200px;
+      height: 200px;
+    }
+
+    @include max-screen(767) {
+      width: 150px;
+      height: 150px;
+    }
+  }
+
+  .faq-product__title {
+    font-family: $futura;
+    font-weight: 500;
+    font-size: 36px;
+    line-height: 1.5;
+    color: $black;
+
+    @include max-screen(767) {
+      font-size: 24px;
+    }
+  }
+}
+
+.faq-product__header {
+  width: 180px;
+  min-height: 572px;
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+
+  @include max-screen(991) {
+    min-height: auto;
+    margin-top: 20px;
+    margin-left: 60px;
+  }
+}
+
+.faq-product__questions-accordion {
+  display: none;
+
+  @include max-screen(991) {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .faq-product__list-item {
+    &.active {
+      .faq-product__list-item-button {
+        color: $black;
+
+        .link-icon {
+          background-color: $blush-25;
+
+          path {
+            stroke: $rose;
+          }
+        }
+      }
+    }
+  }
+
+  .faq-product__list-item-header {
+    display: inline-block;
+
+    .faq-product__list-item-button {
+      display: inline-flex;
+      align-items: center;
+      padding: 0;
+      gap: 10px;
+      font-family: $futura;
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 1.25;
+      color: $midGrey;
+      background-color: transparent;
+      cursor: pointer;
+      text-align: start;
+
+      .link-icon {
+        width: 60px;
+        height: 60px;
+        flex: 0 0 auto;
+        border-radius: 50%;
+        border: 1px solid transparent;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+        margin-bottom: auto;
+
+        path {
+          stroke: $blush;
+        }
+      }
+    }
+  }
+
+  .faq-product__list-item-content {
+    .accordion-content-wrapper {
+      margin-top: 10px;
+      padding: 30px;
+      background-color: $blush-25;
+      font-family: $futura;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 1.5;
+    }
+  }
+}
+
+.faq-product__questions-tabs {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  gap: 22px;
+
+  @include max-screen(991) {
+    display: none;
+  }
+
+  .faq-product__list-questions {
+    width: calc(50% - 11px);
+    min-height: 572px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+
+
+    .faq-product__list-questions-item {
+      display: inline-block;
+
+      &.active {
+        .tabs-list__link {
+          color: $black;
+
+          .link-icon {
+            border: 1px solid $blush;
+            background-color: $blush;
+
+            path {
+              stroke: $white;
+            }
+          }
+        }
+      }
+    }
+
+    .tabs-list__link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: $futura;
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 1.25;
+      color: $midGrey;
+
+      &:hover {
+        .link-icon {
+          border: 1px solid $blush;
+        }
+      }
+
+      .link-icon {
+        width: 60px;
+        height: 60px;
+        flex: 0 0 auto;
+        border-radius: 50%;
+        border: 1px solid transparent;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+
+        path {
+          stroke: $blush;
+        }
+      }
+    }
+  }
+
+  .faq-product__list-answers {
+    width: calc(50% - 11px);
+    min-height: 572px;
+    padding: 50px;
+    border-radius: 20px;
+    background-color: $blush-25;
+    font-family: $futura;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 1.5;
+    color: $black;
+
+    @include max-screen(1300) {
+      padding: 25px;
+    }
+  }
+}

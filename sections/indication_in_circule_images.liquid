@@ -1,0 +1,61 @@
+{{ 'section-indication.css' | asset_url | stylesheet_tag }}
+
+<section class="indication">
+  <div class="container">
+    {% if section.settings.custom_text_title != blank %}
+      <h2 class="indication__title"> {{ section.settings.custom_text_title }} </h2>
+    {% endif %}
+
+    <div class="indication__content-wrapper">
+      {% for block in section.blocks %}
+        <div class="indication__content">
+          <img src="{{ block.settings.image | img_url: "master" }}" alt="{{ block.settings.image.alt | escape }}"/>
+          {% if block.settings.indication_title != blank %}
+            <h3 class="indication__img-title">{{ block.settings.indication_title }}</h3>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+
+{% schema %}
+{
+  "name": "indication",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "id": "custom_text_title",
+      "type": "text",
+      "label": "Text box heading",
+      "default": "Title"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "indication image",
+      "settings": [
+        {
+          "type": "text",
+          "id": "indication_title",
+          "default": "title",
+          "label": "your text"
+        },
+        {
+          "type": "image_picker",
+          "label": "indication image",
+          "id": "image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Indication"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,217 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "726f8fab-598f-4ba9-a514-94139f4245a2": {
+      "type": "landing-header",
+      "blocks": {
+        "446e4e57-59d2-4457-9c1b-b3a26758f027": {
+          "type": "announcement_bar",
+          "settings": {
+            "text": "BUILD YOUR BUNDLE & SAVE UP TO 30% TODAY"
+          }
+        },
+        "7e77ba2d-1665-4d9e-ba15-1f053b4d37b8": {
+          "type": "announcement_bar",
+          "settings": {
+            "text": "BUILD YOUR BUNDLE & SAVE UP TO 30% TODAY"
+          }
+        }
+      },
+      "block_order": [
+        "446e4e57-59d2-4457-9c1b-b3a26758f027",
+        "7e77ba2d-1665-4d9e-ba15-1f053b4d37b8"
+      ],
+      "settings": {
+        "show_announcement_bar": true,
+        "logo": "shopify:\/\/shop_images\/logo.svg",
+        "button_link": "\/",
+        "button_text": "Shop Now"
+      }
+    },
+    "d6b8bb53-cc79-4e36-876e-c2418812fa1f": {
+      "type": "landing-main-banner",
+      "blocks": {
+        "c89d428f-fbe4-487d-8b45-3b2ee2532d33": {
+          "type": "advantage_list",
+          "settings": {
+            "list_item": "Instantly Smooth Away Signs of Aging"
+          }
+        },
+        "954e1c6d-092f-4eda-b021-edd76b39c1ed": {
+          "type": "advantage_list",
+          "settings": {
+            "list_item": "Enjoy A Blemish-Free Look"
+          }
+        },
+        "bb49c37c-f6d9-4e46-a765-31438f751eed": {
+          "type": "advantage_list",
+          "settings": {
+            "list_item": "Glow with Confidence"
+          }
+        }
+      },
+      "block_order": [
+        "c89d428f-fbe4-487d-8b45-3b2ee2532d33",
+        "954e1c6d-092f-4eda-b021-edd76b39c1ed",
+        "bb49c37c-f6d9-4e46-a765-31438f751eed"
+      ],
+      "settings": {
+        "title": "Skincare To Keep You Young",
+        "subtitle": "Your Ageless Beauty is waiting, Discover Amarose's Magic for Youthful, Glowing Skin!",
+        "button_link": "\/",
+        "button_text": "BUILD MY BUNDLE AND SAVE 30%",
+        "bg_banner": "shopify:\/\/shop_images\/Rectangle_10.png",
+        "img_banner": "shopify:\/\/shop_images\/Group_1.png"
+      }
+    },
+    "dfd34160-4380-4f77-b284-b8011ac74181": {
+      "type": "partners",
+      "blocks": {
+        "b9ffee7f-2952-4a6d-af0c-edc204f9daaf": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/image_1.png"
+          }
+        },
+        "7a5bccee-831e-4b69-a68f-2111ca629913": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/image_2.png"
+          }
+        },
+        "2584150f-f912-4a6b-8052-c30bd0261b0b": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/image_3.png"
+          }
+        },
+        "cbb27066-5ccc-4fc5-ae53-cfeeddfc30cb": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/image_4.png"
+          }
+        },
+        "0ca77294-56e4-4435-a28b-e7af7d53320f": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/image_5.png"
+          }
+        }
+      },
+      "block_order": [
+        "b9ffee7f-2952-4a6d-af0c-edc204f9daaf",
+        "7a5bccee-831e-4b69-a68f-2111ca629913",
+        "2584150f-f912-4a6b-8052-c30bd0261b0b",
+        "cbb27066-5ccc-4fc5-ae53-cfeeddfc30cb",
+        "0ca77294-56e4-4435-a28b-e7af7d53320f"
+      ],
+      "settings": {
+        "row_section": true,
+        "custom_text_title": "Featured in"
+      }
+    },
+    "2dac7618-03ff-4b70-884a-a1d5286a3f94": {
+      "type": "image-with-checklist",
+      "blocks": {
+        "39bd79d2-561d-47c7-a2c5-218609686672": {
+          "type": "checklist",
+          "settings": {
+            "checklist_title": "Superox-C Technology:",
+            "checklist_text": "Energize & Erase Wrinkles Like Magic."
+          }
+        },
+        "12ef6a13-b4e3-4c65-beb4-781c4506815a": {
+          "type": "checklist",
+          "settings": {
+            "checklist_title": "Hyaluronic Acid Boost:",
+            "checklist_text": "Nourish & Hydrate for Supple Softness."
+          }
+        },
+        "447b207e-82bd-4c3b-ae1e-04013cf03b46": {
+          "type": "checklist",
+          "settings": {
+            "checklist_title": "Natural Extracts:",
+            "checklist_text": "Fast-Acting, Tested, Safe & Natural."
+          }
+        }
+      },
+      "block_order": [
+        "39bd79d2-561d-47c7-a2c5-218609686672",
+        "12ef6a13-b4e3-4c65-beb4-781c4506815a",
+        "447b207e-82bd-4c3b-ae1e-04013cf03b46"
+      ],
+      "settings": {
+        "main_image": "shopify:\/\/shop_images\/AMA_LEDGE_BUNDLE_V1-02_1.png",
+        "title": "A Beverly Hills Formula",
+        "button_link": "",
+        "button_text": "BUILD MY BUNDLE AND SAVE 30%"
+      }
+    },
+    "9dcae203-668f-4ac5-bd33-ac6830c19007": {
+      "type": "card-before-and-after",
+      "blocks": {
+        "0fbd6231-ac6b-4a3a-a0d2-6b2eb2014de1": {
+          "type": "card",
+          "settings": {
+            "image_before": "shopify:\/\/shop_images\/image_7_2247ea67-5d6c-4006-95b3-75bd44c1430c.png",
+            "count_day_before": "1",
+            "image_after": "shopify:\/\/shop_images\/image_6.png",
+            "count_day_after": "30",
+            "title": "SKIN TAG REMOVER",
+            "text": "“I used to think that the only option for removing the skin tags on my chin is either laser therapy or surgery. But, this product changed my view completely. It is the safest option that gets the job done effectively and I recommend this to anyone who wants to look and feel great.”",
+            "author": "Louise R."
+          }
+        },
+        "275e64f8-4ddf-4e62-b1df-1c8b9dab7532": {
+          "type": "card",
+          "settings": {
+            "image_before": "shopify:\/\/shop_images\/image_7_3de66fde-a8bb-457c-8fc4-9bd389f1abe1.png",
+            "count_day_before": "1",
+            "image_after": "shopify:\/\/shop_images\/image_6_37411cf6-5a23-4c5c-9c03-2a28adc0a45e.png",
+            "count_day_after": "34",
+            "title": "SKIN TAG REMOVER",
+            "text": "“I have been using this product for almost a month and have noticed significantly smoother skin under my eyes. I have tried several different eye products in the past and this is by far the best! I am very pleased with the results so far. I definitely recommend this product!”",
+            "author": "Mikka S."
+          }
+        },
+        "298b01d9-bcea-4175-82d7-236a498134e6": {
+          "type": "card",
+          "settings": {
+            "image_before": "shopify:\/\/shop_images\/image_7_6c4ea72b-76ab-46b5-a38b-a787bf2a03c9.png",
+            "count_day_before": "1",
+            "image_after": "shopify:\/\/shop_images\/image_6_9da3950f-8010-443d-a9c9-be3550747549.png",
+            "count_day_after": "29",
+            "title": "SKIN TAG REMOVER",
+            "text": "”This toner is so gentle on my skin, yet manages to get the job done! One thing that stood out to me was that it has a moisturizing feel to it so my skin isn’t completely stripped after use. I use it everyday and i will definitely be purchasing again!”",
+            "author": "Megan S."
+          }
+        }
+      },
+      "block_order": [
+        "0fbd6231-ac6b-4a3a-a0d2-6b2eb2014de1",
+        "275e64f8-4ddf-4e62-b1df-1c8b9dab7532",
+        "298b01d9-bcea-4175-82d7-236a498134e6"
+      ],
+      "settings": {
+        "title": "Hear It From Them",
+        "button_link": "\/",
+        "button_text": "BUILD MY BUNDLE AND SAVE 30%"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "726f8fab-598f-4ba9-a514-94139f4245a2",
+    "d6b8bb53-cc79-4e36-876e-c2418812fa1f",
+    "dfd34160-4380-4f77-b284-b8011ac74181",
+    "2dac7618-03ff-4b70-884a-a1d5286a3f94",
+    "9dcae203-668f-4ac5-bd33-ac6830c19007"
+  ]
+}

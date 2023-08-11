@@ -1,0 +1,125 @@
+@import "variables";
+
+.card-banner_collection-wrapper {
+  position: relative;
+  min-height: 500px;
+  border-radius: 20px;
+  overflow: hidden;
+  background: linear-gradient(269.34deg, #FEDCD3 52.51%, #F2CFC9 99.44%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px;
+  gap: 20px;
+
+
+  @include max-screen(991) {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .card_collection__media {
+    width: 50%;
+
+    @include max-screen(991) {
+      width: 100%;
+      padding-top: 30px;
+    }
+
+    img {
+      max-width: 100%;
+      max-height: 460px;
+      height: auto;
+      display: block;
+      object-fit: cover;
+      margin: 0 auto;
+
+      @include max-screen(991) {
+        max-height: 350px;
+      }
+      @include max-screen(767) {
+        max-height: 260px;
+      }
+
+    }
+  }
+
+  .card_collection__content-wrapper {
+    width: 50%;
+
+    @include max-screen(991) {
+      width: 100%;
+    }
+
+    .card_collection__content {
+      max-width: 476px;
+
+      @include max-screen(991) {
+        max-width: 100%;
+      }
+
+      .card_collection__badge {
+        width: max-content;
+        display: inline-block;
+        margin-bottom: 15px;
+
+        @include max-screen(991) {
+          position: absolute;
+          top: 25px;
+          right: 25px;
+        }
+      }
+
+      .card_collection__information {
+        margin-bottom: 15px;
+
+        @include max-screen(991) {
+          text-align: center;
+        }
+
+        @include max-screen(767) {
+          margin-bottom: 10px;
+        }
+
+        .card_collection__heading {
+          font-family: $futura;
+          font-weight: 500;
+          font-size: 40px;
+          line-height: 1.25;
+          color: $black;
+          margin-bottom: 15px;
+
+          @include max-screen(767) {
+            margin-bottom: 10px;
+            font-size: 30px;
+          }
+        }
+
+        .card_collection__description,
+        p {
+          font-family: $futura;
+          font-weight: 400;
+          font-size: 18px;
+          line-height: 1.5;
+          color: $black;
+
+          @include max-screen(767) {
+            font-size: 16px;
+          }
+        }
+      }
+
+      .button {
+        min-width: 130px;
+
+        @include max-screen(991) {
+          display: flex;
+          margin: 0 auto;
+        }
+      }
+    }
+  }
+
+}
+
+

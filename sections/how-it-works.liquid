@@ -1,0 +1,120 @@
+{{ 'how-it-works.css' | asset_url | stylesheet_tag }}
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'collection-grid.css' | asset_url | stylesheet_tag }}
+
+<link rel="stylesheet" href="{{ 'how-it-works.css' | asset_url }}" media="print" onload="this.media='all'">
+
+<section class="how-it-works">
+  <div class="container">
+    <div class="how-it-works__content">
+      <div class="how-it-works__header">
+        {% if section.settings.title != blank %}
+          <h2 class="how-it-works__title">{{ section.settings.title }}</h2>
+        {% endif %}
+
+        {% if section.settings.text != blank %}
+          <p class="how-it-works__text">{{ section.settings.text }}</p>
+        {% endif %}
+      </div>
+
+      <ul class="how-it-works__list">
+        {% for block in section.blocks %}
+          <li class="how-it-works__list-item">
+            {% render 'card-product',
+              card_product: block.settings.product,
+              media_aspect_ratio: section.settings.image_ratio,
+              show_secondary_image: section.settings.show_secondary_image,
+              show_rating: section.settings.show_rating,
+              show_quick_add: section.settings.enable_quick_add,
+              forloop_index: forloop.index,
+              section_id: section.id
+            %}
+          </li>
+        {% endfor %}
+      </ul>
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.how_it_works.name",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "default": "Stronger Together",
+      "label": "t:sections.how_it_works.settings.title.label"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "default": "Developed to work better together, each product prepares your skin for every day protection.",
+      "label": "t:sections.how_it_works.settings.title.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.how_it_works.settings.header.content"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "options": [
+        {
+          "value": "adapt",
+          "label": "t:sections.how_it_works.settings.image_ratio.options__1.label"
+        },
+        {
+          "value": "portrait",
+          "label": "t:sections.how_it_works.settings.image_ratio.options__2.label"
+        },
+        {
+          "value": "square",
+          "label": "t:sections.how_it_works.settings.image_ratio.options__3.label"
+        }
+      ],
+      "default": "adapt",
+      "label": "t:sections.how_it_works.settings.image_ratio.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_secondary_image",
+      "default": false,
+      "label": "t:sections.how_it_works.settings.show_secondary_image.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rating",
+      "default": false,
+      "label": "t:sections.how_it_works.settings.show_rating.label",
+      "info": "t:sections.how_it_works.settings.show_rating.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_quick_add",
+      "default": false,
+      "label": "t:sections.how_it_works.settings.enable_quick_buy.label"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "t:sections.how_it_works.settings.blocks.name",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "t:sections.how_it_works.settings.blocks.label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.how_it_works.presets.name"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,106 @@
+@import "variables";
+
+.search-page-card {
+  width: 380px;
+  height: 100%;
+  border: 1px solid $lightGrey;
+  background-color: $white;
+  display: flex;
+  flex-direction: column;
+
+  @include max-screen(991) {
+    max-width: 380px;
+    width: 100%;
+  }
+
+  .search-page__image {
+    width: 100%;
+    height: 334px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: block;
+
+    @include max-screen(767) {
+      height: 220px;
+    }
+
+    @include max-screen(575) {
+      height: 160px;
+    }
+  }
+
+  .search-page__information {
+    width: 100%;
+    min-height: 207px;
+    padding: 20px;
+    margin-top: auto;
+
+    @include max-screen(767) {
+      font-size: 16px;
+      min-height: 42px;
+    }
+
+    .search-page__top-wrapper {
+      display: block;
+      min-height: 29px;
+      padding-top: 0;
+      margin-bottom: 15px;
+    }
+
+    .search-page__title-wrapper {
+      line-height: 1;
+      margin-bottom: 5px;
+
+      .title {
+        font-family: $futura;
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 1.3;
+        color: $black;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        display: inline-block;
+        max-width: 100%;
+
+        @include max-screen(991) {
+          @include line-text-hidden(2);
+          min-height: 52px;
+        }
+
+        @include max-screen(767) {
+          font-size: 16px;
+          min-height: 42px;
+        }
+      }
+    }
+
+    .search-page__text {
+      min-height: 54px;
+      font-family: $futura;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 1.5;
+      @include line-text-hidden(2);
+      margin: 0 0 10px;
+
+      @include max-screen(991) {
+        @include line-text-hidden(3);
+        min-height: 81px;
+      }
+
+      @include max-screen(767) {
+        font-size: 14px;
+        min-height: 63px;
+      }
+    }
+
+    .link-arrow {
+      height: 24px;
+      white-space: nowrap;
+      overflow: hidden;
+      max-width: max-content;
+    }
+  }
+}

@@ -1,0 +1,34 @@
+.main-blog__title {
+  font-family: "futura", suns-serif;
+  font-weight: 400;
+  font-size: 48px;
+  line-height: 1.3;
+  color: #5E697E;
+  text-align: center;
+}
+
+.blog-articles {
+  padding: 40px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 110px 20px;
+}
+@media screen and (max-width: 1300px) {
+  .blog-articles {
+    max-width: 780px;
+    margin: 0 auto;
+  }
+}
+@media screen and (max-width: 767px) {
+  .blog-articles {
+    gap: 40px 20px;
+    padding: 20px 0;
+  }
+}
+@media screen and (max-width: 991px) {
+  .blog-articles .blog-articles__article {
+    width: calc(50% - 10px);
+  }
+}
+
+/*# sourceMappingURL=section-main-blog.css.map */

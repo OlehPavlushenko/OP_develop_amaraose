@@ -1,0 +1,1295 @@
+@import "_variables.scss";
+
+#preview-bar-iframe {
+  //display: none;
+}
+
+.container {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding-left: 10px;
+  padding-right: 10px;
+
+  &.container--xl {
+    max-width: 1600px;
+
+    @include max-screen(1700) {
+      max-width: 1200px;
+    }
+  }
+
+  @include max-screen(1300) {
+    max-width: 960px;
+  }
+
+  @include max-screen(991) {
+    max-width: 720px;
+  }
+
+  @include max-screen(767) {
+    max-width: 540px;
+  }
+
+  @include max-screen(575) {
+    max-width: 100%;
+    padding: 0 20px;
+  }
+}
+
+.container-fluid {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 10px;
+
+  @include max-screen(575) {
+    padding: 0 20px;
+  }
+}
+
+ul, ol {
+  padding: 0;
+  list-style: none;
+  margin: 0;
+}
+
+body {
+  font-family: $futura;
+
+  &.overflow-hidden-tablet {
+    overflow: hidden;
+  }
+}
+
+// ___ Typography ___
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $futura;
+  color: $black;
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+h1 {
+  font-size: 42px;
+
+  @include max-screen(767) {
+    font-size: 34px;
+  }
+
+  &.lg {
+    font-size: 48px;
+
+    @include max-screen(767) {
+      font-size: 32px;
+    }
+  }
+}
+
+h2 {
+  font-size: 40px;
+
+  @include max-screen(767) {
+    font-size: 30px;
+  }
+}
+
+h3 {
+  font-size: 32px;
+
+  @include max-screen(767) {
+    font-size: 27px;
+  }
+}
+
+h4 {
+  font-size: 24px;
+
+  @include max-screen(767) {
+    font-size: 22px;
+  }
+}
+
+p {
+  font-family: $futura;
+  color: $black;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.5;
+  margin: 0;
+
+  @include max-screen(767) {
+    font-size: 18px;
+  }
+
+  &.lg {
+    font-size: 22px;
+
+    @include max-screen(767) {
+      font-size: 18px;
+    }
+  }
+
+  &.sm {
+    font-size: 16px;
+
+    @include max-screen(767) {
+      font-size: 14px;
+    }
+  }
+
+  &.underline {
+    text-decoration-line: underline;
+    text-underline-offset: 4px;
+  }
+
+  &.strikethrough {
+    text-decoration-line: line-through;
+  }
+
+  &.caps {
+    text-transform: uppercase;
+  }
+}
+
+.fw-400 {
+  font-weight: 400;
+}
+
+.fw-500 {
+  font-weight: 500;
+}
+
+.fw-600 {
+  font-weight: 600;
+}
+
+// ___ Elements ___
+
+a {
+  text-decoration: none;
+}
+
+button {
+  border: none;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: max-content;
+  max-width: 100%;
+  min-height: 48px;
+  height: max-content;
+  padding: 12px 24px;
+
+  font-family: $futura;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.3;
+  text-align: center;
+  color: $black;
+
+  border-radius: 60px;
+  cursor: pointer;
+
+  @include max-screen(767) {
+    font-size: 16px;
+    padding: 9px 24px;
+    min-height: 40px;
+  }
+
+  &.button--sm {
+    padding: 9px 32px;
+    font-size: 16px;
+    min-height: 40px;
+
+    @include max-screen(767) {
+      font-size: 14px;
+      padding: 5px 24px;
+      min-height: 28px;
+    }
+  }
+
+  &.button--lg {
+    padding: 11px 32px;
+    font-size: 22px;
+    line-height: 1.5;
+    min-height: 56px;
+
+    @include max-screen(767) {
+      font-size: 18px;
+      padding: 12px 24px;
+      min-height: 48px;
+
+    }
+  }
+
+  &.primary-button {
+    color: $white;
+    background-color: $rose;
+    transition: 0.3s;
+
+    &:hover {
+      color: $white;
+      background-color: $purple;
+      transition: 0.3s;
+    }
+  }
+
+  &.secondary-button {
+    background-color: $roseMid;
+    color: $white;
+    transition: 0.3s;
+
+    &:hover {
+      color: $black;
+      transition: 0.3s;
+    }
+  }
+
+  &.landing-button {
+    min-height: 52px;
+
+    font-family: $poppins;
+    font-size: 16px;
+
+    border-radius: 100px;
+
+
+    color: $white;
+    background-color: $purple-light;
+    transition: 0.3s;
+
+    &:hover {
+      color: $white;
+      background-color: $rose;
+      transition: 0.3s;
+    }
+  }
+
+  &.landing-button--w-xl {
+    max-width: 400px;
+    width: 100%;
+  }
+
+  &.landing-button--sm {
+    min-height: 40px;
+    padding: 6px 20px;
+  }
+  
+  &.outline-button {
+    color: $purple;
+    background-color: $white;
+    border: 1px solid $purple;
+    padding: 11.5px 23px;
+    transition: 0.3s;
+
+    @include max-screen(767) {
+      padding: 8.5px 23px;
+    }
+
+    &.button--sm {
+      padding: 8.5px 31px;
+
+      @include max-screen(767) {
+        padding: 4px 23px;
+      }
+    }
+
+    &.button--lg {
+      padding: 10.5px 31px;
+
+      @include max-screen(767) {
+        padding: 11.5px 23px;
+      }
+    }
+
+    &:hover {
+      color: $white;
+      background-color: $purple;
+      transition: 0.3s;
+    }
+  }
+
+  &.disabled-button,
+  &[disabled] {
+    color: $midGrey;
+    background-color: $lightGrey;
+    cursor: default;
+
+    &:hover {
+      color: $midGrey;
+      background-color: $lightGrey;
+    }
+
+    path {
+      fill: $midGrey;
+    }
+  }
+
+  &.button-icon {
+    padding: 7.5px 31px;
+    font-size: 14px;
+    line-height: 1.5;
+
+    @include max-screen(767) {
+      padding: 9px 30px;
+      font-size: 18px;
+      line-height: 1.8;
+    }
+
+    svg {
+      margin-right: 10px;
+      width: 24px;
+      height: 24px;
+
+      @include max-screen(767) {
+        width: 14px;
+        height: 14px;
+      }
+    }
+  }
+
+  &.button-icon--sm {
+    padding: 8px 24px;
+    font-size: 16px;
+    line-height: 1.28;
+
+    @include max-screen(767) {
+      padding: 5px 30px 6px;
+      font-size: 14px;
+    }
+
+    svg {
+      margin-right: 10px;
+      width: 24px;
+      height: 24px;
+
+      @include max-screen(767) {
+        width: 14px;
+        height: 14px;
+      }
+    }
+  }
+
+  &.button--arrow {
+    path {
+      stroke: $black;
+      transition: 0.3s;
+    }
+
+    &:hover {
+      path {
+        stroke: $white;
+        transition: 0.3s;
+      }
+    }
+  }
+}
+
+.w-100 {
+  width: 100%;
+}
+
+// ====== custom-checkbox
+
+/* для элемента input c type="checkbox" */
+.custom-checkbox > input {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+
+  /* стили при наведении курсора на checkbox */
+  &:not(:disabled):not(:checked) + span:hover::before {
+    background-color: $blush-25;
+    transition: 0.3s;
+  }
+
+  /* стили для активного чекбокса (при нажатии на него) */
+  &:not(:disabled):active + span::before {
+    background-color: $black;
+    transition: 0.3s;
+  }
+
+  /* стили для чекбокса, находящегося в фокусе */
+  &:focus + span::before {
+    background-color: $blush-25;
+    transition: 0.3s;
+  }
+
+  /* стили для чекбокса, находящегося в фокусе и не находящегося в состоянии checked */
+  &:focus:not(:checked) + span::before {
+    background-color: $white;
+    transition: 0.3s;
+  }
+
+  /* стили для чекбокса, находящегося в состоянии checked */
+  &:checked + span::before {
+    background-color: $black;
+    background-image: url("checked.svg");
+    background-size: cover;
+    background-position: center;
+  }
+
+  /* стили для чекбокса, находящегося в состоянии disabled */
+  &:disabled + span {
+    color: $midGrey;
+    cursor: not-allowed;
+
+    &:before {
+      color: $lightGrey;
+      background-color: $lightGrey;
+      cursor: default;
+    }
+  }
+}
+
+/* для элемента label, связанного с .custom-checkbox */
+.custom-checkbox > span {
+  display: inline-flex;
+  align-items: baseline;
+  user-select: none;
+  font-family: $futura;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.5;
+  color: $black;
+
+  /* создание в label псевдоэлемента before со следующими стилями */
+  &:before {
+    content: '';
+    display: block;
+    width: 22px;
+    height: 22px;
+    border: 1px solid $midGrey;
+    border-radius: 5px;
+    margin-right: 8px;
+    background-color: $white;
+    transition: 0.3s;
+  }
+}
+
+// ====== custom-radio
+
+/* для элемента input c type="radio" */
+.custom-radio > input {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+
+  /* стили при наведении курсора на радио */
+  &:not(:disabled):not(:checked) + span:hover::after {
+    background-color: $blush-25;
+    transition: 0.3s;
+  }
+
+  /* стили для активной радиокнопки (при нажатии на неё) */
+  &:not(:disabled):active + span::after {
+    background-color: $blush-25;
+    transition: 0.3s;
+  }
+
+  /* стили для радиокнопки, находящейся в фокусе */
+  &:focus + span::after {
+    background-color: $blush-25;
+    transition: 0.3s;
+  }
+
+  /* стили для радиокнопки, находящейся в фокусе и не находящейся в состоянии checked */
+  &:focus:not(:checked) + span::after {
+    background-color: $blush-25;
+    transition: 0.3s;
+  }
+
+  /* стили для радиокнопки, находящейся в состоянии checked */
+  &:checked + span::after {
+    background-color: $black;
+    transition: 0.3s;
+  }
+
+  /* стили для радиокнопки, находящейся в состоянии disabled */
+  &:disabled + span {
+    color: $midGrey;
+    cursor: not-allowed;
+
+    &:after {
+      background-color: $lightGrey;
+      transition: 0.3s;
+    }
+  }
+
+}
+
+/* для элемента label связанного с .custom-radio */
+.custom-radio > span {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  font-family: $futura;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: $black;
+
+  /* создание в label псевдоэлемента  before и after со следующими стилями */
+
+  &:before {
+    content: '';
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    border: 1px solid $midGrey;
+    border-radius: 50%;
+    background-color: $lightGrey;
+    margin-right: 8px;
+  }
+
+  &:after {
+    content: "";
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background: $white;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 3px;
+    transform: translateY(-50%);
+    transition: 0.3s;
+  }
+}
+
+.select {
+  width: max-content;
+  border-radius: 30px;
+  background-color: $lightGrey;
+  transition: 0.3s;
+
+  select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    margin: 0;
+    padding: 13px 44px 13px 20px;
+    border: 1px solid $lightGrey;
+    border-radius: 30px;
+    font-family: $futura;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.4;
+    outline: none;
+    background-color: transparent;
+    background-image: url("arrow-select.svg");
+    background-repeat: no-repeat;
+    background-position: right 20px center;
+    min-width: 247px;
+    max-width: max-content;
+    transition: 0.3s;
+
+    &:-webkit-autofill {
+      -webkit-box-shadow: inset 0 0 0 50px $lightGrey;
+      -webkit-text-fill-color: $midGrey;
+    }
+
+    &::-ms-expand {
+      display: none;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+
+    }
+
+    &:focus {
+      border: 1px solid $roseMid;
+      transition: 0.3s;
+    }
+  }
+
+  &:hover {
+    background-color: $blush-25;
+    transition: 0.3s;
+  }
+}
+
+.field {
+  position: relative;
+
+  .field__label {
+    font-family: $futura;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.4;
+    color: $midGrey;
+    top: 50%;
+    transform: translateY(-50%);
+
+    @include max-screen(767) {
+      font-size: 14px;
+    }
+  }
+
+  .field__label--hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    margin: -1px;
+    padding: 0;
+    border: 0;
+  }
+
+  .field__input {
+    position: relative;
+    width: 100%;
+    min-height: 48px;
+    padding: 20px 40px 5px 20px;
+    margin: 0;
+    border: 1px solid $lightGrey;
+    border-radius: 30px;
+    background-color: $lightGrey;
+    font-family: $futura;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.4;
+    color: $midGrey;
+    transition: background-color 0.3s, border 0.3s;
+
+    &:-webkit-autofill {
+      -webkit-box-shadow: inset 0 0 0 50px $lightGrey;
+      -webkit-text-fill-color: $midGrey;
+    }
+
+    &::placeholder {
+      opacity: 0;
+    }
+
+    @include max-screen(767) {
+      height: 40px;
+      font-size: 16px;
+      padding: 16px 34px 1px 20px;
+    }
+
+    &:focus {
+      border-radius: 30px;
+
+      & ~ .field__label {
+        font-size: 10px;
+      }
+    }
+
+    &:hover {
+      background-color: $blush-25;
+    }
+
+    &:focus {
+      border: 1px solid $roseMid;
+      background-color: $lightGrey;
+
+      ~ .field__label {
+        top: 12px;
+        font-size: 10px;
+      }
+    }
+
+    &:disabled:hover {
+      background-color: $lightGrey;
+      cursor: not-allowed;
+    }
+
+    &:not(:placeholder-shown) {
+      ~ .field__label {
+        top: 12px;
+        font-size: 10px;
+      }
+    }
+
+    &.validate-error {
+      border: 1px solid $errorState;
+      background-image: url("exit-mid_grey.svg");
+      background-size: 24px;
+      background-repeat: no-repeat;
+      background-position: right 20px center;
+      transition: background-image 0.3s, border 0.3s;
+
+      @include max-screen(767) {
+        -webkit-background-size: 14px;
+        background-size: 14px;
+      }
+    }
+
+    &.validate-true {
+      border: 1px solid $green;
+      background-image: url("checked-green.svg");
+      background-size: 24px;
+      background-repeat: no-repeat;
+      background-position: right 20px center;
+      transition: background-image 0.3s, border 0.3s;
+
+      @include max-screen(767) {
+        -webkit-background-size: 14px;
+        background-size: 14px;
+      }
+    }
+  }
+
+  &.field--white {
+    .field__input {
+      background-color: #fff;
+    }
+  }
+
+  &.field--no-fly {
+    display: block;
+
+    .field__label {
+      position: static;
+      transform: none;
+    }
+
+    .field__input {
+      padding: 5px 40px 5px 20px;
+
+      &::placeholder {
+        opacity: 1;
+      }
+
+      &:not(:placeholder-shown) {
+        color: $black;
+      }
+    }
+  }
+
+  .field__button {
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    width: 40px;
+    height: calc(100% - 2px);
+    padding: 0;
+    opacity: 1;
+    z-index: 1;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+    transition: background-color 0.3s, z-index 0.3s, opacity 0.3s;
+  }
+
+  &.field-newsletter {
+
+    &:hover {
+      > .field__input {
+        border: 1px solid $blush;
+      }
+
+      > .field__button {
+        background-color: $blush-25;
+      }
+    }
+
+    .field__input {
+      padding: 11.5px 70px 11.5px 20px;
+      font-weight: 400;
+      font-size: 16px;
+
+      &:focus {
+        border: 1px solid $blush;
+        background-color: $white;
+      }
+
+      &:focus:not(.validate-error) {
+        + .field__button {
+          background-color: $rose;
+
+          path {
+            fill: $white;
+          }
+        }
+      }
+
+      &.validate-error {
+        ~ .field__button {
+          opacity: 0;
+          z-index: -1;
+        }
+      }
+
+      &.validate-true {
+        border: 1px solid $blush;
+        background-image: none;
+      }
+    }
+
+    .field__button {
+      width: 62px;
+
+      svg {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        path {
+          transition: fill 0.3s;
+        }
+      }
+    }
+  }
+
+  &.field-search {
+    .field__input {
+      padding-right: 100px;
+      font-weight: 400;
+      color: $midGrey;
+
+      &:focus {
+        background-color: $white;
+      }
+
+      &:not(:placeholder-shown) {
+        background-color: $white;
+      }
+    }
+
+    .field__button--search {
+      width: 24px;
+      right: 32px;
+    }
+  }
+
+  .field__error {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 50%;
+    color: $errorState;
+    font-size: 16px;
+    line-height: 1.4;
+    padding-top: 5px;
+    padding-left: 20px;
+
+    @include max-screen(767) {
+      font-size: 14px;
+      line-height: 1.28;
+    }
+  }
+}
+
+.field-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 30px;
+
+  .row-50 {
+    width: calc(50% - 15px);
+  }
+}
+
+.field__container {
+  display: flex;
+  justify-content: space-between;
+
+  .field {
+    width: calc(50% - 10px);
+
+    @include max-screen(767) {
+      width: calc(50% - 8px);
+    }
+  }
+
+  .field__error {
+    width: 100%;
+  }
+}
+
+//////////////////////////
+
+.badge {
+  display: inline-block;
+  padding: 2px 12px;
+  font-family: $futura;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  color: $midGrey;
+  background-color: $white;
+  border-radius: 32px;
+  cursor: default;
+  -ms-user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+
+  @include max-screen(767) {
+    font-size: 14px;
+  }
+
+  &.badge--gray {
+    color: $white;
+    background-color: $midGrey;
+  }
+
+  &.badge--pink {
+    color: $white;
+    background-color: $blush;
+  }
+}
+
+.link-arrow {
+  display: flex;
+  font-family: $futura;
+  font-size: 12px;
+  font-weight: 500;
+  align-items: center;
+  color: $rose;
+  line-height: 1;
+
+  svg {
+    flex: 0 0 24px;
+
+    path {
+      stroke: $rose;
+    }
+  }
+}
+
+// apps
+/*
+#insta-feed {
+  display: flex !important;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+
+  @include max-screen(767) {
+    gap: 15px 10px;
+  }
+
+  h2 {
+    width: 100%;
+    font-family: $futura;
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 1.5;
+    text-align: center;
+    margin-bottom: 10px !important;
+  }
+
+  .instafeed-container {
+    flex: 1 1 15%;
+
+    @include max-screen(1300) {
+      flex-basis: 20%;
+    }
+
+    @include max-screen(767) {
+      &:not(:nth-last-child(-n+4)) {
+        display: none;
+      }
+
+      padding-top: 40% !important;
+      flex-basis: calc(50% - 5px);
+    }
+  }
+}*/
+
+#shopify-product-reviews {
+  margin: 0 !important;
+  padding: 80px 0;
+
+  .spr-container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 10px;
+
+    @include max-screen(1300) {
+      max-width: 960px;
+    }
+
+    @include max-screen(991) {
+      max-width: 720px;
+    }
+
+    @include max-screen(767) {
+      max-width: 540px;
+    }
+
+    @include max-screen(575) {
+      max-width: 100%;
+      padding: 0 20px;
+    }
+
+    border: none;
+  }
+
+  .spr-header-title {
+    font-family: $futura;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 1.25;
+    margin-bottom: 10px;
+  }
+
+  .spr-summary-caption {
+    font-family: $futura;
+    font-weight: 400;
+    font-size: 18px;
+    color: $black;
+  }
+
+  .spr-summary-actions-newreview {
+    font-family: $futura;
+    font-weight: 500;
+    font-size: 22px;
+    color: $rose;
+    @include underline-text;
+  }
+
+  .spr-form-title {
+    font-family: $futura;
+    font-weight: 500;
+    font-size: 22px;
+    color: $black;
+    margin-bottom: 15px;
+  }
+
+  .spr-form-review-rating {
+    height: 30px;
+
+    .spr-starrating .spr-icon:before {
+      font-size: 30px;
+    }
+  }
+
+  .spr-summary {
+    font-family: $futura;
+    font-weight: 400;
+    font-size: 18px;
+    color: $black;
+  }
+
+  input:not(.spr-button),
+  textarea {
+    display: block;
+    width: 100%;
+    min-height: 48px;
+    padding: 20px;
+    margin: 0;
+    border: 1px solid $lightGrey;
+    border-radius: 30px;
+    background-color: $lightGrey;
+    font-family: $futura;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.4;
+    color: $midGrey;
+    transition: background-color 0.3s, border 0.3s;
+
+    &:-webkit-autofill {
+      -webkit-box-shadow: inset 0 0 0 50px $lightGrey;
+      -webkit-text-fill-color: $midGrey;
+    }
+
+    &::placeholder {
+      opacity: 1;
+    }
+
+    @include max-screen(767) {
+      height: 40px;
+      font-size: 16px;
+      padding: 15px;
+    }
+
+    &:focus {
+      border-radius: 30px;
+    }
+
+    &:hover {
+      background-color: $blush-25;
+    }
+
+    &:focus {
+      border: 1px solid $roseMid;
+      background-color: $lightGrey;
+
+      ~ .field__label {
+        top: 12px;
+        font-size: 10px;
+      }
+    }
+
+    &:disabled:hover {
+      background-color: $lightGrey;
+      cursor: not-allowed;
+    }
+  }
+
+  label {
+    @include hidden-elem;
+  }
+
+  textarea {
+    padding: 20px;
+    min-height: 250px;
+  }
+
+  .spr-form-review-body {
+    @include style-scrollbar();
+    border-radius: 30px;
+    overflow: hidden;
+
+    textarea {
+      resize: none;
+    }
+  }
+
+  .spr-starrating,
+  .spr-starratings {
+    display: block;
+    margin-bottom: 10px;
+    font-family: $futura;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.25;
+
+    .spr-icon {
+      margin-right: 5px;
+      color: $roseMid;
+      opacity: 1;
+
+      &:before {
+        font-size: 25px;
+      }
+    }
+  }
+
+  .spr-starratings {
+    .spr-icon {
+      margin-right: 0;
+
+      &:before {
+        font-size: 20px;
+      }
+    }
+  }
+
+  .spr-button {
+    border: none;
+    color: $white;
+    background-color: $rose;
+    transition: 0.3s;
+
+    &:hover {
+      color: $white;
+      background-color: $purple;
+      transition: 0.3s;
+    }
+  }
+
+  .spr-review-header-title {
+    font-family: $futura;
+    font-weight: 500;
+    font-size: 22px;
+    color: $black;
+  }
+
+  .spr-review-header-byline, strong {
+    font-family: $futura;
+    font-weight: 500;
+    font-size: 12px;
+    color: $midGrey;
+  }
+
+  .spr-review-content-body {
+    font-family: $futura;
+    font-weight: 400;
+    font-size: 18px;
+    color: $black;
+  }
+
+  .spr-review-reportreview {
+    font-family: $futura;
+    font-weight: 400;
+    font-size: 12px;
+    @include underline-text;
+    color: $rose;
+  }
+
+  .spr-form-message {
+    border-radius: 30px;
+    text-align: center;
+    font-family: $futura;
+    font-weight: 500;
+    color: $white;
+    font-size: 16px;
+
+    &.spr-form-message-error {
+      background-color: $errorState;
+    }
+  }
+
+  .spr-pagination {
+
+    .spr-pagination-page {
+      a {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        background-color: $blush-25;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-family: $futura;
+        font-weight: 500;
+        font-size: 18px;
+        color: $black;
+      }
+
+      &.is-active {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-family: $futura;
+        font-weight: 500;
+        font-size: 18px;
+        color: $black;
+        cursor: default;
+        background-color: $blush;
+      }
+    }
+
+    .spr-pagination-next,
+    .spr-pagination-prev {
+      display: none;
+      /*
+      a {
+        padding: 6px 12px;
+        border-radius: 20px;
+        background-color: $blush-25;
+        font-family: $futura;
+        font-weight: 400;
+        font-size: 16px;
+        color: $black;
+      }*/
+    }
+  }
+}
+
+#appstle_subscription_widget0 {
+  max-width: 100% !important;
+}

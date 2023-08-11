@@ -1,0 +1,73 @@
+{{ 'section-benefits.css' | asset_url | stylesheet_tag }}
+
+{% if product.metafields.benefits.benefits_banner != blank and product.metafields.benefits.benefits_header != blank %}
+<section class="benefits" id="benefits-section">
+  {% if product.metafields.benefits.benefits_banner != blank %}
+    <div class="benefits__image-block">
+      <img
+        srcset="{{ product.metafields.benefits.benefits_banner }} {{ product.metafields.benefits.benefits_banner.width }}w"
+        src="{{ product.metafields.benefits.benefits_banner }}"
+        alt="{{ product.metafields.benefits.benefits_banner.alt | escape }}"
+        loading="lazy"
+        width="{{ product.metafields.benefits.benefits_banner.width }}"
+        height="{{ product.metafields.benefits.benefits_banner.height }}"
+      >
+    </div>
+  {% endif %}
+
+  <div class="benefits__content-wrapper">
+    <div class="container">
+      <div class="benefits__content">
+
+        <div class="benefits__header">
+          {% if product.metafields.benefits.benefits_header != blank %}
+            <h2 class="benefits__title">{{ product.metafields.benefits.benefits_header }}</h2>
+          {% endif %}
+          {% if product.metafields.benefits.benefits_subheader != blank %}
+            <h2 class="benefits__subtitle">{{ product.metafields.benefits.benefits_subheader }}</h2>
+          {% endif %}
+        </div>
+
+        {% if product.metafields.benefits.benefits_text != blank %}
+          <div class="benefits__text">
+            <p class="benefits__text-block">{{ product.metafields.benefits.benefits_text }}</p>
+          </div>
+        {% endif %}
+
+        {% assign q_size = product.metafields.benefits.benefits_icon.size | minus: 1 %}
+        {% if q_size > 0 %}
+          <div class="benefits__list-icon">
+            {%- for icon in (0..q_size) -%}
+              <div class="benefits__list-icon-item" data-icon-{{ block.id }}>
+                <div class="benefits__list-icon-content">
+                  {{ product.metafields.benefits.benefits_icon[icon] }}
+                  {{ product.metafields.benefits.benefits_icon_text[icon] }}
+                </div>
+              </div>
+            {%- endfor -%}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% schema %}
+{
+  "name": "t:sections.pdp-benefits.name",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.pdp-benefits.settings.header.content"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.pdp-benefits.presets.name"
+    }
+  ]
+}
+{% endschema %}

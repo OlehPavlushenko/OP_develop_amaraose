@@ -1,0 +1,37 @@
+<div class="account-menu__container" data-account-menu>
+  {% if settings.customer_title != blank %}
+    <h2 class="visually-hidden">{{ settings.customer_title }}</h2>
+  {% endif %}
+
+  {% if settings.customer_menu.size > 0 %}
+    {% assign page_handle = '/' | append: template.name %}
+
+    {% if template.directory != blank and page_handle != routes.account_url %}
+      {% assign page_handle = routes.account_url | append: page_handle %}
+    {% endif %}
+    {% if template.suffix != blank %}
+      {% assign page_handle = page_handle | append: '?view=' | append: template.suffix %}
+    {% endif %}
+
+    <button class="account-menu__opener" type="button" data-account-menu-opener>
+      {% for link in settings.customer_menu.links -%}
+        {% if page_handle == link.url or order.customer_url contains link.url %}
+          {% render 'account-menu-item', forloop_index: forloop.index, link_title: link.title %}
+        {% endif %}
+      {% endfor %}
+    </button>
+
+    <ul class="account-menu">
+      {% for link in settings.customer_menu.links -%}
+        <li class="account-menu__list-item">
+          <a href="{{ link.url }}"
+             class="account-menu__list-link
+            {% if page_handle == link.url or order.customer_url != blank and link.url contains 'order' %} active{% endif %}">
+
+            {% render 'account-menu-item', forloop_index: forloop.index, link_title: link.title %}
+          </a>
+        </li>
+      {%- endfor %}
+    </ul>
+  {% endif %}
+</div>

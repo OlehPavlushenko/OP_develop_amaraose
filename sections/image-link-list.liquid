@@ -1,0 +1,94 @@
+{{ 'section-block-links.css' | asset_url | stylesheet_tag }}
+
+<section class="block-links">
+  <div class="container">
+    <div class="block-links__content-wrapper">
+      {% if section.settings.title != blank %}
+        <h2 class="visually-hidden">{{ section.settings.title }}</h2>
+      {% endif %}
+
+      <div class="block-links__list">
+        {%- for block in section.blocks -%}
+          <div class="block-links__list-item">
+            {% if block.settings.icon != blank or block.settings.image != blank %}
+              <div
+                class="block-links__list-item-image-wrapper {% if block.settings.image == blank %} icon--style{% endif %}">
+                              {% if block.settings.icon != blank %}
+                                  {{ block.settings.icon }}
+                                {% endif %}
+                {% if block.settings.image != blank %}
+                  <img
+                    class="block-links__list-item-image"
+                    srcset="{%- if block.settings.image.width >= 275 -%}{{ block.settings.image | image_url: width: 275 }} 275w,{%- endif -%}
+                        {%- if block.settings.image.width >= 380 -%}{{ block.settings.image | image_url: width: 380 }} 380w,{%- endif -%}
+                        {{ block.settings.image | image_url }} {{ block.settings.image.width }}w"
+                    src="{{ block.settings.image | image_url: width: 380 }}"
+                    alt="{{ block.settings.image.alt }}"
+                    height="{{ block.settings.image.height }}"
+                    width="{{ block.settings.image.width }}"
+                    loading="lazy"
+                  >
+                {% endif %}
+              </div>
+            {% endif %}
+
+            {% if block.settings.title != blank %}
+              <div class="block-links__list-item-content">
+                <h3 class="block-links__list-item-title">{{ block.settings.title }}</h3>
+              </div>
+            {% endif %}
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.block_links.name",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "default": "Block links",
+      "label": "t:sections.block_links.settings.title.label"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "block_link",
+      "name": "t:sections.block_links.settings.blocks.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "t:sections.block_links.settings.blocks.title"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "t:sections.block_links.settings.blocks.url"
+        },
+        {
+          "type": "textarea",
+          "id": "icon",
+          "label": "t:sections.block_links.settings.blocks.icon"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:sections.block_links.settings.blocks.image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.block_links.presets.name"
+    }
+  ]
+}
+{% endschema %}

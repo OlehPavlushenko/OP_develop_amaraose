@@ -1,0 +1,234 @@
+@import "_variables";
+
+.card-wrapper {
+  width: 380px;
+  height: auto;
+  border: 1px solid $lightGrey;
+  border-radius: 20px;
+  overflow: hidden;
+
+  @include max-screen(991) {
+    max-width: 380px;
+    width: 100%;
+  }
+
+  .price {
+    min-height: 43px;
+
+    @media screen and (max-width: 992px) {
+      min-height: 57px;
+    }
+  }
+
+  .price__sale + .price__regular {
+    padding-top: 0;
+  }
+
+  .price__regular {
+  }
+
+  .card__inner {
+    position: relative;
+
+    .card__media {
+      max-width: 380px;
+      width: 100%;
+      height: 334px;
+
+      @include max-screen(767) {
+        height: 220px;
+      }
+
+      @include max-screen(575) {
+        height: 160px;
+      }
+
+      .media {
+        height: 100%;
+        background: #f5f7f9;
+
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: top center;
+      }
+    }
+
+    .badge-wrapper {
+      position: absolute;
+      top: 12px;
+      right: 14px;
+      line-height: 1;
+    }
+  }
+
+  .card__content {
+    padding: 20px;
+    min-height: 207px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    @include max-screen(991) {
+      min-height: 219px;
+    }
+
+    @include max-screen(767) {
+      padding: 10px;
+      min-height: 165px;
+    }
+
+    @include max-screen(450) {
+      min-height: 174px;
+    }
+
+    .jdgm-widget {
+      display: block !important;
+      min-height: 29px;
+      margin-bottom: 10px;
+
+      .jdgm-prev-badge__stars {
+        margin-right: 10px;
+      }
+
+      .jdgm-prev-badge__text {
+        display: inline-block;
+        font-family: $futura;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 1.3;
+        color: $midGrey;
+        text-decoration: underline;
+        text-transform: capitalize;
+
+        @include max-screen(767) {
+          font-size: 14px;
+        }
+
+        @include max-screen(575) {
+          display: block;
+        }
+      }
+
+      .jdgm-star {
+        color: $roseMid;
+      }
+    }
+
+    .card__information-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 20px 10px;
+
+      @include max-screen(991) {
+        align-items: center;
+      }
+
+      @include max-screen(575) {
+        gap: 14px 10px;
+      }
+
+      .information-content {
+        min-height: 82px;
+        width: 220px;
+
+        @include max-screen(991) {
+          width: 100%;
+        }
+
+        @include max-screen(767) {
+          min-height: 58px;
+        }
+
+        .title {
+          a {
+            max-width: 100%;
+            width: max-content;
+            min-height: 54px;
+            height: 100%;
+            font-family: $futura;
+            font-weight: 500;
+            font-size: 18px;
+            line-height: 1.5;
+            color: $black;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            //white-space: nowrap;
+            @include line-text-hidden(2);
+
+            @include max-screen(767) {
+              min-height: 38px;
+              font-size: 16px;
+              line-height: 1.25;
+            }
+          }
+        }
+
+        .text {
+          max-width: 100%;
+          width: max-content;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          font-family: $futura;
+          font-weight: 400;
+          font-size: 18px;
+          line-height: 1.5;
+          color: $midGrey;
+
+          @include max-screen(767) {
+            font-size: 14px;
+            line-height: 1.25;
+          }
+        }
+      }
+
+      .quick-add {
+        margin: 0;
+        width: 100%;
+        line-height: 1;
+
+        .button {
+          width: 100%;
+          border-radius: 10px;
+
+          @include max-screen(991) {
+            padding: 0;
+          }
+
+          @include max-screen(767) {
+            height: max-content;
+            min-height: 40px;
+            font-size: 16px;
+            border-radius: 13px;
+          }
+        }
+
+        .button-icon {
+          svg {
+            display: none;
+          }
+
+          path {
+            stroke: $white;
+            transition: 0.3s;
+          }
+
+          &:hover {
+            path {
+              stroke: $black;
+              transition: 0.3s;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+

@@ -1,0 +1,97 @@
+{{ 'section-differentiators.css' | asset_url | stylesheet_tag }}
+
+<div class="differentiators">
+  <div class="container">
+    <div class="differentiators__content-wrapper">
+      <div class="differentiators__content">
+        {% if section.settings.title != blank %}
+          <h2 class="differentiators__title">{{ section.settings.title }}</h2>
+        {% endif %}
+        {% if section.settings.text != blank %}
+          <p class="differentiators__text">{{ section.settings.text }}</p>
+        {% endif %}
+      </div>
+
+      <ul class="differentiators__list">
+        {%- for block in section.blocks -%}
+          <li class="differentiators__list-item">
+
+            {% if block.settings.list_item_image != blank and block.settings.list_item_icon_name != blank %}
+              <div class="differentiators__list-item-icon">
+                {{ block.settings.list_item_icon_name }}
+              </div>
+              <div class="differentiators__list-item-img">
+                <img src="{{ block.settings.list_item_image | img_url: "master" }}"
+                     alt="{{ block.settings.image.alt | escape }}">
+              </div>
+            {% elsif block.settings.list_item_image != blank %}
+              <div class="differentiators__list-item-img">
+                <img src="{{ block.settings.list_item_image | img_url: "master" }}"
+                     alt="{{ block.settings.image.alt | escape }}">
+              </div>
+            {% elsif block.settings.list_item_icon_name != blank %}
+              <div class="differentiators__list-item-icon">
+                {{ block.settings.list_item_icon_name }}
+              </div>
+            {% endif %}
+
+            {% if block.settings.list_item_title != blank %}
+              <h3 class="differentiators__list-item-title">{{ block.settings.list_item_title }}</h3>
+            {% endif %}
+          </li>
+        {%- endfor -%}
+      </ul>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.differentiators.name",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "default": "The Amarose Touch",
+      "label": "t:sections.differentiators.settings.title.label"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "default": "All our products are made with care - using only vegan-friendly, high quality ingredients - and never tested on animals.",
+      "label": "t:sections.differentiators.settings.text.label"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "differentiators_list",
+      "name": "t:sections.differentiators.settings.list.label",
+      "settings": [
+        {
+          "type": "text",
+          "id": "list_item_title",
+          "default": "Vegan Friendly Ingredients",
+          "label": "t:sections.differentiators.settings.list_item.title"
+        },
+        {
+          "type": "textarea",
+          "id": "list_item_icon_name",
+          "label": "t:sections.differentiators.settings.list_item.icon_name"
+        },
+        {
+          "type": "image_picker",
+          "label": "list_item_image",
+          "id": "list_item_image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.differentiators.name"
+    }
+  ]
+}
+{% endschema %}

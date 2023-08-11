@@ -1,0 +1,29 @@
+/*
+.mega-menu {
+  position: static;
+}
+
+.mega-menu__content {
+  background-color: rgb(var(--color-background));
+  left: 0;
+  overflow-y: auto;
+  padding-bottom: 2.4rem;
+  padding-top: 2.4rem;
+  position: absolute;
+  right: 0;
+  top: 100%;
+  z-index: -1;
+}
+
+.js .mega-menu__content {
+  opacity: 0;
+  transform: translateY(-1.5rem);
+}
+
+.mega-menu[open] .mega-menu__content {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+*/

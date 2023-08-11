@@ -1,0 +1,96 @@
+{{ "section-landing-header.css" | asset_url | stylesheet_tag }}
+
+<header class="landing-header">
+  <div class="landing-header__announcement-bar">
+    <div class="container">
+
+      {% if section.settings.show_announcement_bar %}
+        <div class="announcement-message">
+          <div class="swiper-wrapper">
+
+            {% for block in section.blocks %}
+              <div class="swiper-slide">
+                {{ block.settings.text }}
+              </div>
+            {% endfor %}
+
+          </div>
+        </div>
+      {% endif %}
+
+    </div>
+  </div>
+
+  {% if section.settings.logo != blank or section.settings.button_link != blank %}
+    <div class="container">
+      <div class="landing-header__content">
+        {% if section.settings.logo != blank %}
+            <a class="landing-header_logo" href="/">
+              <img src="{{ section.settings.logo | img_url: 'master' }}"
+                   alt="{{ section.settings.logo.alt | default: 'amarose' }}"
+                   loading="lazy">
+            </a>
+        {% endif %}
+
+        {% if section.settings.button_link != blank %}
+          <a class="landing-header__button button landing-button landing-button--sm" href="{{ section.settings.button_link }}">
+            {{ section.settings.button_text }}
+          </a>
+        {% endif %}
+
+      </div>
+    </div>
+  {% endif %}
+
+</header>
+
+{% schema %}
+{
+  "name": "Landing header",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_announcement_bar",
+      "label": "Show announcement bar",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link",
+      "default": "/"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Shop Now"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Content announcement bar",
+      "type": "announcement_bar",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Content"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Landing header"
+    }
+  ]
+}
+{% endschema %}

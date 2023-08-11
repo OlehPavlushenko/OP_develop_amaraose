@@ -1,0 +1,111 @@
+{% if template == 'product' %}
+  {% assign show_on_product = product.metafields.how_it_works.works_icon_text.size | minus: 1 %}
+{% else%}
+  {% assign show_on_not_product = section.blocks.size %}
+{% endif %}
+
+
+{% if show_on_not_product > 0 or show_on_product > 0 %}
+
+{{ 'section-how-it-works-pdp.css' | asset_url | stylesheet_tag }}
+
+<div class="product-how-it-works">
+  <div class="container">
+    <div class="product-how-it-works__content">
+      {% if section.settings.is_product == false %}
+        {% render 'how-it-works-pdp',
+          title: section.settings.title,
+          text: section.settings.text
+        %}
+      {% else %}
+        {% render 'how-it-works-pdp',
+          title: product.metafields.how_it_works.works_titel,
+          text: product.metafields.how_it_works.works_text
+        %}
+      {% endif %}
+
+      <div class="how-it-works-pdp__list-wrapper">
+        <div class="how-it-works-pdp__list swiper">
+          <ul class="swiper-wrapper">
+            {% if section.settings.is_product == false %}
+              {% for block in section.blocks %}
+                <li class="how-it-works-pdp__list-item swiper-slide">
+                  {% render 'how-it work-item-pdp',
+                    icon: block.settings.icon_works,
+                    description: block.settings.text_works
+                  %}
+                </li>
+              {% endfor %}
+            {% else %}
+              {% assign q_size = product.metafields.how_it_works.works_icon_text.size | minus: 1 %}
+              {%- for i in (0..q_size) -%}
+                <li class="how-it-works-pdp__list-item swiper-slide">
+                  {% render 'how-it work-item-pdp',
+                    icon: product.metafields.how_it_works.works_icon[i],
+                    description: product.metafields.how_it_works.works_icon_text[i]
+                  %}
+                </li>
+              {% endfor %}
+            {% endif %}
+          </ul>
+        </div>
+        <div class="ingredient-btn-next">
+          {% render 'icon-arrow-r' %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+{% endif %}
+
+{% schema %}
+{
+  "name": "t:sections.how_it_works_pdp.name",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "is_product",
+      "default": false,
+      "label": "t:sections.how_it_works_pdp.settings.enable_metafields.label"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "default": "Stronger Together",
+      "label": "t:sections.how_it_works_pdp.settings.title.label"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "default": "Developed to work better together, each product prepares your skin for every day protection.",
+      "label": "t:sections.how_it_works_pdp.settings.text.label"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "ingredient",
+      "name": "t:sections.how_it_works_pdp.blocks.ingredient.name",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "icon_works",
+          "label": "t:sections.how_it_works_pdp.blocks.ingredient.settings.icon_works.label"
+        },
+        {
+          "type": "textarea",
+          "id": "text_works",
+          "label": "t:sections.how_it_works_pdp.blocks.ingredient.settings.text_works.label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.how_it_works_pdp.presets.name"
+    }
+  ]
+}
+{% endschema %}

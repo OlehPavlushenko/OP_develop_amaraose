@@ -1,0 +1,94 @@
+<link rel="stylesheet" href="{{ 'component-card.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-article-card.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'section-main-blog.css' | asset_url }}" media="print" onload="this.media='all'">
+
+<noscript>{{ 'component-card.css' | asset_url | stylesheet_tag }}</noscript>
+<noscript>{{ 'component-article-card.css' | asset_url | stylesheet_tag }}</noscript>
+
+
+<div class="featured-blog">
+  <div class="container">
+
+    {%- unless section.settings.heading == blank and section.settings.content == blank -%}
+      <h2 id="SectionHeading-{{ section.id }}" class="main-blog__title">{{ section.settings.heading | escape }}</h2>
+      {{ section.settings.content }}
+    {%- endunless -%}
+
+    {%- if section.settings.blog != blank and section.settings.blog.articles_count > 0 -%}
+      {% assign secondary_post_limit = section.settings.post_limit | plus: 1 %}
+      <ul id="Slider-{{ section.id }}"
+          class="blog-articles "
+          role="list">
+        {%- for feature_article in section.settings.blog.articles limit: secondary_post_limit -%}
+          {% unless feature_article.handle == article.handle or forloop.index == secondary_post_limit %}
+            <li class="blog-articles__article">
+              {% render 'article-card',
+                blog: section.settings.blog,
+                article: feature_article,
+                media_aspect_ratio: 1.66,
+                show_image: true,
+                show_date: section.settings.show_date,
+                show_author: section.settings.show_author,
+                show_excerpt: true %}
+            </li>
+          {% endunless %}
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.featured-blog.name_article",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "Blog posts",
+      "label": "t:sections.featured-blog.settings.heading.label"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Text"
+    },
+    {
+      "type": "blog",
+      "id": "blog",
+      "label": "t:sections.featured-blog.settings.blog.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_date",
+      "default": true,
+      "label": "t:sections.featured-blog.settings.show_date.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_author",
+      "default": false,
+      "label": "t:sections.featured-blog.settings.show_author.label"
+    },
+    {
+      "type": "range",
+      "id": "post_limit",
+      "min": 3,
+      "max": 30,
+      "step": 3,
+      "default": 6,
+      "label": "t:sections.featured-blog.settings.post_limit.label"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.featured-blog.presets.name_article",
+      "settings": {
+        "blog": "News"
+      }
+    }
+  ]
+}
+{% endschema %}

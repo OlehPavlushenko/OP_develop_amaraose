@@ -1,0 +1,21 @@
+@import "variables";
+
+.announcement-bar,
+.header-wrapper,
+footer{
+  @include hidden-elem;
+}
+
+h1,.h1 {
+  font-family: $poppins;
+  @include font-adaptiv(48, 44, 58);
+  font-weight: 500;
+  color: $blackDark;
+}
+
+h2,.h2 {
+  font-family: $poppins;
+  @include font-adaptiv(42, 32, 58);
+  font-weight: 400;
+  color: $blackDark;
+}

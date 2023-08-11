@@ -1,0 +1,29 @@
+@import "variables";
+
+.faq-search {
+  padding-top: 40px;
+
+  .search__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .template-search__search {
+    max-width: 560px;
+    width: 100%;
+  }
+}
+
+.search__title {
+  font-family: $futura;
+  font-weight: 400;
+  font-size: 48px;
+  line-height: 1.3;
+  color: $black;
+  margin-bottom: 24px;
+}
+
+.template-search__search {
+
+}
