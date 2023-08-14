@@ -90,9 +90,7 @@
           <span class="bundle-cart__empty--title">0 Products Selected</span>
           <span class="bundle-cart__empty--text">Add at least 2 to build your bundle</span>
         </div>
-        <form
-          action="/cart/add"
-          method="post"
+        <div
           class="bundle-cart__form js-bundle-cart-form hidden"
         >
           <div class="bundle-cart__products bundle-products js-list-container"></div>
@@ -130,8 +128,7 @@
             </div>
             <div class="bundle-cart__next">
               <button
-                type="submit"
-                class="button primary-button bundle-cart__button js-bundle-cart-next"
+                class="button primary-button bundle-cart__button js-bundle-cart-recommend-next"
               >
                 <span class="bundle-cart__button--text">NEXT {% render 'icon-arrow' -%}</span>
                 <div class="bundle-cart__price">
@@ -150,7 +147,85 @@
               <span class="bundle-cart__shipping">FREE Shipping On US Orders of $70+</span>
             </div>
           </div>
-        </form>
+        </div>
+        <div class="bundle-cart__recomend js-bundle-cart-recommend-wrap">
+          <div class="bundle-cart__recomend-top">
+            <span class="bundle-cart__recomend-top--back js-bundle-cart-recommend-back">{% render 'icon-arrow' -%} Back to bundle builder</span>
+            <h4 class="bundle-cart__recomend-top--title">Add this to complete your purchase?</h4>
+          </div>
+          {%- assign recommend_products = section.settings.recommend_products -%}
+          <ul class="bundle-products__grid">
+            {%- for product in recommend_products -%}
+                <li class="bundle-products__item js-card-item">
+                  {% render 'card-product-bundle',
+                    card_product: product,
+                    media_aspect_ratio: 'adapt',
+                    show_secondary_image: false,
+                    show_rating: true,
+                    show_quick_add: false,
+                    forloop: forloop.index,
+                    product_bundle: 'bundle-cart__style',
+                    product_recommend: true
+                  %}
+                </li>
+              {%- endfor -%}
+          </ul>
+          <div class="bundle-cart__footer">
+            <div class="bundle-cart__selected">
+              <ul class="bundle-cart__list">
+                <li class="bundle-cart__list--first js-bundle-cart-selected">
+                  <span class="bundle-cart__list--text"
+                    ><span class="js-count-selected">0</span> Products Selected</span
+                  >
+                  <div class="bundle-cart__price">
+                    <div class="bundle-cart__price--container">
+                      <div class="bundle-cart__price--sale">
+                        <span class="visually-hidden visually-hidden--inline">Sale price</span>
+                        <span class="bundle-cart__price--item js-cart-price-sale"></span>
+                      </div>
+                      <div class="bundle-cart__price--regular">
+                        <span class="visually-hidden visually-hidden--inline">Regular price</span>
+                        <span class="bundle-cart__price--item js-cart-price-regular"></span>
+                      </div>
+                    </div>
+                    <span class="js-count-discount bundle-cart__discount"></span>
+                  </div>
+                </li>
+                {%- for item in discount_list -%}
+                  <li
+                    data-discounted="{{ item }}"
+                    class="bundle-cart__list--item js-bundle-cart-selected"
+                  >
+                    <span class="js-count-discount-text">{{ item }} off</span>
+                  </li>
+                  {%- assign count_bot = count_bot | plus: 1 -%}
+                {%- endfor -%}
+              </ul>
+            </div>
+            <div class="bundle-cart__next">
+              <form action="{{ routes.cart_url }}/checkout" method="post" class="bundle-cart__checkout" id="checkout">
+                <button
+                  class="button primary-button bundle-cart__button js-bundle-cart-next"
+                >
+                  <span class="bundle-cart__button--text">CHECKOUT</span>
+                  <div class="bundle-cart__price">
+                    <div class="bundle-cart__price--container">
+                      <div class="bundle-cart__price--sale">
+                        <span class="visually-hidden visually-hidden--inline">Sale price</span>
+                        <span class="bundle-cart__price--item js-cart-price-sale"></span>
+                      </div>
+                      <div class="bundle-cart__price--regular">
+                        <span class="visually-hidden visually-hidden--inline">Regular price</span>
+                        <span class="bundle-cart__price--item js-cart-price-regular"></span>
+                      </div>
+                    </div>
+                  </div>
+                </button>
+              </form>
+              <span class="bundle-cart__shipping">FREE Shipping On US Orders of $70+</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </bundle-section>
@@ -193,6 +268,13 @@
     {
       "type": "header",
       "content": "t:sections.grid-collection.settings.header.content"
+    },
+    {
+      "type": "product_list",
+      "id": "recommend_products",
+      "label": "Recommend Products",
+      "limit": 10,
+      "info": "Add products"
     },
     {
       "type": "select",

@@ -57,6 +57,10 @@ class BundleSection extends HTMLElement {
 
         this.toggle = this.querySelector(".js-accordion-toggle")
         this.content = this.querySelector(".js-accordion-content")
+        this.wrapRecommend = this.querySelector(".js-bundle-cart-recommend-wrap")
+        this.backRecommend = this.querySelector(".js-bundle-cart-recommend-back")
+        this.nextRecommend = this.querySelector(".js-bundle-cart-recommend-next")
+        this.addRecommendCart = this.querySelectorAll(".js-btn-bundle-add-recommend")
 
         this.blockWrap = document.querySelector(".js-bundle-cart-wrap")
         this.blockEmpty = document.querySelector(".js-bundle-cart-empty")
@@ -83,15 +87,108 @@ class BundleSection extends HTMLElement {
 
         this.loadProducts()
 
+        
+        this.addRecommendCart.forEach(element => {
+            element.addEventListener("click", (event) => {
+                event.preventDefault()
+                this.addToCartRecommend(event)
+            })
+        });
+
         this.btnNext.addEventListener("click", (event) => {
             event.preventDefault()
+            event.currentTarget.classList.add('in-progress')
             this.addToCartAllProducts()
         })
+
+        this.nextRecommend.addEventListener("click", (event) => {
+            event.preventDefault()
+            event.currentTarget.classList.add('in-progress')
+            setTimeout(() => {
+                this.wrapRecommend.classList.add("open")
+                this.blockForm.classList.add("closed")
+                this.nextRecommend.classList.remove('in-progress')
+            }, 500);
+            
+        })
+
+        this.backRecommend.addEventListener("click", (event) => {
+            event.preventDefault()
+            this.wrapRecommend.classList.remove("open")
+            this.blockForm.classList.remove("closed")
+        })
+
 
         this.sectionBundle = document.querySelector(".js-section-bundle")
         this.bundleCart = document.querySelector(".js-bundle-cart")
 
+        this.updateRecommendButtons();
+
         window.addEventListener("scroll", this.handleScroll.bind(this))
+    }
+
+    async getCartItemsFromShopify() {
+        const response = await fetch(window.Shopify.routes.root + 'cart.js');
+        const data = await response.json();
+        return data.items.map(item => item.variant_id);
+    }
+    
+    async updateRecommendButtons() {
+        const cartItemIds = await this.getCartItemsFromShopify();
+    
+        this.addRecommendCart.forEach(button => {
+            const productId = button.getAttribute('data-product-id');
+            if (cartItemIds.includes(parseInt(productId))) {
+                button.classList.add('in-has');
+            }
+        });
+    }
+
+    addToCartRecommend(event) {
+        let current = event.currentTarget
+        current.classList.add('in-progress')
+        
+        const productId = current.getAttribute("data-product-id")
+
+        
+
+        if (current.classList.contains('in-has')) {
+            const formItem = {
+                updates: {
+                    [parseInt(productId)]: 0,
+                },
+            };
+            current.classList.remove('in-has')
+            console.log("remove",productId)
+            
+            this.changeCartAlltWithAjax(formItem)
+            .then((data) => {
+                console.log("change товар:", data, current);
+                current.classList.remove('in-progress')
+                current.classList.remove('in-has')
+            })
+            .catch((error) => {
+                console.error("Error update item:", error);
+            });
+        }else {
+            let formData = {
+                'items': [{
+                 'id': parseInt(productId),
+                 'quantity': 1
+                }]
+            };
+            this.addToCartAlltWithAjax(formData)
+            .then((data) => {
+                console.log("add to cart:", data);
+                current.classList.remove('in-progress')
+                current.classList.add('in-has')
+            })
+            .catch((error) => {
+                console.error("Error update item:", error);
+            });
+        }
+        
+        
     }
 
     addToCartAllProducts() {
@@ -107,25 +204,54 @@ class BundleSection extends HTMLElement {
                 quantity: quantity,
             })
         })
-        this.addToCartWithAjax(formData)
-    }
-
-    addToCartWithAjax(formData) {
-        fetch(window.Shopify.routes.root + "cart/add.js", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(formData),
-        })
-            .then((response) => response.json())
+        this.addToCartAlltWithAjax(formData)
             .then((data) => {
-                window.location.href = "/cart"
-                localStorage.removeItem("productsBundle")
+                console.log("Add to Cart:", data);
+                document.querySelector('#checkout').submit();
             })
             .catch((error) => {
-                console.error("Eror", error)
+                console.error("Error add to car:", error);
+            });
+    }
+
+    addToCartAlltWithAjax(formData) {
+        return new Promise((resolve, reject) => {
+            fetch(window.Shopify.routes.root + "cart/add.js", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formData),
             })
+            .then((response) => response.json())
+            .then((data) => {
+                resolve(data); 
+            })
+            .catch((error) => {
+                console.error("Eror", error);
+                reject(error);
+            });
+        });
+    }
+
+    changeCartAlltWithAjax(formData) {
+        return new Promise((resolve, reject) => {
+            fetch(window.Shopify.routes.root + "cart/update.js", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formData),
+            })
+            .then((response) => response.json())
+            .then((data) => {
+                resolve(data);
+            })
+            .catch((error) => {
+                console.error("Eror", error);
+                reject(error);
+            });
+        });
     }
 
     handleScroll() {
@@ -144,6 +270,7 @@ class BundleSection extends HTMLElement {
     onClick(event) {
         event.preventDefault()
         event.target.classList.contains("open") ? this.close() : this.open()
+        
     }
 
     open() {
