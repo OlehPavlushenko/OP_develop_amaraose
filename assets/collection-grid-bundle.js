@@ -147,10 +147,7 @@ class BundleSection extends HTMLElement {
     addToCartRecommend(event) {
         let current = event.currentTarget
         current.classList.add('in-progress')
-        
         const productId = current.getAttribute("data-product-id")
-
-        
 
         if (current.classList.contains('in-has')) {
             const formItem = {
@@ -196,6 +193,7 @@ class BundleSection extends HTMLElement {
         const formData = {
             items: [],
         }
+
         productInputs.forEach((input) => {
             const productId = input.getAttribute("data-variant-id")
             const quantity = parseInt(input.value)
@@ -204,6 +202,7 @@ class BundleSection extends HTMLElement {
                 quantity: quantity,
             })
         })
+        
         this.addToCartAlltWithAjax(formData)
             .then((data) => {
                 console.log("Add to Cart:", data);
