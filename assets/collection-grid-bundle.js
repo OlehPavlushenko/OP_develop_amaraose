@@ -135,13 +135,15 @@ class BundleSection extends HTMLElement {
     
     async updateRecommendButtons() {
         const cartItemIds = await this.getCartItemsFromShopify();
-    
-        this.addRecommendCart.forEach(button => {
-            const productId = button.getAttribute('data-product-id');
-            if (cartItemIds.includes(parseInt(productId))) {
-                button.classList.add('in-has');
-            }
-        });
+        console.log("updateRecommendButtons",cartItemIds)
+        if (cartItemIds.length > 0) {
+            this.addRecommendCart.forEach(button => {
+                const productId = button.getAttribute('data-product-id');
+                if (cartItemIds.includes(parseInt(productId))) {
+                    button.classList.add('in-has');
+                }
+            });
+        }  
     }
 
     addToCartRecommend(event) {
@@ -207,6 +209,7 @@ class BundleSection extends HTMLElement {
             .then((data) => {
                 console.log("Add to Cart:", data);
                 document.querySelector('#checkout').submit();
+                localStorage.removeItem("productsBundle")
             })
             .catch((error) => {
                 console.error("Error add to car:", error);
