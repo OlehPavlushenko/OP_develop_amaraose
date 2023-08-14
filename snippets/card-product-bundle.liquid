@@ -32,26 +32,41 @@
     endif
   -%}
   {% if product_bundle == 'bundle-cart__style' %}
-    <button
-      type="button"
-      name="delete"
-      id="DeleteProduct-{{ card_product.id }}"
-      data-product-id="{{ card_product.id }}"
-      data-handle="{{ card_product.handle }}"
-      title="Remove"
-      class="card-product__remove js-btn-bundle-remove"
-    >
-      {% render 'icon-remove' %}
-    </button>
-
-    <input
-      type="hidden"
-      name="quantity[{{ forloop }}]"
-      value="1"
-      class="js-qty-bundle"
-      data-product-id="{{ card_product.id }}"
-      data-variant-id="{{ card_product.selected_or_first_available_variant.id }}"
-    >
+    {% if product_recommend %}
+      <button
+        type="button"
+        name="delete"
+        id="AddProduct-{{ card_product.id }}"
+        data-product-id="{{ card_product.selected_or_first_available_variant.id }}"
+        data-handle="{{ card_product.handle }}"
+        title="Add to product"
+        class="card-product__add btn-bundle-add-recommend js-btn-bundle-add-recommend"
+      >
+        {% render 'icon-cart-empty' %}
+        {% render 'icon-remove' %}
+      </button>
+      {%- else -%}
+      <button
+        type="button"
+        name="delete"
+        id="DeleteProduct-{{ card_product.id }}"
+        data-product-id="{{ card_product.id }}"
+        data-handle="{{ card_product.handle }}"
+        title="Remove"
+        class="card-product__remove js-btn-bundle-remove"
+      >
+        {% render 'icon-remove' %}
+      </button>
+      <input
+        type="hidden"
+        name="quantity[{{ forloop }}]"
+        value="1"
+        class="js-qty-bundle"
+        data-product-id="{{ card_product.id }}"
+        data-variant-id="{{ card_product.selected_or_first_available_variant.id }}"
+      >
+    {%- endif -%}
+   
   {%- endif -%}
   <div class="card-wrapper underline-links-hover {{ product_bundle }}">
     <div
