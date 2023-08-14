@@ -1,5 +1,5 @@
 // Bundle Collection 
-
+//Recommend
 Shopify.formatMoney = function (cents, format) {
     if (typeof cents == "string") {
         cents = cents.replace(".", "")
@@ -202,7 +202,7 @@ class BundleSection extends HTMLElement {
                 quantity: quantity,
             })
         })
-        
+
         this.addToCartAlltWithAjax(formData)
             .then((data) => {
                 console.log("Add to Cart:", data);
