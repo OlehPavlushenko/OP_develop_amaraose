@@ -503,6 +503,11 @@ bundle-button {
     display: inline-block;
     vertical-align: middle;
 }
+.bundle-cart__button.in-progress,
+.btn-bundle-add-recommend.in-progress {
+    pointer-events: none;
+}
+
 .bundle-cart__button.in-progress > span,
 .bundle-cart__button.in-progress > div,
 .btn-bundle-add-recommend svg.icon-remove,
@@ -540,6 +545,10 @@ bundle-button {
 }
 .btn-bundle-add-recommend {
     cursor: pointer;
+}
+
+.bundle-recommend-error-info {
+    display: block;
 }
 
 @keyframes spin {
