@@ -69,6 +69,7 @@ class BundleSection extends HTMLElement {
 
         this.btnNext = document.querySelector(".js-bundle-cart-next")
         this.countSelected = document.querySelectorAll(".js-count-selected")
+        this.countSelectedRecommend = document.querySelector(".js-recommend-count-selected")
         this.countDiscount = document.querySelectorAll(".js-count-discount")
 
         this.priceRegular = document.querySelectorAll(".js-cart-price-regular")
@@ -135,7 +136,6 @@ class BundleSection extends HTMLElement {
     
     async updateRecommendButtons() {
         const cartItemIds = await this.getCartItemsFromShopify();
-        console.log("updateRecommendButtons",cartItemIds)
         if (cartItemIds.length > 0) {
             this.addRecommendCart.forEach(button => {
                 const productId = button.getAttribute('data-product-id');
@@ -158,13 +158,23 @@ class BundleSection extends HTMLElement {
                 },
             };
             current.classList.remove('in-has')
-            console.log("remove",productId)
             
             this.changeCartAlltWithAjax(formItem)
             .then((data) => {
-                console.log("change товар:", data, current);
-                current.classList.remove('in-progress')
-                current.classList.remove('in-has')
+                if (!data.status) {
+                    current.classList.remove('in-progress')
+                    current.classList.remove('in-has')
+                    const countSelected = parseInt(this.countSelectedRecommend.textContent)
+                    this.countSelectedRecommend.textContent = countSelected - 1
+                }else {
+                    current.classList.remove('in-progress')
+                    if (data.message === data.description) {
+                        console.error("Update Cart Error:", data.message);
+                    }else {
+                        console.error("Update Cart Error:", data.message,data.description);
+                    }
+                    
+                }
             })
             .catch((error) => {
                 console.error("Error update item:", error);
@@ -178,9 +188,21 @@ class BundleSection extends HTMLElement {
             };
             this.addToCartAlltWithAjax(formData)
             .then((data) => {
-                console.log("add to cart:", data);
-                current.classList.remove('in-progress')
-                current.classList.add('in-has')
+                if (!data.status) {
+                    current.classList.remove('in-progress')
+                    current.classList.add('in-has')
+                    const countSelected = parseInt(this.countSelectedRecommend.textContent)
+                    this.countSelectedRecommend.textContent = countSelected + 1
+                }else {
+                    current.classList.remove('in-progress')
+                    let infoError = current.closest(".js-card-item").querySelector(".js-error-info")
+                    console.error("Add to Cart Error:", data.message + data.description);
+                    infoError.textContent = "Error: " + data.description
+                    setTimeout(() => {
+                        infoError.textContent = ""
+                    }, 3000);
+                }
+                
             })
             .catch((error) => {
                 console.error("Error update item:", error);
@@ -207,7 +229,6 @@ class BundleSection extends HTMLElement {
 
         this.addToCartAlltWithAjax(formData)
             .then((data) => {
-                console.log("Add to Cart:", data);
                 document.querySelector('#checkout').submit();
                 localStorage.removeItem("productsBundle")
             })
@@ -288,7 +309,6 @@ class BundleSection extends HTMLElement {
     }
 
     onKeyUp(event) {
-        console.log(event)
         if (event.code.toUpperCase() !== "ESCAPE") return
         if (
             event.target.classList.contains("js-accordion-toggle") &&
@@ -300,10 +320,8 @@ class BundleSection extends HTMLElement {
 
     async onButtonClick(event) {
         event.preventDefault()
-
         const id = event.currentTarget.dataset.productId
         const name = event.currentTarget.dataset.handle
-        console.log(event.currentTarget, id, name)
         this.addProduct(id, name, 1, event)
         await this.loadProducts()
     }
@@ -339,9 +357,6 @@ class BundleSection extends HTMLElement {
         let sumQty = productQty.reduce((total, value) => total + value, 0)
         let namesString = productNames.join("=")
         let listPrice = document.querySelectorAll(".js-bundle-all-price")
-
-        console.log(namesString)
-
         let blockResults = document.querySelector(".js-list-container")
 
         if (namesString) {
@@ -428,6 +443,9 @@ class BundleSection extends HTMLElement {
                 element.textContent = Shopify.formatMoney(price)
             })
         }
+        const cartItemIds = await this.getCartItemsFromShopify();
+        const countSelected = parseInt(this.countSelectedRecommend.textContent)
+        this.countSelectedRecommend.textContent = countSelected + cartItemIds.length
     }
 
     async deleteProduct(id) {
@@ -536,11 +554,19 @@ class BundleSection extends HTMLElement {
 
     updateButtonQuantities(products) {
         this.btnQty = document.querySelectorAll(".js-qty-bundle")
+        this.countQty = document.querySelectorAll(".js-bundle-cart-price-count")
+
         this.btnQty.forEach((button) => {
             const id = button.getAttribute("data-product-id")
             const product = products.find((p) => p.id === id)
             const quantity = product ? product.quantity : 1
             button.value = quantity
+        })
+        this.countQty.forEach((count) => {
+            const id = count.getAttribute("data-product-id")
+            const product = products.find((p) => p.id === id)
+            const quantity = product ? product.quantity : 1
+            count.textContent = quantity
         })
     }
 }

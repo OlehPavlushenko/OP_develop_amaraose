@@ -198,7 +198,13 @@
             {% if product_bundle != 'bundle-cart__style' %}
               <span class="caption-large light">{{ block.settings.description | escape }}</span>
             {% endif %}
+            {% if product_bundle == 'bundle-cart__style' %}
+              <span class="bundle-cart__items"><span class="js-bundle-cart-price-count" data-product-id="{{ card_product.id }}">1</span>X</span>             
+              {% render 'price_bundle', product: card_product, price_class: '' %}
+            {% else %}
             {% render 'price_bundle', product: card_product, price_class: '' %}
+            {%- endif -%}
+            
           </div>
         </div>
         {% if product_bundle != 'bundle-cart__style' %}
@@ -217,8 +223,12 @@
           </bundle-button>
         {% endif %}
       </div>
+      
     </div>
   </div>
+  {% if product_bundle == 'bundle-cart__style' and product_recommend %}
+    <span class="bundle-recommend-error-info js-error-info"></span>
+  {%- endif -%}
 {%- else -%}
   <div class="card-wrapper underline-links-hover">
     <div
@@ -261,7 +271,7 @@
               <span class="visually-hidden">{{ 'accessibility.vendor' | t }}</span>
               <div class="caption-with-letter-spacing light">{{ 'products.product.vendor' | t }}</div>
             {%- endif -%}
-            {% render 'price' %}
+              {% render 'price' %}
           </div>
         </div>
       </div>
