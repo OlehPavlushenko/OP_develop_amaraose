@@ -117,7 +117,6 @@ class BundleSection extends HTMLElement {
             
 
             const cartCount = await this.countCartList();
-            console.log("cartCount",cartCount)
             const countSelected = parseInt(this.itemSelectedHeader.textContent)
             this.itemSelectedHeader.textContent = countSelected + cartCount
             
@@ -128,7 +127,6 @@ class BundleSection extends HTMLElement {
             this.wrapRecommend.classList.remove("open")
             this.blockForm.classList.remove("closed")
             const cartCount = await this.countCartList();
-            console.log("cartCount",cartCount)
             const countSelected = parseInt(this.itemSelectedHeader.textContent)
             this.itemSelectedHeader.textContent = countSelected - cartCount
         })
@@ -362,6 +360,7 @@ class BundleSection extends HTMLElement {
     }
 
     async deleteProduct(id, event) {
+        let current = event
         const formItem = {
             updates: {
                 [parseInt(id)]: 0,
@@ -371,7 +370,7 @@ class BundleSection extends HTMLElement {
         this.changeCartAlltWithAjax(formItem)
         .then((data) => {
             if (!data.status) {
-                event.currentTarget.classList.add('in-progress')
+                current.classList.add('in-progress')
                 this.loadProducts()
             }else {
                 if (data.message === data.description) {
@@ -454,7 +453,7 @@ class BundleSection extends HTMLElement {
                             setTimeout(() => {
                                 element.closest(".js-card-item").remove()
                                 const deleteId = element.dataset.variantId
-                                this.deleteProduct(deleteId,event)
+                                this.deleteProduct(deleteId, element)
                             }, 300)
                         })
                     })
@@ -512,7 +511,6 @@ class BundleSection extends HTMLElement {
         const countHasMatchInCartNotList =  cartItemIds.filter(cartItem => {
             return !products.some(localProduct => localProduct.id === cartItem.id.toString());
         });
-        console.log("countHasMatchInCartNotList",countHasMatchInCartNotList)
         const sumQuantity = countHasMatchInCartNotList.reduce((totalQuantity, product) => {
             return totalQuantity + product.quantity;
         }, 0);
