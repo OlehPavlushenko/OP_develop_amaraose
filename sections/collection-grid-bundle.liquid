@@ -42,7 +42,7 @@
       aria-label="{{ 'sections.featured_collection.slider' | t }}"
     >
       {%- for product in section.settings.collection.products limit: 6 -%}
-        <li class="grid__item">
+        <li class="grid__item js-card-item">
           {% render 'card-product-bundle',
             card_product: product,
             media_aspect_ratio: section.settings.image_ratio,
@@ -65,7 +65,7 @@
           <li class="bundle-cart__header--item">
             <span class="bundle-cart__header--toggle">
               {% render 'icon-caret' -%}
-              <span class="js-count-selected ">0</span> Products Selected
+              <span class="js-count-selected js-count-selected-header">0</span> Products Selected
             </span>
             <span class="js-count-discount bundle-cart__discount hidden"></span>
             <div class="bundle-cart__price">

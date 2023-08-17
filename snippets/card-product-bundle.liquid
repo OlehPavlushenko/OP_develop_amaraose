@@ -51,6 +51,7 @@
         name="delete"
         id="DeleteProduct-{{ card_product.id }}"
         data-product-id="{{ card_product.id }}"
+        data-variant-id="{{ card_product.selected_or_first_available_variant.id }}"
         data-handle="{{ card_product.handle }}"
         title="Remove"
         class="card-product__remove js-btn-bundle-remove"
@@ -199,12 +200,11 @@
               <span class="caption-large light">{{ block.settings.description | escape }}</span>
             {% endif %}
             {% if product_bundle == 'bundle-cart__style' %}
-              <span class="bundle-cart__items"><span class="js-bundle-cart-price-count" data-product-id="{{ card_product.id }}">1</span>X</span>             
+              <span class="bundle-cart__items"><span class="{% if product_recommend %}js-bundle-cart-price-count2{% else %}js-bundle-cart-price-count{%- endif -%}" data-product-id="{{ card_product.id }}">1</span>X</span>             
               {% render 'price_bundle', product: card_product, price_class: '' %}
             {% else %}
             {% render 'price_bundle', product: card_product, price_class: '' %}
             {%- endif -%}
-            
           </div>
         </div>
         {% if product_bundle != 'bundle-cart__style' %}
@@ -214,19 +214,28 @@
               name="add"
               id="AddProduct-{{ card_product.id }}"
               data-product-id="{{ card_product.id }}"
+              data-variant-id="{{ card_product.selected_or_first_available_variant.id }}"
               data-handle="{{ card_product.handle }}"
+              {% if card_product.selected_or_first_available_variant.inventory_management == 'shopify'
+                and card_product.selected_or_first_available_variant.inventory_policy != 'continue'
+            %}
+                data-qty-max="{{ card_product.selected_or_first_available_variant.inventory_quantity }}"
+            {% endif %}
               title="Add"
               class="button primary-button card-product__add js-btn-bundle-add"
             >
               <span>{{ 'products.product.add_to_cart_link' | t }}</span>
             </button>
+            
+              <span class="bundle-recommend-error-info js-error-info"></span>
+            
           </bundle-button>
         {% endif %}
       </div>
       
     </div>
   </div>
-  {% if product_bundle == 'bundle-cart__style' and product_recommend %}
+  {% if product_recommend %}
     <span class="bundle-recommend-error-info js-error-info"></span>
   {%- endif -%}
 {%- else -%}

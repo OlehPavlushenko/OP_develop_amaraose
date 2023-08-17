@@ -79,15 +79,19 @@ class BundleSection extends HTMLElement {
             ".js-bundle-cart-selected"
         )
 
+        this.itemSelectedHeader = document.querySelector(
+            ".js-count-selected-header"
+        )
+        
+
         this.toggle.addEventListener("click", this.onClick.bind(this))
         this.addEventListener("keyup", this.onKeyUp.bind(this))
 
         this.btnAdd.forEach((button) => {
             button.addEventListener("click", this.onButtonClick.bind(this))
         })
-
+        
         this.loadProducts()
-
         
         this.addRecommendCart.forEach(element => {
             element.addEventListener("click", (event) => {
@@ -99,10 +103,10 @@ class BundleSection extends HTMLElement {
         this.btnNext.addEventListener("click", (event) => {
             event.preventDefault()
             event.currentTarget.classList.add('in-progress')
-            this.addToCartAllProducts()
+            document.querySelector('#checkout').submit();
         })
 
-        this.nextRecommend.addEventListener("click", (event) => {
+        this.nextRecommend.addEventListener("click", async (event) => {
             event.preventDefault()
             event.currentTarget.classList.add('in-progress')
             setTimeout(() => {
@@ -111,12 +115,22 @@ class BundleSection extends HTMLElement {
                 this.nextRecommend.classList.remove('in-progress')
             }, 500);
             
+
+            const cartCount = await this.countCartList();
+            console.log("cartCount",cartCount)
+            const countSelected = parseInt(this.itemSelectedHeader.textContent)
+            this.itemSelectedHeader.textContent = countSelected + cartCount
+            
         })
 
-        this.backRecommend.addEventListener("click", (event) => {
+        this.backRecommend.addEventListener("click", async (event) => {
             event.preventDefault()
             this.wrapRecommend.classList.remove("open")
             this.blockForm.classList.remove("closed")
+            const cartCount = await this.countCartList();
+            console.log("cartCount",cartCount)
+            const countSelected = parseInt(this.itemSelectedHeader.textContent)
+            this.itemSelectedHeader.textContent = countSelected - cartCount
         })
 
 
@@ -128,23 +142,39 @@ class BundleSection extends HTMLElement {
         window.addEventListener("scroll", this.handleScroll.bind(this))
     }
 
-    async getCartItemsFromShopify() {
-        const response = await fetch(window.Shopify.routes.root + 'cart.js');
-        const data = await response.json();
-        return data.items.map(item => item.variant_id);
+    async getCartDataFromShopify() {
+        try {
+            const response = await fetch(window.Shopify.routes.root + 'cart.js');
+            const data = await response.json();
+            const cartItems = data.items.map(item => ({
+                id: item.product_id,
+                variant_id: item.variant_id,
+                name: item.handle,
+                quantity: item.quantity,
+            }));
+            
+            return cartItems;
+        } catch (error) {
+            console.error('Error fetching cart data:', error);
+            return false;
+        }
     }
     
     async updateRecommendButtons() {
-        const cartItemIds = await this.getCartItemsFromShopify();
-        if (cartItemIds.length > 0) {
+        const cartItemIds = await this.getCartDataFromShopify();
+        if (cartItemIds && cartItemIds.length > 0) {
             this.addRecommendCart.forEach(button => {
                 const productId = button.getAttribute('data-product-id');
-                if (cartItemIds.includes(parseInt(productId))) {
+                const matchingCartItem = cartItemIds.find(item => item.variant_id === parseInt(productId));
+                if (matchingCartItem) {
+                    const qty = button.closest('.js-card-item').querySelector('.js-bundle-cart-price-count2')
                     button.classList.add('in-has');
+                    qty.textContent = matchingCartItem.quantity;
                 }
             });
         }  
     }
+    
 
     addToCartRecommend(event) {
         let current = event.currentTarget
@@ -166,6 +196,8 @@ class BundleSection extends HTMLElement {
                     current.classList.remove('in-has')
                     const countSelected = parseInt(this.countSelectedRecommend.textContent)
                     this.countSelectedRecommend.textContent = countSelected - 1
+                    const qty = current.closest('.js-card-item').querySelector('.js-bundle-cart-price-count2')
+                    qty.textContent = 1;
                 }else {
                     current.classList.remove('in-progress')
                     if (data.message === data.description) {
@@ -212,30 +244,6 @@ class BundleSection extends HTMLElement {
         
     }
 
-    addToCartAllProducts() {
-        const productInputs = this.blockForm.querySelectorAll(".js-qty-bundle")
-        const formData = {
-            items: [],
-        }
-
-        productInputs.forEach((input) => {
-            const productId = input.getAttribute("data-variant-id")
-            const quantity = parseInt(input.value)
-            formData.items.push({
-                id: productId,
-                quantity: quantity,
-            })
-        })
-
-        this.addToCartAlltWithAjax(formData)
-            .then((data) => {
-                document.querySelector('#checkout').submit();
-                localStorage.removeItem("productsBundle")
-            })
-            .catch((error) => {
-                console.error("Error add to car:", error);
-            });
-    }
 
     addToCartAlltWithAjax(formData) {
         return new Promise((resolve, reject) => {
@@ -293,7 +301,6 @@ class BundleSection extends HTMLElement {
     onClick(event) {
         event.preventDefault()
         event.target.classList.contains("open") ? this.close() : this.open()
-        
     }
 
     open() {
@@ -320,37 +327,85 @@ class BundleSection extends HTMLElement {
 
     async onButtonClick(event) {
         event.preventDefault()
-        const id = event.currentTarget.dataset.productId
-        const name = event.currentTarget.dataset.handle
-        this.addProduct(id, name, 1, event)
-        await this.loadProducts()
+        const id = event.currentTarget.dataset.variantId
+        this.addProduct(id, event)
+       
     }
 
-    async addProduct(id, name, quantity, event) {
-        const newProduct = {
-            id,
-            name,
-            quantity,
-        }
-
-        let products = JSON.parse(localStorage.getItem("productsBundle")) || []
-
-        const existingProductIndex = products.findIndex(
-            (product) => product.id === id
-        )
-
-        if (existingProductIndex !== -1) {
-            // Product already exists, update the quantity
-            products[existingProductIndex].quantity += quantity
-        } else {
-            products.push(newProduct)
-        }
-
-        localStorage.setItem("productsBundle", JSON.stringify(products))
+    async addProduct(id, event) {
+        let current = event.currentTarget
+        let formData = {
+            'items': [{
+             'id': parseInt(id),
+             'quantity': 1
+            }]
+        };
+        this.addToCartAlltWithAjax(formData)
+        .then((data) => {
+            if (data.status) {
+                
+                let infoError = current.closest(".js-card-item").querySelector(".js-error-info")
+                console.error("Add to Cart Error:", data.message + data.description);
+                infoError.textContent = "Error: " + data.description
+                setTimeout(() => {
+                    current.classList.remove('active')
+                    infoError.textContent = ""
+                }, 3000);
+            }else {
+                this.loadProducts()
+            }
+        })
+        .catch((error) => {
+            console.error("Error update item:", error);
+        });
         event.currentTarget.classList.add("active")
     }
 
+    async deleteProduct(id, event) {
+        const formItem = {
+            updates: {
+                [parseInt(id)]: 0,
+            },
+        };
+        
+        this.changeCartAlltWithAjax(formItem)
+        .then((data) => {
+            if (!data.status) {
+                event.currentTarget.classList.add('in-progress')
+                this.loadProducts()
+            }else {
+                if (data.message === data.description) {
+                    console.error("Update Cart Error:", data.message);
+                }else {
+                    console.error("Update Cart Error:", data.message,data.description);
+                }
+                
+            }
+        })
+        .catch((error) => {
+            console.error("Error update item:", error);
+        });
+    }
+
     async loadProducts() {
+        let cartData = await this.getCartDataFromShopify()
+        const newProducts = [];
+                
+        this.btnAdd.forEach((button) => {
+            const productId = parseInt(button.getAttribute('data-product-id'));
+            
+            const matchingCartItem = cartData.find(item => item.id === productId);
+            if (matchingCartItem) {
+                newProducts.push({
+                    id: matchingCartItem.id.toString(),
+                    name: matchingCartItem.name,
+                    quantity: matchingCartItem.quantity,
+                });
+            }
+        });
+
+        localStorage.setItem('productsBundle', JSON.stringify(newProducts));
+
         let products = JSON.parse(localStorage.getItem("productsBundle")) || []
         let productNames = products.map((product) => product.name)
         let productQty = products.map((product) => product.quantity)
@@ -358,6 +413,7 @@ class BundleSection extends HTMLElement {
         let namesString = productNames.join("=")
         let listPrice = document.querySelectorAll(".js-bundle-all-price")
         let blockResults = document.querySelector(".js-list-container")
+ 
 
         if (namesString) {
             try {
@@ -397,8 +453,8 @@ class BundleSection extends HTMLElement {
                             const element = event.currentTarget
                             setTimeout(() => {
                                 element.closest(".js-card-item").remove()
-                                const deleteId = element.dataset.productId
-                                this.deleteProduct(deleteId)
+                                const deleteId = element.dataset.variantId
+                                this.deleteProduct(deleteId,event)
                             }, 300)
                         })
                     })
@@ -429,6 +485,7 @@ class BundleSection extends HTMLElement {
             this.blockEmpty.classList.remove("hidden")
             this.blockWrap.classList.remove("in-progress")
             this.blockForm.classList.add("hidden")
+
             this.countSelected.forEach((element) => {
                 element.textContent = "0"
             })
@@ -443,27 +500,26 @@ class BundleSection extends HTMLElement {
                 element.textContent = Shopify.formatMoney(price)
             })
         }
-        const cartItemIds = await this.getCartItemsFromShopify();
+
+        const cartCount = await this.countCartList();
         const countSelected = parseInt(this.countSelectedRecommend.textContent)
-        this.countSelectedRecommend.textContent = countSelected + cartItemIds.length
+        this.countSelectedRecommend.textContent = countSelected + cartCount
     }
 
-    async deleteProduct(id) {
-        let products = JSON.parse(localStorage.getItem("productsBundle")) || []
-
-        let existingProductIndex = products.findIndex(
-            (product) => product.id === id
-        )
-
-        if (existingProductIndex === -1) {
-            return //product not found
-        }
-
-        products.splice(existingProductIndex, 1)
-        localStorage.setItem("productsBundle", JSON.stringify(products))
-
-        await this.loadProducts()
+    async countCartList() {
+        const products = JSON.parse(localStorage.getItem("productsBundle")) || []
+        const cartItemIds = await this.getCartDataFromShopify();
+        const countHasMatchInCartNotList =  cartItemIds.filter(cartItem => {
+            return !products.some(localProduct => localProduct.id === cartItem.id.toString());
+        });
+        console.log("countHasMatchInCartNotList",countHasMatchInCartNotList)
+        const sumQuantity = countHasMatchInCartNotList.reduce((totalQuantity, product) => {
+            return totalQuantity + product.quantity;
+        }, 0);
+        return sumQuantity
     }
+
+   
 
     updateDisplay(displayIndex, sumPrice) {
         let totalPrice = Shopify.formatMoney(sumPrice)
@@ -562,13 +618,14 @@ class BundleSection extends HTMLElement {
             const quantity = product ? product.quantity : 1
             button.value = quantity
         })
+
         this.countQty.forEach((count) => {
             const id = count.getAttribute("data-product-id")
             const product = products.find((p) => p.id === id)
             const quantity = product ? product.quantity : 1
             count.textContent = quantity
         })
-    }
+    }    
 }
 
 customElements.define("bundle-section", BundleSection)
