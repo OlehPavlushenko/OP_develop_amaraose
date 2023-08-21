@@ -31,44 +31,6 @@
       assign ratio = 1
     endif
   -%}
-  {% if product_bundle == 'bundle-cart__style' %}
-    {% if product_recommend %}
-      <button
-        type="button"
-        name="delete"
-        id="AddProduct-{{ card_product.id }}"
-        data-product-id="{{ card_product.selected_or_first_available_variant.id }}"
-        data-handle="{{ card_product.handle }}"
-        title="Add to product"
-        class="card-product__add btn-bundle-add-recommend js-btn-bundle-add-recommend"
-      >
-        {% render 'icon-cart-empty' %}
-        {% render 'icon-remove' %}
-      </button>
-      {%- else -%}
-      <button
-        type="button"
-        name="delete"
-        id="DeleteProduct-{{ card_product.id }}"
-        data-product-id="{{ card_product.id }}"
-        data-variant-id="{{ card_product.selected_or_first_available_variant.id }}"
-        data-handle="{{ card_product.handle }}"
-        title="Remove"
-        class="card-product__remove js-btn-bundle-remove"
-      >
-        {% render 'icon-remove' %}
-      </button>
-      <input
-        type="hidden"
-        name="quantity[{{ forloop }}]"
-        value="1"
-        class="js-qty-bundle"
-        data-product-id="{{ card_product.id }}"
-        data-variant-id="{{ card_product.selected_or_first_available_variant.id }}"
-      >
-    {%- endif -%}
-   
-  {%- endif -%}
   <div class="card-wrapper underline-links-hover {{ product_bundle }}">
     <div
       class="
@@ -164,13 +126,8 @@
           </div>
         {%- endif -%}
       </div>
+
       <div class="card__content {{ product_bundle }}">
-        {% render 'judgeme_widgets',
-          widget_type: 'judgeme_preview_badge',
-          jm_style: '',
-          concierge_install: false,
-          product: card_product
-        %}
         <div class="card__information-wrapper {{ product_bundle }}">
           <div class="information-content {{ product_bundle }}">
             <h3
@@ -194,47 +151,99 @@
               {% endif %}
             {% endif %}
           </div>
-
+          {% render 'judgeme_widgets',
+            widget_type: 'judgeme_preview_badge',
+            jm_style: '',
+            concierge_install: false,
+            product: card_product
+          %}
           <div class="price-wrapper {{ product_bundle }}">
             {% if product_bundle != 'bundle-cart__style' %}
               <span class="caption-large light">{{ block.settings.description | escape }}</span>
             {% endif %}
             {% if product_bundle == 'bundle-cart__style' %}
-              <span class="bundle-cart__items"><span class="{% if product_recommend %}js-bundle-cart-price-count2{% else %}js-bundle-cart-price-count{%- endif -%}" data-product-id="{{ card_product.id }}">1</span>X</span>             
+              <span class="bundle-cart__items">x<span
+                  class="{% if product_recommend %}js-bundle-cart-price-count2{% else %}js-bundle-cart-price-count{%- endif -%}"
+                  data-product-id="{{ card_product.id }}">1</span></span>
               {% render 'price_bundle', product: card_product, price_class: '' %}
             {% else %}
-            {% render 'price_bundle', product: card_product, price_class: '' %}
+              {% render 'price_bundle', product: card_product, price_class: '' %}
             {%- endif -%}
+
           </div>
-        </div>
-        {% if product_bundle != 'bundle-cart__style' %}
-          <bundle-button>
-            <button
-              type="button"
-              name="add"
-              id="AddProduct-{{ card_product.id }}"
-              data-product-id="{{ card_product.id }}"
-              data-variant-id="{{ card_product.selected_or_first_available_variant.id }}"
-              data-handle="{{ card_product.handle }}"
-              {% if card_product.selected_or_first_available_variant.inventory_management == 'shopify'
+
+          {% if product_bundle != 'bundle-cart__style' %}
+            <bundle-button>
+              <button
+                type="button"
+                name="add"
+                id="AddProduct-{{ card_product.id }}"
+                data-product-id="{{ card_product.id }}"
+                data-variant-id="{{ card_product.selected_or_first_available_variant.id }}"
+                data-handle="{{ card_product.handle }}"
+                {% if card_product.selected_or_first_available_variant.inventory_management == 'shopify'
                 and card_product.selected_or_first_available_variant.inventory_policy != 'continue'
-            %}
-                data-qty-max="{{ card_product.selected_or_first_available_variant.inventory_quantity }}"
-            {% endif %}
-              title="Add"
-              class="button primary-button card-product__add js-btn-bundle-add"
-            >
-              <span>{{ 'products.product.add_to_cart_link' | t }}</span>
-            </button>
-            
+                %}
+                  data-qty-max="{{ card_product.selected_or_first_available_variant.inventory_quantity }}"
+                {% endif %}
+                title="Add"
+                class="button primary-button card-product__add js-btn-bundle-add"
+              >
+                <span>{{ 'products.product.add_to_cart_link' | t }}</span>
+              </button>
+
               <span class="bundle-recommend-error-info js-error-info"></span>
-            
-          </bundle-button>
-        {% endif %}
+
+            </bundle-button>
+          {% endif %}
+        </div>
+
       </div>
-      
+
     </div>
   </div>
+
+  {% if product_bundle == 'bundle-cart__style' %}
+    {% if product_recommend %}
+      <button
+        type="button"
+        name="delete"
+        id="AddProduct-{{ card_product.id }}"
+        data-product-id="{{ card_product.selected_or_first_available_variant.id }}"
+        data-handle="{{ card_product.handle }}"
+        title="Add to product"
+        class="card-product__add btn-bundle-add-recommend js-btn-bundle-add-recommend"
+      >
+        {% render 'icon-cart-empty' %}
+        {% render 'icon-remove' %}
+      </button>
+    {%- else -%}
+      <button
+        type="button"
+        name="delete"
+        id="DeleteProduct-{{ card_product.id }}"
+        data-product-id="{{ card_product.id }}"
+        data-variant-id="{{ card_product.selected_or_first_available_variant.id }}"
+        data-handle="{{ card_product.handle }}"
+        title="Remove"
+        class="card-product__remove js-btn-bundle-remove"
+      >
+        {% render 'icon-remove' %}
+      </button>
+
+      <input
+        type="hidden"
+        name="quantity[{{ forloop }}]"
+        value="1"
+        class="js-qty-bundle"
+        data-product-id="{{ card_product.id }}"
+        data-variant-id="{{ card_product.selected_or_first_available_variant.id }}"
+      >
+
+    {%- endif -%}
+
+  {%- endif -%}
+
   {% if product_recommend %}
     <span class="bundle-recommend-error-info js-error-info"></span>
   {%- endif -%}
@@ -280,7 +289,7 @@
               <span class="visually-hidden">{{ 'accessibility.vendor' | t }}</span>
               <div class="caption-with-letter-spacing light">{{ 'products.product.vendor' | t }}</div>
             {%- endif -%}
-              {% render 'price' %}
+            {% render 'price' %}
           </div>
         </div>
       </div>

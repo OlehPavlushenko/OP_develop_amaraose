@@ -1,5 +1,6 @@
 {% comment %} Bundle Collection {% endcomment %}
 
+
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
 {{ 'collection-grid.css' | asset_url | stylesheet_tag }}
@@ -8,15 +9,28 @@
 <link rel="stylesheet" href="{{ 'template-collection.css' | asset_url }}" media="print" onload="this.media='all'">
 <noscript>{{ 'template-collection.css' | asset_url | stylesheet_tag }}</noscript>
 
-<div class="collection-grid container section-{{ section.id }}-padding">
+<div class="collection-grid container section-{{ section.id }}-padding" id="collection-grid-bundle">
   <div class="collection-grid__header title-wrapper title-wrapper--no-top-margin">
-    <h2 class="collection-grid__title">
-      {% if section.settings.title != blank %}
-        {{ section.settings.title | escape }}
-      {% else %}
-        {{ section.settings.collection.title | escape }}
-      {% endif %}
-    </h2>
+
+    {% if section.settings.title != blank %}
+      <h2 class="collection-grid__title">
+        {% if section.settings.title != blank %}
+          {{ section.settings.title | escape }}
+        {% else %}
+          {{ section.settings.collection.title | escape }}
+        {% endif %}
+
+
+        {% if section.settings.description_subtitle != blank %}
+          <span>
+             {{ section.settings.description_subtitle | escape }}
+          </span>
+        {% endif %}
+      </h2>
+    {% endif %}
+
+
+
     {%- if section.settings.description != blank -%}
       {%- assign discount_list = section.settings.description | split: ';' -%}
       {%- assign count = 2 -%}
@@ -36,13 +50,14 @@
   </div>
 
   <bundle-section class="collection-grid__list collection-grid__list--bundle">
+    {% comment %} Bundle Section {% endcomment %}
     <ul
       class="grid product-grid product-grid--bundle contains-card{% if settings.card_style == 'standard' %} contains-card--standard{% endif %}{% if section.settings.collection == blank %} grid--2-col-tablet-down{% endif %}"
       role="list"
       aria-label="{{ 'sections.featured_collection.slider' | t }}"
     >
       {%- for product in section.settings.collection.products limit: 6 -%}
-        <li class="grid__item js-card-item">
+        <li class="grid__item  js-card-item">
           {% render 'card-product-bundle',
             card_product: product,
             media_aspect_ratio: section.settings.image_ratio,
@@ -55,7 +70,9 @@
         </li>
       {%- endfor -%}
     </ul>
-    <div class="bundle-cart js-bundle-cart">
+    {% comment %} End Bundle Section {% endcomment %}
+    <toggle-mobile class="bundle-cart js-bundle-cart">
+      {% comment %} Header Selected For Mobile {% endcomment %}
       <div class="bundle-cart__header--selected">
         <button class="bundle-cart__header--close js-accordion-toggle">
           <span class="bundle-cart__btn--open button primary-button">Open</span>
@@ -65,7 +82,7 @@
           <li class="bundle-cart__header--item">
             <span class="bundle-cart__header--toggle">
               {% render 'icon-caret' -%}
-              <span class="js-count-selected js-count-selected-header">0</span> Products Selected
+               <span class="js-count-selected js-count-selected-header">0</span> Products Selected
             </span>
             <span class="js-count-discount bundle-cart__discount hidden"></span>
             <div class="bundle-cart__price">
@@ -84,6 +101,8 @@
           </li>
         </ul>
       </div>
+      {% comment %} End Header Selected For Mobile {% endcomment %}
+      {% comment %} Bundle Mini Cart {% endcomment %}
       <div class="bundle-cart__wrap in-progress js-bundle-cart-wrap js-accordion-content">
         <div class="bundle-cart__empty js-bundle-cart-empty hidden">
           {% render 'icon-shopping-cart' %}
@@ -99,7 +118,7 @@
               <ul class="bundle-cart__list">
                 <li class="bundle-cart__list--first js-bundle-cart-selected">
                   <span class="bundle-cart__list--text"
-                    ><span class="js-count-selected">0</span> Products Selected</span
+                  ><span class="js-count-selected">0</span> Products Selected</span
                   >
                   <div class="bundle-cart__price">
                     <div class="bundle-cart__price--container">
@@ -130,7 +149,14 @@
               <button
                 class="button primary-button bundle-cart__button js-bundle-cart-recommend-next"
               >
-                <span class="bundle-cart__button--text">NEXT {% render 'icon-arrow' -%}</span>
+                <span class="bundle-cart__button--text">NEXT
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
+                        <path d="M5.5 12H19.5" stroke="white" stroke-width="2" stroke-linecap="round"
+                              stroke-linejoin="round"/>
+                        <path d="M12.5 5L19.5 12L12.5 19" stroke="white" stroke-width="2" stroke-linecap="round"
+                              stroke-linejoin="round"/>
+                    </svg>
+                </span>
                 <div class="bundle-cart__price">
                   <div class="bundle-cart__price--container">
                     <div class="bundle-cart__price--sale">
@@ -148,34 +174,42 @@
             </div>
           </div>
         </div>
-        <div class="bundle-cart__recomend js-bundle-cart-recommend-wrap">
+        {% comment %} Recommend Section {% endcomment %}
+        <recommend-block class="bundle-cart__recomend js-bundle-cart-recommend-wrap">
           <div class="bundle-cart__recomend-top">
-            <span class="bundle-cart__recomend-top--back js-bundle-cart-recommend-back">{% render 'icon-arrow' -%} Back to bundle builder</span>
+            <span class="bundle-cart__recomend-top--back js-bundle-cart-recommend-back">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M19 12L5 12" stroke="#C68A7C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12 19L5 12L12 5" stroke="#C68A7C" stroke-width="2" stroke-linecap="round"
+                      stroke-linejoin="round"/>
+              </svg>
+              Back to bundle builder
+            </span>
             <h4 class="bundle-cart__recomend-top--title">Add this to complete your purchase?</h4>
           </div>
           {%- assign recommend_products = section.settings.recommend_products -%}
           <ul class="bundle-products__grid">
             {%- for product in recommend_products -%}
-                <li class="bundle-products__item js-card-item">
-                  {% render 'card-product-bundle',
-                    card_product: product,
-                    media_aspect_ratio: 'adapt',
-                    show_secondary_image: false,
-                    show_rating: true,
-                    show_quick_add: false,
-                    forloop: forloop.index,
-                    product_bundle: 'bundle-cart__style',
-                    product_recommend: true
-                  %}
-                </li>
-              {%- endfor -%}
+              <li class="bundle-products__item js-card-item">
+                {% render 'card-product-bundle',
+                  card_product: product,
+                  media_aspect_ratio: 'adapt',
+                  show_secondary_image: false,
+                  show_rating: true,
+                  show_quick_add: false,
+                  forloop: forloop.index,
+                  product_bundle: 'bundle-cart__style',
+                  product_recommend: true
+                %}
+              </li>
+            {%- endfor -%}
           </ul>
           <div class="bundle-cart__footer">
             <div class="bundle-cart__selected">
               <ul class="bundle-cart__list">
                 <li class="bundle-cart__list--first js-bundle-cart-selected">
                   <span class="bundle-cart__list--text"
-                    ><span class="js-count-selected js-recommend-count-selected">0</span> Products Selected</span
+                  ><span class="js-count-selected js-recommend-count-selected">0</span> Products Selected</span
                   >
                   <div class="bundle-cart__price">
                     <div class="bundle-cart__price--container">
@@ -225,9 +259,11 @@
               <span class="bundle-cart__shipping">FREE Shipping On US Orders of $70+</span>
             </div>
           </div>
-        </div>
+        </recommend-block>
+        {% comment %} End Recommend Section {% endcomment %}
       </div>
-    </div>
+      {% comment %} End Bundle Mini Cart {% endcomment %}
+    </toggle-mobile>
   </bundle-section>
 </div>
 
@@ -253,6 +289,12 @@
       "id": "title",
       "default": "B.Y.O.B.",
       "label": "t:sections.grid-collection.settings.title.label"
+    },
+    {
+      "type": "text",
+      "id": "description_subtitle",
+      "default": "(Build your own bundle and save big)",
+      "label": "description_subtitle"
     },
     {
       "type": "textarea",
